@@ -10,6 +10,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AireModule } from './aire/aire.module';
 import { ZoneModule } from './zone/zone.module';
+import { ProvinceModule } from './province/province.module';
 import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 dotenv.config();
@@ -30,6 +31,7 @@ dotenv.config();
     }),
     AireModule,
     ZoneModule,
+    ProvinceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

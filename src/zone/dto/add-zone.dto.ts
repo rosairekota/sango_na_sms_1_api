@@ -1,4 +1,11 @@
-import { IsString, IsNotEmpty, MinLength, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  MinLength,
+  MaxLength,
+  IsNumber,
+} from 'class-validator';
+import { ProvinceEntity } from 'src/province/province.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 export class AddZoneDto extends GenericValidatorMessages {
   @IsString(AddZoneDto.genericStringMessage('le libelle de la zone'))
@@ -8,4 +15,7 @@ export class AddZoneDto extends GenericValidatorMessages {
   })
   @MaxLength(100, { message: 'svp au maximum 100 caractère le nom de la zone' })
   labelZone: string;
+
+  @IsNotEmpty()
+  province: ProvinceEntity;
 }

@@ -12,6 +12,7 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const zone_module_1 = require("./zone/zone.module");
 const dotenv = require("dotenv");
 dotenv.config();
 let AppModule = class AppModule {
@@ -32,6 +33,7 @@ AppModule = __decorate([
                 entities: ['dist/**/*.entity{.ts,.js}'],
                 synchronize: true,
             }),
+            zone_module_1.ZoneModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

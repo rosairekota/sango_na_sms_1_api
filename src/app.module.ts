@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AireModule } from './aire/aire.module';
 import * as dotenv from 'dotenv';
 dotenv.config();
 @Module({
@@ -20,6 +21,7 @@ dotenv.config();
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    AireModule,
   ],
   controllers: [AppController],
   providers: [AppService],

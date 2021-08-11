@@ -11,7 +11,4 @@ export class ZoneEntity extends TimesTempEntity {
     unique: true,
   })
   labelZone: string;
-
-  @Column({ name: 'province_id' })
-  province: number;
 }

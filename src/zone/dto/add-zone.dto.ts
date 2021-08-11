@@ -8,7 +8,4 @@ export class AddZoneDto extends GenericValidatorMessages {
   })
   @MaxLength(100, { message: 'svp au maximum 100 caractère le nom de la zone' })
   labelZone: string;
-
-  @IsNotEmpty(AddZoneDto.genericEmptyMessage('le numero de la province '))
-  province: number;
 }

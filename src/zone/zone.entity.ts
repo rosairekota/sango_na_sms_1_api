@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ProvinceEntity } from 'src/province/province.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 @Entity('zone')
 export class ZoneEntity extends TimesTempEntity {
@@ -11,4 +12,9 @@ export class ZoneEntity extends TimesTempEntity {
     unique: true,
   })
   labelZone: string;
+  @ManyToOne(() => ProvinceEntity, (ProvinceEntity) => ProvinceEntity.zones, {
+    cascade: true,
+    nullable: true,
+  })
+  province: ProvinceEntity;
 }

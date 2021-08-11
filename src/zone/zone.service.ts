@@ -9,4 +9,10 @@ export class ZoneService {
     @InjectRepository(ZoneEntity)
     private readonly zoneRepository: Repository<ZoneEntity>,
   ) {}
+  async findAll(): Promise<ZoneEntity[]> {
+    return await this.zoneRepository.find();
+  }
+  async findById(id: number): Promise<ZoneEntity> {
+    return await this.zoneRepository.findOne(id);
+  }
 }

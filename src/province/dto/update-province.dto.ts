@@ -10,5 +10,5 @@ export class UpdateProvinceDto extends GenericValidatorMessages {
   @MaxLength(100, {
     message: 'Au maximum 100 caractères pour le nom de la province',
   })
-  libelleProvince: string;
+  labelProvince: string;
 }

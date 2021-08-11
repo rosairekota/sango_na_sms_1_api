@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { isUppercase, IS_UPPERCASE } from 'class-validator';
 import { Repository } from 'typeorm';
 import { AddProvinceDto } from './dto/add-province.dto';
 import { UpdateProvinceDto } from './dto/update-province.dto';
@@ -23,7 +24,7 @@ export class ProvinceService {
       return await this.provinceRepository.save(newProvince);
     } catch (error) {
       throw new ConflictException(
-        `La province de ${province.libelleProvince} existe déjà`,
+        `La province de ${province.labelProvince} existe déjà`,
       );
     }
   }

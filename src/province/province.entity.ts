@@ -9,5 +9,5 @@ export class ProvinceEntity extends TimesTempEntity {
     unique: true,
     name: 'libelle_province',
   })
-  libelleProvince: string;
+  labelProvince: string;
 }

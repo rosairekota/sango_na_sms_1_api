@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ZoneEntity } from './zone.entity';
@@ -16,11 +16,18 @@ export class ZoneService {
   }
   async findById(id: number): Promise<ZoneEntity> {
     const zone = await this.zoneRepository.findOne(id);
-    if (!zone) throw new NotFoundException('la zone inexistante');
+    if (!zone)
+      throw new NotFoundException(`Cette zone de santé n'existe pas !`);
     return zone;
   }
   async add(newZone: AddZoneDto): Promise<ZoneEntity> {
-    return await this.zoneRepository.save(newZone);
+    try {
+      return await this.zoneRepository.save(newZone);
+    } catch (error) {
+      throw new ConflictException(
+        `La Zone de santé de ${newZone.labelZone} existe déjà`,
+      );
+    }
   }
   async update(id: number, zone: AddZoneDto): Promise<ZoneEntity> {
     const newZone = await this.zoneRepository.preload({ id, ...zone });

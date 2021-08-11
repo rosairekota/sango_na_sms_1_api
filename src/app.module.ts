@@ -1,10 +1,16 @@
-import { Module } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  RequestMethod,
+  MiddlewareConsumer,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ZoneModule } from './zone/zone.module';
 import * as dotenv from 'dotenv';
+import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 dotenv.config();
 @Module({
   imports: [
@@ -26,4 +32,21 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CheckExistZoneMiddleware).forRoutes(
+      {
+        path: '/api/zone/:id',
+        method: RequestMethod.GET,
+      },
+      {
+        path: '/api/zone/:id',
+        method: RequestMethod.PUT,
+      },
+      {
+        path: '/api/zone/:id',
+        method: RequestMethod.DELETE,
+      },
+    );
+  }
+}

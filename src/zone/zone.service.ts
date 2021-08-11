@@ -16,10 +16,7 @@ export class ZoneService {
   }
   async findById(id: number): Promise<ZoneEntity> {
     const zone = await this.zoneRepository.findOne(id);
-    if (!zone)
-      throw new NotFoundException(
-        'vous ne pouvez supprimer une zone inexistante',
-      );
+    if (!zone) throw new NotFoundException('la zone inexistante');
     return zone;
   }
   async add(newZone: AddZoneDto): Promise<ZoneEntity> {

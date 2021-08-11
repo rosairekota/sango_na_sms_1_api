@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AireModule } from './aire/aire.module';
 import { ZoneModule } from './zone/zone.module';
 import { ProvinceModule } from './province/province.module';
 import * as dotenv from 'dotenv';
@@ -28,6 +29,7 @@ dotenv.config();
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    AireModule,
     ZoneModule,
     ProvinceModule,
   ],

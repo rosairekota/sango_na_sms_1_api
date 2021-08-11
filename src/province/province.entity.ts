@@ -11,10 +11,10 @@ export class ProvinceEntity extends TimesTempEntity {
     name: 'libelle_province',
   })
   labelProvince: string;
-  // @OneToMany((type) => ZoneEntity, (zone) => zone.province, {
-  //   eager: true,
-  //   cascade: ['insert', 'update'],
-  //   nullable: true,
-  // })
+  @OneToMany((type) => ZoneEntity, (zone) => zone.province, {
+    eager: true,
+    cascade: ['insert', 'update'],
+    nullable: true,
+  })
   // zones: ZoneEntity[];
 }

@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ZoneModule } from './zone/zone.module';
+import { ProvinceModule } from './province/province.module';
 import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 dotenv.config();
@@ -28,6 +29,7 @@ dotenv.config();
       synchronize: true,
     }),
     ZoneModule,
+    ProvinceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

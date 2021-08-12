@@ -12,9 +12,6 @@ export class ZoneEntity extends TimesTempEntity {
     unique: true,
   })
   labelZone: string;
-  @ManyToOne(() => ProvinceEntity, (ProvinceEntity) => ProvinceEntity.zones, {
-    cascade: true,
-    nullable: true,
-  })
+  @ManyToOne(() => ProvinceEntity, (ProvinceEntity) => ProvinceEntity.zones)
   province: ProvinceEntity;
 }

@@ -9,8 +9,10 @@ export class AireEntity extends TimesTempEntity {
   @Column({ nullable: false })
   libelle_aire: string;
 //   @ManyToOne({
-//       type => ZoneEntity,
-
-//   });
-//   zone :ZoneEntity
+//       (type) => ZoneEntity,
+//       (zone)=> zone.aires,
+//       {cascade : true ,
+//          nullable:true}
+//   })
+//   zone :ZoneEntity;
 }

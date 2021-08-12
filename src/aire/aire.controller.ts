@@ -3,7 +3,7 @@ import { AireEntity } from './aire.entity';
 import { AireService } from './aire.service';
 import { AddAireDto } from './dto/add-aire.dto';
 
-@Controller('aire')
+@Controller('api/aire')
 export class AireController {
   constructor(private aireService: AireService) {}
 

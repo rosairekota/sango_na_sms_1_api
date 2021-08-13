@@ -15,6 +15,7 @@ import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 import { CentreModule } from './centre/centre.module';
 import { FemmeModule } from './femme/femme.module';
+import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 dotenv.config();
 @Module({
   imports: [
@@ -36,6 +37,7 @@ dotenv.config();
     ProvinceModule,
     CentreModule,
     FemmeModule,
+    AntigenefemmeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

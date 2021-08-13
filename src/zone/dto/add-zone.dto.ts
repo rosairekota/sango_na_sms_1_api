@@ -19,6 +19,8 @@ export class AddZoneDto extends GenericValidatorMessages {
   @ApiProperty()
   @MaxLength(100, { message: 'svp au maximum 100 caractère le nom de la zone' })
   labelZone: string;
+
+  @ApiProperty()
   @IsOptional()
   province: ProvinceEntity;
 }

@@ -16,8 +16,7 @@ export class AireEntity extends TimesTempEntity {
     cascade: ['insert', 'update'],
   })
   centres: CentreEntity[];
-
-
+  
   @ManyToOne(()=>ZoneEntity, (zone)=>zone.aires)
   zone:ZoneEntity
 }

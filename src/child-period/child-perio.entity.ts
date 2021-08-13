@@ -1,3 +1,4 @@
+import { ChildAntigenEntity } from '../child-antigen/child-antigen.entity';
 import {
   Entity,
   Column,
@@ -16,4 +17,15 @@ export class ChildPeriodEntity {
 
   @Column({ name: 'duree', type: 'double' })
   duration: number;
+
+  @OneToMany(
+    () => ChildAntigenEntity,
+    (childAntigene) => childAntigene.childPeriod,
+    {
+      eager: true,
+      cascade: true,
+      nullable: true,
+    },
+  )
+  childAntigenes: ChildAntigenEntity[];
 }

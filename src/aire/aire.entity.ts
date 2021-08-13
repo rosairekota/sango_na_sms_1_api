@@ -1,6 +1,8 @@
-import { ManyToOne,Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { ManyToOne,Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
 import { ZoneEntity } from 'src/zone/zone.entity';
+import { CentreEntity } from 'src/centre/centre.entity';
 
 @Entity('aire')
 export class AireEntity extends TimesTempEntity {
@@ -8,9 +10,14 @@ export class AireEntity extends TimesTempEntity {
   idaire: number;
   @Column({ nullable: false })
   libelle_aire: string;
-//   @ManyToOne({
-//       type => ZoneEntity,
+  @OneToMany(() => CentreEntity, (centre) => centre.aire, {
+    eager: true,
+    nullable: true,
+    cascade: ['insert', 'update'],
+  })
+  centres: CentreEntity[];
 
-//   });
-//   zone :ZoneEntity
+
+  @ManyToOne(()=>ZoneEntity, (zone)=>zone.aires)
+  zone:ZoneEntity
 }

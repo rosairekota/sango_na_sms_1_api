@@ -1,24 +1,20 @@
 /* eslint-disable prettier/prettier */
-import { IsEmpty } from "class-validator";
-import { CentreEntity } from "src/centre/centre.entity";
-import { GenericValidatorMessages } from "src/helpers/generic-validator-message.dto";
-import { JoinTable, ManyToMany } from "typeorm";
+import { IsEmpty, IsOptional } from "class-validator";
 
-export class AddWifeDto extends GenericValidatorMessages{
+import { GenericValidatorMessages } from "src/helpers/generic-validator-message.dto";
+export class UpdateFemmeDto extends GenericValidatorMessages{
    
-    @IsEmpty(AddWifeDto.genericEmptyMessage("nom d'une femme"))
+    @IsOptional()
     nameWife:string;
-    @IsEmpty(AddWifeDto.genericEmptyMessage("post-nom d'une"))
+    @IsOptional()
     lastName:string;
-    @IsEmpty(AddWifeDto.genericEmptyMessage("prénom d'une femme"))
+    @IsOptional()
     firstName:string
-    @IsEmpty(AddWifeDto.genericEmptyMessage("La date de naissance"))
+    @IsOptional()
     birthdate:Date;
-    @IsEmpty(AddWifeDto.genericEmptyMessage("l'adresse"))
+    @IsOptional()
     wifeAdress:string;
-    @IsEmpty(AddWifeDto.genericEmptyMessage("le numéro de téléphone"))
+    @IsOptional()
     wifePhoneNumber:string;
-    @ManyToMany(()=>CentreEntity)
-    @JoinTable()
-    centres : CentreEntity[]
+
 }

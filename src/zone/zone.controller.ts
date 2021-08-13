@@ -8,9 +8,12 @@ import {
   ParseIntPipe,
   Delete,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ZoneService } from './zone.service';
 import { ZoneEntity } from './zone.entity';
 import { AddZoneDto } from './dto/add-zone.dto';
+
+@ApiTags('Zones:')
 @Controller('api/zone')
 export class ZoneController {
   constructor(private readonly zoneService: ZoneService) {}

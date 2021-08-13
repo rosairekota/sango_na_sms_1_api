@@ -8,11 +8,13 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AddProvinceDto } from './dto/add-province.dto';
 import { UpdateProvinceDto } from './dto/update-province.dto';
 import { ProvinceEntity } from './province.entity';
 import { ProvinceService } from './province.service';
 
+@ApiTags('Provinces:')
 @Controller('api/province')
 export class ProvinceController {
   constructor(private provinceService: ProvinceService) {}
@@ -47,6 +49,6 @@ export class ProvinceController {
   // Delete a province
   @Delete(':id')
   async removeProvince(@Param('id', ParseIntPipe) id: number) {
-    return await this.provinceService.removeProvince(id)
+    return await this.provinceService.removeProvince(id);
   }
 }

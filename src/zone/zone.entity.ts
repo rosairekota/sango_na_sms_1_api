@@ -1,5 +1,12 @@
+import { AireEntity } from 'src/aire/aire.entity';
 import { ProvinceEntity } from 'src/province/province.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 @Entity('zone')
 export class ZoneEntity extends TimesTempEntity {
@@ -9,9 +16,20 @@ export class ZoneEntity extends TimesTempEntity {
     name: 'libelle_zone',
     type: 'varchar',
     length: 100,
-    unique: true,
   })
   labelZone: string;
-  @ManyToOne(() => ProvinceEntity, (ProvinceEntity) => ProvinceEntity.zones)
+
+  @ManyToOne(() => ProvinceEntity, (province) => province.zones, {
+    cascade: ['insert', 'update'],
+    nullable: true,
+  })
   province: ProvinceEntity;
+
+  @OneToMany(() => AireEntity, (aire) => aire.zone, {
+    cascade: true,
+    nullable: true,
+    eager: true,
+    
+  })
+  aires: Array<AireEntity>;
 }

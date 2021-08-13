@@ -20,6 +20,7 @@ import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 =======
 import { ChildPeriodModule } from './child-period/child-period.module';
 import { ChildAntigenModule } from './child-antigen/child-antigen.module';
+import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 
 >>>>>>> c37b43a9494c0e6983c07bba538b04a72d11b3c7
 dotenv.config();
@@ -45,6 +46,7 @@ dotenv.config();
 <<<<<<< HEAD
     FemmeModule,
     AntigenefemmeModule,
+    WifeperiodModule,
 =======
     ChildPeriodModule,
     ChildAntigenModule,

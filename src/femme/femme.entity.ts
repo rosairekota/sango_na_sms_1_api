@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
+import { timestamp } from "rxjs";
 import { CentreEntity } from "src/centre/centre.entity";
+import TimesTempEntity from "src/helpers/timestemp.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('femme')
-export class FemmeEntity {
+export class FemmeEntity extends TimesTempEntity{
     @PrimaryGeneratedColumn({
         name:"idfemme"
     })

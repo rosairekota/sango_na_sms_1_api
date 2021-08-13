@@ -2,7 +2,7 @@
 import { IsEmpty, IsOptional } from "class-validator";
 
 import { GenericValidatorMessages } from "src/helpers/generic-validator-message.dto";
-export class UpdateFemmeDto extends GenericValidatorMessages{
+export class UpdateWifeDto extends GenericValidatorMessages{
    
     @IsOptional()
     nameWife:string;

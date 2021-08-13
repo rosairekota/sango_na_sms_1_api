@@ -16,7 +16,7 @@ export class AireEntity extends TimesTempEntity {
   @OneToMany(() => CentreEntity, (centre) => centre.aire, {
     eager: true,
     nullable: true,
-    cascade: ['insert', 'update'],
+    cascade: true,
   })
   centres: CentreEntity[];
 

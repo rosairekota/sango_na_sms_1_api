@@ -25,4 +25,9 @@ export class AireService {
     const editedAire = await this.aireRepository.preload({idaire,...aire})
     return await this.aireRepository.save(editedAire);
   }
+
+  async deleteAire(idaire:number) : Promise<AireEntity>{
+    const aire = await this.aireRepository.findOne(idaire);
+    return await this.aireRepository.remove(aire);
+  }
 }

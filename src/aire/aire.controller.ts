@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { AireEntity } from './aire.entity';
 import { AireService } from './aire.service';
 import { AddAireDto } from './dto/add-aire.dto';
@@ -22,9 +22,13 @@ export class AireController {
     return await this.aireService.addAire(addAireDto);
   }
 
-  @Patch('/:idaire')
+  @Patch('/:id')
   async editAire( @Param('id',ParseIntPipe) id : number, @Body() editedAire : UpdateAireDto) : Promise<AireEntity>{
     return await this.aireService.updateAire(id,editedAire);
   }
   
+@Delete('/:id')
+async deleteAire(@Param('id',ParseIntPipe) id : number) : Promise<AireEntity>{
+  return await this.aireService.deleteAire(id)
+}
 }

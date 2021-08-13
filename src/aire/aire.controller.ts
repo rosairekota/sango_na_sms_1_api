@@ -27,8 +27,8 @@ export class AireController {
     return await this.aireService.updateAire(id,editedAire);
   }
   
-@Delete('/:id')
-async deleteAire(@Param('id',ParseIntPipe) id : number) : Promise<AireEntity>{
-  return await this.aireService.deleteAire(id)
-}
+  @Delete('/:id')
+  async deleteAire(@Param('id',ParseIntPipe) id : number) : Promise<AireEntity>{
+    return await this.aireService.deleteAire(id)
+  }
 }

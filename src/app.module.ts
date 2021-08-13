@@ -16,6 +16,7 @@ import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middlew
 import { CentreModule } from './centre/centre.module';
 import { ChildPeriodModule } from './child-period/child-period.module';
 import { ChildAntigenModule } from './child-antigen/child-antigen.module';
+import { ChildModule } from './child/child.module';
 
 dotenv.config();
 @Module({
@@ -39,6 +40,7 @@ dotenv.config();
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
+    ChildModule,
   ],
   controllers: [AppController],
   providers: [AppService],

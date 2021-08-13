@@ -14,7 +14,7 @@ import { ChildAntigenEntity } from './child-antigen.entity';
 import { AddchildAntigenDto } from './dto/addchild-antigen.dto';
 import { UpdatechildAntigenDto } from './dto/updatechild-antigen.dto';
 @ApiTags('Antiges enfant:')
-@Controller('antigene_enfant')
+@Controller('api/antigene_enfant')
 export class ChildAntigenController {
   constructor(private readonly childAntigenService: ChildAntigenService) {}
   @Get()

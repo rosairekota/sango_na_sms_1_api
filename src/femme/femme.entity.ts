@@ -23,5 +23,4 @@ export class FemmeEntity {
     @ManyToMany(()=>CentreEntity)
     @JoinTable()
     centres : CentreEntity[]
-
 }

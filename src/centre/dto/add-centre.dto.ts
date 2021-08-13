@@ -4,9 +4,9 @@ import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.
 
 export class AddCentreDto extends GenericValidatorMessages{
     @IsNotEmpty(AddCentreDto.genericEmptyMessage('centre de santé'))
-    libelle_centre: string;
+    labelCentre: string;
     @IsNotEmpty(AddCentreDto.genericEmptyMessage('centre'))
-    adresse_centre:string
+    centreAdress:string
     @IsNotEmpty(AddCentreDto.genericEmptyMessage("aire"))
     aire: AireEntity
 }

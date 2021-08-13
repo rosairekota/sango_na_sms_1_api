@@ -8,12 +8,15 @@ export class CentreEntity {
   idcentre: number;
   @Column({
     unique: true,
+    name:"libelle_centre"
     })
-  libelle_centre: string;
+  labelCentre: string;
   @Column({
-      unique:true
+      unique:true,
+      name:"adresse_centre"
   })
-  adresse_centre:string;
+  centreAdress:string;
   @ManyToOne(()=>AireEntity,(aire)=>aire.centres)
   aire:AireEntity;
+  
 }

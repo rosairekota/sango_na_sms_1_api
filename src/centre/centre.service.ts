@@ -19,7 +19,7 @@ export class CentreService {
     try {
       return await this.centreRepository.save(centre);
     } catch (error) {
-           throw new ConflictException(`le centre ${centre.libelle_centre} existe déjà`)   
+           throw new ConflictException(`le centre ${centre.labelCentre} existe déjà`)   
         }
     }
  
@@ -27,12 +27,6 @@ export class CentreService {
     return await this.centreRepository.find();
     }
 
-    // async getCentresByLibelle(libelle:string) : Promise<CentreEntity>{
-     
-    //   const qb =  this.centreRepository.createQueryBuilder("centre");
-
-    //  return await qb.select("idcentre,libelle_centre,aire").where(`libelle_centre LIKE :q`,{q: `%${libelle}%`}).getMany();
-    // }
    async update(idcentre:number,centre:UpdateCentreDto){
     const editedCentre = await this.centreRepository.preload({idcentre,...centre});
     return await this.centreRepository.save(editedCentre);

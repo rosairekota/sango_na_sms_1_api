@@ -1,6 +1,8 @@
 import { IsString, IsOptional, MinLength, MaxLength } from 'class-validator';
 import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.dto';
+import { ApiProperty } from '@nestjs/swagger';
 export class UpdatechildAntigenDto extends GenericValidatorMessages {
+  @ApiProperty()
   @IsString(
     UpdatechildAntigenDto.genericStringMessage(
       "Le Titre de l'antigène de l'enfant",
@@ -13,6 +15,7 @@ export class UpdatechildAntigenDto extends GenericValidatorMessages {
   })
   title: string;
 
+  @ApiProperty()
   @IsString(UpdatechildAntigenDto.genericStringMessage('La description'))
   @IsOptional()
   description: string;

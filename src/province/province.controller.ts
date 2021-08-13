@@ -19,11 +19,6 @@ import { ProvinceService } from './province.service';
 export class ProvinceController {
   constructor(private provinceService: ProvinceService) {}
 
-  // Add a province
-  @Post()
-  async addProvince(@Body() province: AddProvinceDto): Promise<ProvinceEntity> {
-    return await this.provinceService.addProvince(province);
-  }
   // Get all provinces
   @Get()
   async getAllProvinces(): Promise<ProvinceEntity[]> {
@@ -31,10 +26,15 @@ export class ProvinceController {
   }
   // Get a province
   @Get(':id')
-  async getProvince(
+  async getProvinceById(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<ProvinceEntity> {
     return await this.provinceService.getProvinceById(id);
+  }
+  // Add a province
+  @Post()
+  async addProvince(@Body() province: AddProvinceDto): Promise<ProvinceEntity> {
+    return await this.provinceService.addProvince(province);
   }
 
   // Update province

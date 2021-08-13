@@ -29,7 +29,6 @@ export class ZoneEntity extends TimesTempEntity {
     cascade: true,
     nullable: true,
     eager: true,
-    
   })
   aires: Array<AireEntity>;
 }

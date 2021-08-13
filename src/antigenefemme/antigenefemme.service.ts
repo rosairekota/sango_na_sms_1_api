@@ -17,7 +17,7 @@ export class AntigenefemmeService {
         return await this.wifeAntigeneRepository.find();
     }
 
-    async addAnitgene(antigen:AddAntigenWifeDto):Promise<AntigenefemmeEntity>{
+    async addAntigen(antigen:AddAntigenWifeDto):Promise<AntigenefemmeEntity>{
         return await this.wifeAntigeneRepository.save(antigen);
     }
 
@@ -27,7 +27,7 @@ export class AntigenefemmeService {
         return await this.wifeAntigeneRepository.save(antigen);
     }
 
-    async deleteAntigene(idAntigenWife:number):Promise<AntigenefemmeEntity>{
+    async deleteAntigen(idAntigenWife:number):Promise<AntigenefemmeEntity>{
         const deleteWife = await this.wifeAntigeneRepository.findOne(idAntigenWife);
         return await this.wifeAntigeneRepository.remove(deleteWife);
     }

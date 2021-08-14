@@ -1,5 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+  OneToMany,
+} from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
+import { ChildVaccinationEntity } from '../child-vaccination/child-vaccination.entity';
 
 @Entity('enfant')
 export class ChildEntity extends TimesTempEntity {
@@ -37,4 +46,10 @@ export class ChildEntity extends TimesTempEntity {
 
   @Column({ name: 'telephone_mere' })
   motherPhone: string;
+
+  @OneToMany(
+    () => ChildVaccinationEntity,
+    (childVaccination) => childVaccination.child,
+  )
+  childVaccinations: ChildVaccinationEntity[];
 }

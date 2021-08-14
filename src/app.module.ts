@@ -19,6 +19,8 @@ import { ChildAntigenModule } from './child-antigen/child-antigen.module';
 import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
+import { ChildVaccinationModule } from './child-vaccination/child-vaccination.module';
+import { DefaultController } from './default/default.controller';
 
 dotenv.config();
 @Module({
@@ -42,14 +44,12 @@ dotenv.config();
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
-<<<<<<< HEAD
     WomanInscriptionModule,
-=======
     ChildModule,
     WifeperiodModule,
->>>>>>> f6c2d1376b9e6dd0a0bb2537dc17413003a229ce
+    ChildVaccinationModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, DefaultController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {

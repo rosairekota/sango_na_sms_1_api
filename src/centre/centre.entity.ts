@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { AireEntity } from "src/aire/aire.entity";
-import { FemmeEntity } from "src/femme/femme.entity";
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { WomanInscriptionEntity } from "src/woman-inscription/woman-inscription.entity";
+import { Column, Entity,ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('centre')
 export class CentreEntity {
@@ -19,7 +19,7 @@ export class CentreEntity {
   centreAdress:string;
   @ManyToOne(()=>AireEntity,(aire)=>aire.centres)
   aire:AireEntity;
-  @ManyToMany(()=>FemmeEntity)
-  femmes :FemmeEntity[]
 
+  @OneToMany(()=>WomanInscriptionEntity,(inscription)=>inscription.centre)
+  inscriptions :WomanInscriptionEntity[]  
 }

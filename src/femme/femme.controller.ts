@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AddWifeDto } from './dto/Add_Wife.dto';
-import { UpdateWifeDto } from './dto/Update_wife.dto';
+import { AddWifeDto } from './dto/Add-Wife.dto';
+import { UpdateWifeDto } from './dto/Update-wife.dto';
 import { FemmeEntity } from './femme.entity';
 import { FemmeService } from './femme.service';
 

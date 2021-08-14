@@ -3,7 +3,7 @@ import { CentreEntity } from "src/centre/centre.entity";
 import { FemmeEntity } from "src/femme/femme.entity";
 import TimesTempEntity from "src/helpers/timestemp.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { WomanInscriptionEtat } from "./dto/woman-inscription-etat.enum";
+import { WomanInscriptionEtat } from "./enum/woman-inscription-etat.enum";
 
 @Entity("inscription_femme")
 export class WomanInscriptionEntity extends TimesTempEntity{

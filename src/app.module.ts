@@ -42,12 +42,9 @@ dotenv.config();
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
-<<<<<<< HEAD
     WomanInscriptionModule,
-=======
     ChildModule,
     WifeperiodModule,
->>>>>>> f6c2d1376b9e6dd0a0bb2537dc17413003a229ce
   ],
   controllers: [AppController],
   providers: [AppService],

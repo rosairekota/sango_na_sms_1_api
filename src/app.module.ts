@@ -17,6 +17,7 @@ import { CentreModule } from './centre/centre.module';
 import { ChildPeriodModule } from './child-period/child-period.module';
 import { ChildAntigenModule } from './child-antigen/child-antigen.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
+import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
 
 dotenv.config();
 @Module({
@@ -40,6 +41,7 @@ dotenv.config();
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
+    WomanInscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

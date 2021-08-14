@@ -46,7 +46,7 @@ dotenv.config();
     ChildAntigenModule,
     WomanInscriptionModule,
     ChildModule,
-    WifeperiodModule,
+
     ChildVaccinationModule,
     WomanVaccinationModule,
   ],

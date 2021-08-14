@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateAireDto } from 'src/aire/dto/update-aire.dto';
 import { Repository } from 'typeorm';
-import { AddWifeDto } from './dto/Add_Wife.dto';
-import { UpdateWifeDto } from './dto/Update_wife.dto';
+import { AddWifeDto } from './dto/Add-Wife.dto';
+import { UpdateWifeDto } from './dto/Update-wife.dto';
 import { FemmeEntity } from './femme.entity';
 
 @Injectable()

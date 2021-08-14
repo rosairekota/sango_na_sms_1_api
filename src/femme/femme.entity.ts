@@ -3,6 +3,7 @@ import { timestamp } from "rxjs";
 import { CentreEntity } from "src/centre/centre.entity";
 import TimesTempEntity from "src/helpers/timestemp.entity";
 import { WomanInscriptionEntity } from "src/woman-inscription/woman-inscription.entity";
+import { WomanVaccinationEntity } from "src/woman-vaccination/woman-vaccination.entity";
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('femme')
@@ -25,4 +26,6 @@ export class FemmeEntity extends TimesTempEntity{
     wifePhoneNumber:string;
     @OneToMany(()=>WomanInscriptionEntity,(inscription)=>inscription.femme)
     inscriptions:WomanInscriptionEntity[];
+    @OneToMany(()=>WomanVaccinationEntity,(vaccination)=>vaccination.femme)
+    vaccinations:WomanVaccinationEntity[];
 }

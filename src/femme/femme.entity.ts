@@ -22,7 +22,7 @@ export class FemmeEntity extends TimesTempEntity{
     wifeAdress:string;
     @Column({name:"telephone_femme",nullable:false,unique:true,length:14})
     wifePhoneNumber:string
-    @ManyToMany(()=>CentreEntity)
-    @JoinTable()
-    centres : CentreEntity[]
+    // @ManyToMany(()=>CentreEntity)
+    // @JoinTable()
+    // centres : CentreEntity[]
 }

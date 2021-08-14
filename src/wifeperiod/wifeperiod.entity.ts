@@ -13,8 +13,8 @@ export class WifeperiodEntity {
     description_wife_period : string;
     @Column({name:"duree_en_jour",nullable:false})
     period_duration :number;
-    @ManyToOne(()=>AntigenefemmeEntity,(antigenefemme)=>antigenefemme.wifeperiods)
-    womanAntigen :FemmeEntity;
+    @ManyToOne(()=>AntigenefemmeEntity,(antigenefemme)=>antigenefemme.periods)
+    antigen :AntigenefemmeEntity;
 
 
 }

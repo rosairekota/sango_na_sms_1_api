@@ -16,6 +16,7 @@ import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middlew
 import { CentreModule } from './centre/centre.module';
 import { ChildPeriodModule } from './child-period/child-period.module';
 import { ChildAntigenModule } from './child-antigen/child-antigen.module';
+import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
 
@@ -41,7 +42,12 @@ dotenv.config();
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
+<<<<<<< HEAD
     WomanInscriptionModule,
+=======
+    ChildModule,
+    WifeperiodModule,
+>>>>>>> f6c2d1376b9e6dd0a0bb2537dc17413003a229ce
   ],
   controllers: [AppController],
   providers: [AppService],

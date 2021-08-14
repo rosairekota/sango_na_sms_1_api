@@ -4,6 +4,6 @@ import { WifeperiodService } from './wifeperiod.service';
 
 @Module({
   controllers: [WifeperiodController],
-  providers: [WifeperiodService]
+  providers: [WifeperiodService],
 })
 export class WifeperiodModule {}

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import * as dotenv from 'dotenv';
@@ -15,7 +15,9 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
   // configure swagger Module
   const config = new DocumentBuilder()
     .setTitle('API SANGO NA SMS 1')

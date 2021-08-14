@@ -19,7 +19,5 @@ export class WomanInscriptionEntity extends TimesTempEntity{
     @ManyToOne(()=>CentreEntity,(centre)=>centre.inscriptions,{
         cascade:true
     })
-    centre : CentreEntity;    
-
-    
+    centre : CentreEntity;        
 }

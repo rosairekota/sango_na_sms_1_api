@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { AntigenefemmeEntity } from "src/antigenefemme/antigenefemme.entity";
 import { FemmeEntity } from "src/femme/femme.entity";
+import TimesTempEntity from "src/helpers/timestemp.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { estNotifie } from "./enum/etat-notification.enum";
 
 @Entity('vaccination_femme')
-export class WomanVaccinationEntity {
+export class WomanVaccinationEntity extends TimesTempEntity {
     @PrimaryGeneratedColumn({
         name:"id_vaccination_femme"
     })

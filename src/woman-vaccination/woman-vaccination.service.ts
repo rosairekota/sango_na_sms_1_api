@@ -22,11 +22,11 @@ export class WomanVaccinationService {
         return await this.womanVaccinationService.find()
     }
 
-    async create(womanVaccination : AddWomanVaccinationDto): Promise<WomanVaccinationEntity>{
+    async add(womanVaccination : AddWomanVaccinationDto): Promise<WomanVaccinationEntity>{
         return await this.womanVaccinationService.save(womanVaccination)
     }
 
-    async edit(idWomanVaccination:number,womanVaccination : UpdateWomanVaccinationDto): Promise<WomanVaccinationEntity>{
+    async update(idWomanVaccination:number,womanVaccination : UpdateWomanVaccinationDto): Promise<WomanVaccinationEntity>{
         const editedWomanVaccination = await this.womanVaccinationService.preload({idWomanVaccination,...womanVaccination})
         return await this.womanVaccinationService.save(editedWomanVaccination);
     }

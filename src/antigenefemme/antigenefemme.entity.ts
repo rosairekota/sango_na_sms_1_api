@@ -12,5 +12,7 @@ export class AntigenefemmeEntity {
     description_antigen_wife:string;
     @OneToMany(()=>WifeperiodEntity,(wifeperiod)=>wifeperiod.antigen)
     periods:WifeperiodEntity[];
+    @OneToMany(()=>WomanVaccinationEntity,(vaccination)=>vaccination.antigen)
+    vaccinations: WomanVaccinationEntity[];
 
 }

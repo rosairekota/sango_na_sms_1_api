@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { FemmeEntity } from "src/femme/femme.entity";
+import { WifeperiodEntity } from "src/wifeperiod/wifeperiod.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('antigenefemme')
 export class AntigenefemmeEntity {
@@ -9,4 +11,7 @@ export class AntigenefemmeEntity {
     antigen_title:string;
     @Column({name:"description_af",nullable:true})
     description_antigen_wife:string;
+    @OneToMany(()=>WifeperiodEntity,(wifeperiod)=>wifeperiod.wifeAntigen)
+    periods:WifeperiodEntity[];
+
 }

@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { AireEntity } from "src/aire/aire.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { FemmeEntity } from "src/femme/femme.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('centre')
 export class CentreEntity {
@@ -18,5 +19,7 @@ export class CentreEntity {
   centreAdress:string;
   @ManyToOne(()=>AireEntity,(aire)=>aire.centres)
   aire:AireEntity;
-  
+  @ManyToMany(()=>FemmeEntity)
+  femmes :FemmeEntity[]
+
 }

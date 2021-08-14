@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { NotificationEnum } from './enum/notification.enum';
 import { ChildEntity } from '../child/child.entity';
 import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
@@ -25,11 +31,13 @@ export class ChildVaccinationEntity {
   notificationDate: Date;
 
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
+  @JoinColumn({ name: 'enfant_id' })
   child: ChildEntity;
 
   @ManyToOne(
     () => ChildPeriodEntity,
     (childPeriod) => childPeriod.childVaccinations,
   )
+  @JoinColumn({ name: 'period_enfant_id' })
   childPeriod: ChildPeriodEntity;
 }

@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { AntigenefemmeEntity } from './antigenefemme.entity';
 import { AntigenefemmeService } from './antigenefemme.service';
 import { ApiTags } from '@nestjs/swagger';
-import { IdSelector } from '@reduxjs/toolkit';
 import { FemmeEntity } from 'src/femme/femme.entity';
 import { Get } from '@nestjs/common';
 import { AddAntigenWifeDto } from './dto/add_antigenWife.dto';

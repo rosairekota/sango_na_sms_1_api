@@ -19,4 +19,6 @@ export class CentreEntity {
   @ManyToOne(()=>AireEntity,(aire)=>aire.centres)
   aire:AireEntity;
   
+  @OneToMany(()=>WomanInscriptionEntity,(inscription)=>inscription.centre)
+  inscriptions :WomanInscriptionEntity[]  
 }

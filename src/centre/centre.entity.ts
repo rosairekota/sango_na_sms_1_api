@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { AireEntity } from "src/aire/aire.entity";
 import { ChildRegistrationEntity } from "src/child-registration/child-registration.entity";
+import { WomanInscriptionEntity } from "src/woman-inscription/woman-inscription.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('centre')

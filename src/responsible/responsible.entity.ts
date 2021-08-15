@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { FemmeEntity } from "src/femme/femme.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { responsibleSexe } from "./enum/responsible-sexe.enum";
 
 @Entity('responsable')
-export class ResponsibleEntity {
+export class ResponsibleEntity extends Timestamp{
     @PrimaryGeneratedColumn({name:'idresponsable'})
     idResponsible:number;
     @Column({name:"nom_responsable", nullable:false})
@@ -18,7 +19,8 @@ export class ResponsibleEntity {
     responsiblePhoneNumer:string
     @Column({name:'email_responsable'})
     responsibleEmail :string;
+    @Column({name:'sexe',type:'enum',nullable:false, enum:responsibleSexe,default:responsibleSexe.Homme})
+    sexe:string;
     @OneToMany(()=>FemmeEntity,(femme)=>femme.responsible)
     femmes:FemmeEntity[];
-
 }

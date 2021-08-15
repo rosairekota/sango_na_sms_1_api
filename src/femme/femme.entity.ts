@@ -2,9 +2,10 @@
 import { timestamp } from "rxjs";
 import { CentreEntity } from "src/centre/centre.entity";
 import TimesTempEntity from "src/helpers/timestemp.entity";
+import { ResponsibleEntity } from "src/responsible/responsible.entity";
 import { WomanInscriptionEntity } from "src/woman-inscription/woman-inscription.entity";
 import { WomanVaccinationEntity } from "src/woman-vaccination/woman-vaccination.entity";
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('femme')
 export class FemmeEntity extends TimesTempEntity{
@@ -28,4 +29,6 @@ export class FemmeEntity extends TimesTempEntity{
     inscriptions:WomanInscriptionEntity[];
     @OneToMany(()=>WomanVaccinationEntity,(vaccination)=>vaccination.femme)
     vaccinations:WomanVaccinationEntity[];
+    @ManyToOne(()=>(ResponsibleEntity),(responsible)=>responsible.femmes)
+    responsible:FemmeEntity
 }

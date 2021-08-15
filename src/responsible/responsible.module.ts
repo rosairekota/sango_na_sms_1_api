@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { ResponsibleService } from './responsible.service';
 import { ResponsibleController } from './responsible.controller';

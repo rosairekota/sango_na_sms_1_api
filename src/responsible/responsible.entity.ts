@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { FemmeEntity } from "src/femme/femme.entity";
+import TimesTempEntity from "src/helpers/timestemp.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { responsibleSexe } from "./enum/responsible-sexe.enum";
 
 @Entity('responsable')
-export class ResponsibleEntity extends Timestamp{
+export class ResponsibleEntity extends TimesTempEntity{
     @PrimaryGeneratedColumn({name:'idresponsable'})
     idResponsible:number;
     @Column({name:"nom_responsable", nullable:false})

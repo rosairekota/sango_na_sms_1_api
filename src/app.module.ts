@@ -22,6 +22,7 @@ import { WomanInscriptionModule } from './woman-inscription/woman-inscription.mo
 import { ChildVaccinationModule } from './child-vaccination/child-vaccination.module';
 import { WomanVaccinationModule } from './woman-vaccination/woman-vaccination.module';
 import { ResponsibleModule } from './responsible/responsible.module';
+import { ChildRegistrationModule } from './child-registration/child-registration.module';
 
 dotenv.config();
 @Module({
@@ -51,6 +52,7 @@ dotenv.config();
     ChildVaccinationModule,
     WomanVaccinationModule,
     ResponsibleModule,
+    ChildRegistrationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

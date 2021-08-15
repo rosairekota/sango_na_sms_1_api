@@ -1,4 +1,33 @@
-import { Controller } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { AddResponsibleDto } from './dto/add-responsible.dto';
+import { UpdateResponsibleDto } from './dto/update-responsible.dto';
+import { ResponsibleEntity } from './responsible.entity';
+import { ResponsibleService } from './responsible.service';
 
-@Controller('responsible')
-export class ResponsibleController {}
+@ApiTags('Responsibles')
+@Controller('api/responsible')
+export class ResponsibleController {
+    constructor(
+        private responsibleSerive : ResponsibleService
+    ){}
+
+    @Post()
+    async create(responsible:AddResponsibleDto) :Promise<ResponsibleEntity>{
+        return await this.responsibleSerive.add(responsible)
+    }
+    @Patch('/:id')
+    async edit(@Param('id',ParseIntPipe) id : number,responsible:UpdateResponsibleDto) : Promise<ResponsibleEntity>{
+        return await this.responsibleSerive.update(id,responsible)
+    }
+    @Delete('/:id')
+    async remove(@Param('id',ParseIntPipe) id :number):Promise<ResponsibleEntity>{
+        return await this.responsibleSerive.delete(id);
+    }
+
+    @Get()
+    async getAll():Promise<ResponsibleEntity[]>{
+        return await this.responsibleSerive.findAll();
+    }
+}

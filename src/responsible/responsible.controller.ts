@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AddResponsibleDto } from './dto/add-responsible.dto';
 import { UpdateResponsibleDto } from './dto/update-responsible.dto';
@@ -14,11 +14,11 @@ export class ResponsibleController {
     ){}
 
     @Post()
-    async create(responsible:AddResponsibleDto) :Promise<ResponsibleEntity>{
+    async create(@Body() responsible:AddResponsibleDto) :Promise<ResponsibleEntity>{
         return await this.responsibleSerive.add(responsible)
     }
     @Patch('/:id')
-    async edit(@Param('id',ParseIntPipe) id : number,responsible:UpdateResponsibleDto) : Promise<ResponsibleEntity>{
+    async edit(@Param('id',ParseIntPipe) id : number, @Body() responsible:UpdateResponsibleDto) : Promise<ResponsibleEntity>{
         return await this.responsibleSerive.update(id,responsible)
     }
     @Delete('/:id')

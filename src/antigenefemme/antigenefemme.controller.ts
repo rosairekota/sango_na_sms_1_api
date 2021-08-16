@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Delete, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { AntigenefemmeEntity } from './antigenefemme.entity';
 import { AntigenefemmeService } from './antigenefemme.service';
@@ -18,7 +18,7 @@ export class AntigenefemmeController {
     ){}
 
     @Post()
-    async addAntigenWife(antigen:AddAntigenWifeDto) : Promise<AntigenefemmeEntity>{
+    async addAntigenWife(@Body() antigen:AddAntigenWifeDto) : Promise<AntigenefemmeEntity>{
         return await this.wifeAntigenService.addAntigen(antigen);
     }
 
@@ -27,7 +27,7 @@ export class AntigenefemmeController {
         return await this.wifeAntigenService.deleteAntigen(id);
     }
     @Patch('/:id')
-    async editAntigen(@Param('id',ParseIntPipe) id : number, editedAntigen : UpdateAntigenWifeDto) : Promise<AntigenefemmeEntity>{ 
+    async editAntigen(@Param('id',ParseIntPipe) id : number,@Body() editedAntigen : UpdateAntigenWifeDto) : Promise<AntigenefemmeEntity>{ 
         return await  this.wifeAntigenService.updateAntigen(id,editedAntigen);
     }
 

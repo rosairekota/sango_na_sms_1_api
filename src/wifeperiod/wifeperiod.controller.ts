@@ -19,7 +19,7 @@ export class WifeperiodController {
         return await this.wifeperiodService.deleteWifePeriod(id);
     }
     @Patch('/:id')
-    async edit(@Param('id',ParseIntPipe) id : number,wifePeriod:UpdateWifePerioDto): Promise<WifeperiodEntity>{
+    async edit(@Param('id',ParseIntPipe) id : number,@Body() wifePeriod:UpdateWifePerioDto): Promise<WifeperiodEntity>{
         return await this.wifeperiodService.updateWifePeriod(id,wifePeriod);
     }
 

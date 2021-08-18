@@ -23,9 +23,7 @@ export class ProfessionalService {
       );
     return professional;
   }
-  async create(
-    newProfessional: AddProfessionalDto,
-  ): Promise<ProfessionalEntity> {
+  async add(newProfessional: AddProfessionalDto): Promise<ProfessionalEntity> {
     return await this.professionalRepository.save(newProfessional);
   }
   async update(

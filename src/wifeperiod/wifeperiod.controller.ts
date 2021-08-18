@@ -16,7 +16,7 @@ import { WifeperiodService } from './wifeperiod.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Periode femmes:')
-@Controller('api/wifeperiod')
+@Controller('api/period_femme')
 export class WifeperiodController {
   constructor(private wifeperiodService: WifeperiodService) {}
 

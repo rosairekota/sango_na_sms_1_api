@@ -8,17 +8,14 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { AntigenefemmeEntity } from './antigenefemme.entity';
 import { AntigenefemmeService } from './antigenefemme.service';
 import { ApiTags } from '@nestjs/swagger';
-import { FemmeEntity } from 'src/femme/femme.entity';
 import { Get } from '@nestjs/common';
 import { AddAntigenWifeDto } from './dto/add_antigenWife.dto';
 import { UpdateAntigenWifeDto } from './dto/update_anitgenWife.dto';
-@ApiTags('antigenefemme:')
-@Controller('api/antigenefemme')
-@Controller('antigenefemme')
+@ApiTags('antigene femme:')
+@Controller('api/antigene_femme')
 export class AntigenefemmeController {
   constructor(private wifeAntigenService: AntigenefemmeService) {}
 

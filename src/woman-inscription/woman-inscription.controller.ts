@@ -15,7 +15,7 @@ import { WomanInscriptionEntity } from './woman-inscription.entity';
 import { WomanInscriptionService } from './woman-inscription.service';
 
 @ApiTags('inscription femmes:')
-@Controller('api/Woman-inscription')
+@Controller('api/inscription_femme')
 export class WomanInscriptionController {
   constructor(private womanInscriptionService: WomanInscriptionService) {}
 

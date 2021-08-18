@@ -25,6 +25,7 @@ import { ResponsibleModule } from './responsible/responsible.module';
 import { ChildRegistrationModule } from './child-registration/child-registration.module';
 import { ProfessionalModule } from './professional/professional.module';
 import { FemmeModule } from './femme/femme.module';
+import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 
 dotenv.config();
 @Module({
@@ -43,6 +44,7 @@ dotenv.config();
       synchronize: true,
     }),
     AireModule,
+    AntigenefemmeModule,
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,

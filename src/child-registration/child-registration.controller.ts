@@ -16,7 +16,7 @@ import { AddChildRegistrationDto } from './dto/add-child-registration.dto';
 import { UpdateChildRegistrationDto } from './dto/update-child-registration.dto';
 
 @ApiTags('inscription enfant:')
-@Controller('api/child-registration')
+@Controller('api/enregistrement_enfant')
 export class ChildRegistrationController {
   constructor(private childRegistrationService: ChildRegistrationService) {}
 

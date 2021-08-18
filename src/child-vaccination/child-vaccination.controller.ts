@@ -14,7 +14,7 @@ import { ChildVaccinationService } from './child-vaccination.service';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
 @ApiTags('vaccination enfant:')
-@Controller('child-vaccination')
+@Controller('vaccination_enfant')
 export class ChildVaccinationController {
   constructor(
     private readonly childVaccinationService: ChildVaccinationService,

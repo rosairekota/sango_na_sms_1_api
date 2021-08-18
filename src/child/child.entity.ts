@@ -42,6 +42,9 @@ export class ChildEntity extends TimesTempEntity {
   @OneToMany(
     () => ChildVaccinationEntity,
     (childVaccination) => childVaccination.child,
+    {
+      cascade: true,
+    },
   )
   childVaccinations: ChildVaccinationEntity[];
 }

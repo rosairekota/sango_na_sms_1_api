@@ -1,6 +1,7 @@
 import { ResorEnum } from './enum/resort.enum';
 
 import { ProvinceEntity } from 'src/province/province.entity';
+import { CentreEntity } from 'src/centre/centre.entity';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -44,4 +45,9 @@ export class ProfessionalEntity {
   })
   @JoinTable()
   provinces: ProvinceEntity[];
+  @ManyToMany(() => CentreEntity, (centre) => centre.professionals, {
+    cascade: true,
+  })
+  @JoinTable()
+  centres: CentreEntity[];
 }

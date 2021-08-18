@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-<<<<<<< HEAD
 import {
+  Body,
   Controller,
   Delete,
   Param,
@@ -8,9 +8,6 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-=======
-import { Body, Controller, Delete, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
->>>>>>> feature/antigenefemme
 import { Repository } from 'typeorm';
 import { AntigenefemmeEntity } from './antigenefemme.entity';
 import { AntigenefemmeService } from './antigenefemme.service';
@@ -25,10 +22,9 @@ import { UpdateAntigenWifeDto } from './dto/update_anitgenWife.dto';
 export class AntigenefemmeController {
   constructor(private wifeAntigenService: AntigenefemmeService) {}
 
-<<<<<<< HEAD
   @Post()
   async addAntigenWife(
-    antigen: AddAntigenWifeDto,
+    @Body() antigen: AddAntigenWifeDto,
   ): Promise<AntigenefemmeEntity> {
     return await this.wifeAntigenService.addAntigen(antigen);
   }
@@ -42,25 +38,10 @@ export class AntigenefemmeController {
   @Patch('/:id')
   async editAntigen(
     @Param('id', ParseIntPipe) id: number,
-    editedAntigen: UpdateAntigenWifeDto,
+    @Body() editedAntigen: UpdateAntigenWifeDto,
   ): Promise<AntigenefemmeEntity> {
     return await this.wifeAntigenService.updateAntigen(id, editedAntigen);
   }
-=======
-    @Post()
-    async addAntigenWife(@Body() antigen:AddAntigenWifeDto) : Promise<AntigenefemmeEntity>{
-        return await this.wifeAntigenService.addAntigen(antigen);
-    }
-
-    @Delete('/:id')
-    async remove(@Param('id',ParseIntPipe) id : number):Promise<AntigenefemmeEntity>{
-        return await this.wifeAntigenService.deleteAntigen(id);
-    }
-    @Patch('/:id')
-    async editAntigen(@Param('id',ParseIntPipe) id : number,@Body() editedAntigen : UpdateAntigenWifeDto) : Promise<AntigenefemmeEntity>{ 
-        return await  this.wifeAntigenService.updateAntigen(id,editedAntigen);
-    }
->>>>>>> feature/antigenefemme
 
   @Get()
   async getAll(): Promise<AntigenefemmeEntity[]> {

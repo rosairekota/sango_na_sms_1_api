@@ -37,13 +37,13 @@ export class CentreEntity {
     (registration) => registration.centre,
   )
   childRegistrations: ChildRegistrationEntity[];
-  @ManyToMany(
-    () => ProfessionalEntity,
-    (professional) => professional.centres,
-    {
-      cascade: true,
-    },
-  )
-  @JoinTable()
-  professionals: ProfessionalEntity[];
+  // @ManyToMany(
+  //   () => ProfessionalEntity,
+  //   (professional) => professional.centres,
+  //   {
+  //     cascade: true,
+  //   },
+  // )
+  // @JoinTable()
+  // professionals: ProfessionalEntity[];
 }

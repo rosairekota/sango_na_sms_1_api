@@ -23,6 +23,8 @@ import { ChildVaccinationModule } from './child-vaccination/child-vaccination.mo
 import { WomanVaccinationModule } from './woman-vaccination/woman-vaccination.module';
 import { ResponsibleModule } from './responsible/responsible.module';
 import { ChildRegistrationModule } from './child-registration/child-registration.module';
+import { ProfessionalModule } from './professional/professional.module';
+import { FemmeModule } from './femme/femme.module';
 
 dotenv.config();
 @Module({
@@ -41,18 +43,20 @@ dotenv.config();
       synchronize: true,
     }),
     AireModule,
-    ZoneModule,
-    ProvinceModule,
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
-    WomanInscriptionModule,
     ChildModule,
-
-    ChildVaccinationModule,
-    WomanVaccinationModule,
-    ResponsibleModule,
     ChildRegistrationModule,
+    ProfessionalModule,
+    ChildVaccinationModule,
+    ZoneModule,
+    ProvinceModule,
+    WomanInscriptionModule,
+    WomanVaccinationModule,
+    FemmeModule,
+    WifeperiodModule,
+    ResponsibleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

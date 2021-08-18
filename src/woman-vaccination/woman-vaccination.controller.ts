@@ -15,7 +15,7 @@ import { UpdateWomanVaccinationDto } from './dto/update-woman-vaccination.dto';
 import { WomanVaccinationEntity } from './woman-vaccination.entity';
 import { WomanVaccinationService } from './woman-vaccination.service';
 
-@ApiTags('woman-vaccinations')
+@ApiTags('vaccinations femmes:')
 @Controller('api/Woman-vaccinations')
 export class WomanVaccinationController {
   constructor(private womanVaccinationService: WomanVaccinationService) {}

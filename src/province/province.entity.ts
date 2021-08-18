@@ -26,13 +26,13 @@ export class ProvinceEntity extends TimesTempEntity {
   })
   zones: ZoneEntity[];
 
-  @ManyToMany(
-    () => ProfessionalEntity,
-    (professional) => professional.provinces,
-    {
-      cascade: true,
-    },
-  )
-  @JoinTable()
-  professionals: ProfessionalEntity[];
+  // @ManyToMany(
+  //   () => ProfessionalEntity,
+  //   (professional) => professional.provinces,
+  //   {
+  //     cascade: true,
+  //   },
+  // )
+  // @JoinTable()
+  // professionals: ProfessionalEntity[];
 }

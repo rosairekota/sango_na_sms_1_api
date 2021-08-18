@@ -40,14 +40,14 @@ export class ProfessionalEntity {
   })
   resort: string;
 
-  @ManyToMany(() => ProvinceEntity, (province) => province.professionals, {
-    cascade: true,
-  })
-  @JoinTable()
-  provinces: ProvinceEntity[];
-  @ManyToMany(() => CentreEntity, (centre) => centre.professionals, {
-    cascade: true,
-  })
-  @JoinTable()
-  centres: CentreEntity[];
+  // @ManyToMany(() => ProvinceEntity, (province) => province.professionals, {
+  //   cascade: true,
+  // })
+  // @JoinTable()
+  // provinces: ProvinceEntity[];
+  // @ManyToMany(() => CentreEntity, (centre) => centre.professionals, {
+  //   cascade: true,
+  // })
+  // @JoinTable()
+  // centres: CentreEntity[];
 }

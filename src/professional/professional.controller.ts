@@ -15,7 +15,7 @@ import { UpdateProfessionalDto } from './dto/update-professional.dto';
 import { AddProfessionalDto } from './dto/add-professional.dto';
 
 @ApiTags('professionel de santé:')
-@Controller('professional')
+@Controller('api/professionel')
 export class ProfessionalController {
   constructor(private readonly professionalService: ProfessionalService) {}
 

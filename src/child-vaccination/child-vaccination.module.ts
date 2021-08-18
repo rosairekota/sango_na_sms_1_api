@@ -4,6 +4,6 @@ import { ChildVaccinationService } from './child-vaccination.service';
 
 @Module({
   controllers: [ChildVaccinationController],
-  providers: [ChildVaccinationService]
+  providers: [ChildVaccinationService],
 })
 export class ChildVaccinationModule {}

@@ -24,7 +24,7 @@ export class CentreController {
       }
 
     @Patch('/:id')
-    async edit(@Param('id',ParseIntPipe) id : number, editedCentre : UpdateCentreDto) : Promise<CentreEntity>{
+    async edit(@Param('id',ParseIntPipe) id : number,@Body() editedCentre : UpdateCentreDto) : Promise<CentreEntity>{
       return await this.centreService.update(id,editedCentre);
     }
 

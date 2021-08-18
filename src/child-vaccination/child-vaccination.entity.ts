@@ -36,7 +36,7 @@ export class ChildVaccinationEntity {
 
   @ManyToOne(
     () => ChildPeriodEntity,
-    (childPeriod) => childPeriod.childVaccinations, {}
+    (childPeriod) => childPeriod.childVaccinations,
   )
   @JoinColumn({ name: 'period_enfant_id' })
   childPeriod: ChildPeriodEntity;

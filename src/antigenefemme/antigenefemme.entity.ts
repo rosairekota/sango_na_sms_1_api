@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { WifeperiodEntity } from "src/wifeperiod/wifeperiod.entity";
+import { WomanVaccinationEntity } from "src/woman-vaccination/woman-vaccination.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('antigenefemme')
@@ -12,5 +13,7 @@ export class AntigenefemmeEntity {
     description_antigen_wife:string;
     @OneToMany(()=>WifeperiodEntity,(wifeperiod)=>wifeperiod.antigen)
     periods:WifeperiodEntity[];
+    @OneToMany(()=>WomanVaccinationEntity,(vaccination)=>vaccination.antigen)
+    vaccinations: WomanVaccinationEntity[];
 
 }

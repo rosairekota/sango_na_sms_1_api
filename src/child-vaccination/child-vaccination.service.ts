@@ -15,10 +15,7 @@ export class ChildVaccinationService {
     return await this.childVaccinationRepository.find();
   }
 
-  async add(
-    id: number,
-    entity: AddChildVaccinationDto,
-  ): Promise<ChildVaccinationEntity> {
+  async add(entity: AddChildVaccinationDto): Promise<ChildVaccinationEntity> {
     return await this.childVaccinationRepository.save(entity);
   }
 

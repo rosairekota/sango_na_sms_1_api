@@ -4,6 +4,6 @@ import { ChildRegistrationController } from './child-registration.controller';
 
 @Module({
   providers: [ChildRegistrationService],
-  controllers: [ChildRegistrationController]
+  controllers: [ChildRegistrationController],
 })
 export class ChildRegistrationModule {}

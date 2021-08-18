@@ -1,5 +1,13 @@
 import { ResorEnum } from './enum/resort.enum';
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+
+import { ProvinceEntity } from 'src/province/province.entity';
+import {
+  PrimaryGeneratedColumn,
+  Column,
+  Entity,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 @Entity('professionel')
 export class ProfessionalEntity {
   @PrimaryGeneratedColumn()
@@ -30,4 +38,10 @@ export class ProfessionalEntity {
     default: ResorEnum.national,
   })
   resort: string;
+
+  @ManyToMany(() => ProvinceEntity, (province) => province.professionals, {
+    cascade: true,
+  })
+  @JoinTable()
+  provinces: ProvinceEntity[];
 }

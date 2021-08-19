@@ -23,11 +23,7 @@ export class WomanVaccinationController {
         return await this.womanVaccinationService.delete(id);
     }   
     @Patch('/:id')
-<<<<<<< HEAD
-    async edit(@Param('id',ParseIntPipe) id:number, womanVaccination : UpdateWomanVaccinationDto) : Promise<WomanVaccinationEntity> {
-=======
     async edit(@Param('id',ParseIntPipe) id:number,@Body() womanVaccination : UpdateWomanVaccinationDto) : Promise<WomanVaccinationEntity> {
->>>>>>> feature/inscription_femme
         return await this.womanVaccinationService.update(id,womanVaccination);
     }   
 

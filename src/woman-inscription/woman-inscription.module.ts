@@ -7,6 +7,6 @@ import { WomanInscriptionService } from './woman-inscription.service';
 @Module({
   imports: [TypeOrmModule.forFeature([WomanInscriptionEntity])],
   controllers: [WomanInscriptionController],
-  providers: [WomanInscriptionService]
+  providers: [WomanInscriptionService],
 })
 export class WomanInscriptionModule {}

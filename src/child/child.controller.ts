@@ -14,7 +14,7 @@ import { ChildService } from './child.service';
 import { AddChildDto } from './dto/add-child.dto';
 import { UpdateChildDto } from './dto/update-child.dto';
 @ApiTags('Enfant:')
-@Controller('child')
+@Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
   @Get()

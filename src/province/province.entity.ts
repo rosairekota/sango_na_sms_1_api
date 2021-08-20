@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
 import { ZoneEntity } from 'src/zone/zone.entity';
@@ -12,7 +13,6 @@ export class ProvinceEntity extends TimesTempEntity {
   })
   labelProvince: string;
   @OneToMany(() => ZoneEntity, (zone) => zone.province, {
-    cascade: true,
     eager: true,
     nullable: true,
   })

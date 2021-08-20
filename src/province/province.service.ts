@@ -61,7 +61,7 @@ export class ProvinceService {
   }
 
   // Delete province
-  async removeProvince(id: number) {
+  async removeProvince(id: number) :Promise<ProvinceEntity>{
     const provinceToRemove = await this.provinceRepository.findOne(id);
 
     if (!provinceToRemove) {

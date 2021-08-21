@@ -27,7 +27,6 @@ export class WomanVaccinationController {
     return await this.womanVaccinationService.add(womanVaccination);
   }
 
-<<<<<<< HEAD
     @Delete('/:id')
     async remove(@Param('id',ParseIntPipe) id:number) : Promise<WomanVaccinationEntity> {
         return await this.womanVaccinationService.delete(id);
@@ -36,7 +35,6 @@ export class WomanVaccinationController {
     async edit(@Param('id',ParseIntPipe) id:number,@Body() womanVaccination : UpdateWomanVaccinationDto) : Promise<WomanVaccinationEntity> {
         return await this.womanVaccinationService.update(id,womanVaccination);
     }   
-=======
   @Delete('/:id')
   async remove(
     @Param('id', ParseIntPipe) id: number,
@@ -50,7 +48,6 @@ export class WomanVaccinationController {
   ): Promise<WomanVaccinationEntity> {
     return await this.womanVaccinationService.update(id, womanVaccination);
   }
->>>>>>> 0e5a467738bcee0122a3fc64bcf59a61f73a20da
 
   @Get()
   async getAll(): Promise<WomanVaccinationEntity[]> {

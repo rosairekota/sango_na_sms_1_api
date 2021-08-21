@@ -27,14 +27,6 @@ export class WomanVaccinationController {
     return await this.womanVaccinationService.add(womanVaccination);
   }
 
-    @Delete('/:id')
-    async remove(@Param('id',ParseIntPipe) id:number) : Promise<WomanVaccinationEntity> {
-        return await this.womanVaccinationService.delete(id);
-    }   
-    @Patch('/:id')
-    async edit(@Param('id',ParseIntPipe) id:number,@Body() womanVaccination : UpdateWomanVaccinationDto) : Promise<WomanVaccinationEntity> {
-        return await this.womanVaccinationService.update(id,womanVaccination);
-    }   
   @Delete('/:id')
   async remove(
     @Param('id', ParseIntPipe) id: number,

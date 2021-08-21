@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChildRegistrationEntity } from './child-registration.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([ChildRegistrationEntity])],
   imports: [TypeOrmModule.forFeature([ChildRegistrationEntity])],
   providers: [ChildRegistrationService],
   controllers: [ChildRegistrationController],

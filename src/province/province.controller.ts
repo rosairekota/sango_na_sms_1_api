@@ -20,6 +20,12 @@ export class ProvinceController {
   constructor(private provinceService: ProvinceService) {}
 
   // Get all provinces
+  @Get('/:labelProvince')
+  async getProvinceByLabel(
+    @Param('labelProvince') labelProvince: string,
+  ): Promise<ProvinceEntity[]> {
+    return await this.provinceService.getProvinceByLabel(labelProvince)
+  }
   @Get()
   async getAllProvinces(): Promise<ProvinceEntity[]> {
     return await this.provinceService.getProvince();
@@ -31,10 +37,11 @@ export class ProvinceController {
   ): Promise<ProvinceEntity> {
     return await this.provinceService.getProvinceById(id);
   }
+
+ 
   // Add a province
   @Post()
   async addProvince(@Body() province: AddProvinceDto): Promise<ProvinceEntity> {
-    // console.log(province)
     return await this.provinceService.addProvince(province);
   }
 

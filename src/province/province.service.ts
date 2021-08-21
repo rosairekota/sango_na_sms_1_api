@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   ConflictException,
   Injectable,
@@ -31,6 +32,10 @@ export class ProvinceService {
   // Get all provinces
   async getProvince(): Promise<ProvinceEntity[]> {
     return await this.provinceRepository.find();
+  }
+  async getProvinceByLabel(labelProvince:string): Promise<ProvinceEntity[]> {
+    return await this.provinceRepository.createQueryBuilder("province").where("province.libelle_province like :labelProvince", {labelProvince: '%' + labelProvince + '%' }).orderBy("province.libelle_province", "ASC").getMany();
+
   }
 
   // Get province by id

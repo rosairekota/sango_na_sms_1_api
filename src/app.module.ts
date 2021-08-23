@@ -28,7 +28,7 @@ import { FemmeModule } from './femme/femme.module';
 import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
 import { CenterProfessionalModule } from './center-professional/center-professional.module';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './auth/user.module';
 
 dotenv.config();
 @Module({
@@ -64,7 +64,7 @@ dotenv.config();
     ResponsibleModule,
     ProvincialProfessionalModule,
     CenterProfessionalModule,
-    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

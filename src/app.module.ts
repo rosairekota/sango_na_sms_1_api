@@ -26,6 +26,7 @@ import { ChildRegistrationModule } from './child-registration/child-registration
 import { ProfessionalModule } from './professional/professional.module';
 import { FemmeModule } from './femme/femme.module';
 import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
+import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
 
 dotenv.config();
 @Module({
@@ -59,6 +60,7 @@ dotenv.config();
     FemmeModule,
     WifeperiodModule,
     ResponsibleModule,
+    ProvincialProfessionalModule,
   ],
   controllers: [AppController],
   providers: [AppService],

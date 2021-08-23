@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { isUppercase, IS_UPPERCASE } from 'class-validator';
 import { Repository } from 'typeorm';
 import { AddProvinceDto } from './dto/add-province.dto';
 import { UpdateProvinceDto } from './dto/update-province.dto';

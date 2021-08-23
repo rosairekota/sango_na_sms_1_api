@@ -20,7 +20,6 @@ export class ProvinceEntity extends TimesTempEntity {
   })
   labelProvince: string;
   @OneToMany(() => ZoneEntity, (zone) => zone.province, {
-    cascade: true,
     eager: true,
     nullable: true,
   })

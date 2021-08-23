@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { ChildRegistrationService } from './child-registration.service';
 import { ChildRegistrationController } from './child-registration.controller';

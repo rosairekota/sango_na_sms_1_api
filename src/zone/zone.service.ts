@@ -13,7 +13,7 @@ export class ZoneService {
     private readonly zoneRepository: Repository<ZoneEntity>,
   ) {}
   async findAll(): Promise<ZoneEntity[]> {
-    return await this.zoneRepository.find();
+    return await this.zoneRepository.find({ relations: ["province"] });
   }
   async findById(id: number): Promise<ZoneEntity> {
     const zone = await this.zoneRepository.findOne(id);

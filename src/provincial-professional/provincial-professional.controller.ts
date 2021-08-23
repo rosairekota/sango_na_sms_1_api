@@ -15,7 +15,7 @@ import { ProvincialProfessionalEntity } from './provincial-professional.entity';
 import { ProvincialProfessionalService } from './provincial-professional.service';
 
 @ApiTags('prossionel provincial:')
-@Controller('provincial-professional')
+@Controller('api/provincial-professional')
 export class ProvincialProfessionalController {
   constructor(
     private readonly provProfessionalService: ProvincialProfessionalService,
@@ -38,14 +38,14 @@ export class ProvincialProfessionalController {
     return await this.provProfessionalService.findById(id);
   }
 
-  @Get(':id')
+  @Patch(':id')
   async edit(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: Partial<UpdateProncialProfessionalDto>,
   ): Promise<ProvincialProfessionalEntity> {
     return await this.provProfessionalService.update(id, dto);
   }
-  @Get(':id')
+  @Delete(':id')
   async remove(@Param('id', ParseIntPipe) id: number) {
     return await this.provProfessionalService.delete(id);
   }

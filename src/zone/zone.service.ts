@@ -23,7 +23,11 @@ export class ZoneService {
   }
   async add(newZone: AddZoneDto): Promise<ZoneEntity> {
     try {
-      return await this.zoneRepository.save(newZone);
+      const zone = await this.zoneRepository.save(newZone);
+
+      console.log(zone);
+
+      return zone;
     } catch (error) {
       throw new ConflictException(
         `La Zone de santé de ${newZone.labelZone} existe déjà`,

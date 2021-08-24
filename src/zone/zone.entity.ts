@@ -17,6 +17,7 @@ export class ZoneEntity extends TimesTempEntity {
     name: 'libelle_zone',
     type: 'varchar',
     length: 100,
+  
   })
   labelZone: string;
 

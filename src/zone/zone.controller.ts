@@ -17,6 +17,13 @@ import { AddZoneDto } from './dto/add-zone.dto';
 @Controller('api/zone')
 export class ZoneController {
   constructor(private readonly zoneService: ZoneService) {}
+
+
+  @Post()
+  async createZone(@Body() newZone: AddZoneDto): Promise<ZoneEntity> {
+    console.log(newZone)
+    return await this.zoneService.add(newZone);
+  }
   @Get()
   async getAllZones(): Promise<ZoneEntity[]> {
     return await this.zoneService.findAll();
@@ -26,10 +33,6 @@ export class ZoneController {
     @Param('id', ParseIntPipe) id: number,
   ): Promise<ZoneEntity> {
     return await this.zoneService.findById(id);
-  }
-  @Post()
-  async createZone(@Body() newZone: AddZoneDto): Promise<ZoneEntity> {
-    return await this.zoneService.add(newZone);
   }
 
   @Patch('/:id')

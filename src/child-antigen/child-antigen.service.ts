@@ -36,6 +36,6 @@ export class ChildAntigenService {
   }
   async delete(id: number) {
     const entity = await this.findById(id);
-    return this.childAntigenRepository.remove(entity);
+    return await this.childAntigenRepository.remove(entity);
   }
 }

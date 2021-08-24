@@ -17,7 +17,7 @@ export class ChildAntigenService {
 
   async findById(id: number): Promise<ChildAntigenEntity> {
     const entity = await this.childAntigenRepository.findOne(id);
-    if (!entity) return entity;
+    if (entity) return entity;
     throw new NotFoundException("Cet enregistremet n'existe pas !");
   }
   async add(childAntigen: AddchildAntigenDto): Promise<ChildAntigenEntity> {

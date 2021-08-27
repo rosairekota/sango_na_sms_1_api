@@ -33,7 +33,7 @@ export class ProvinceService {
     return await this.provinceRepository.find();
   }
   async getProvinceByLabel(labelProvince:string): Promise<ProvinceEntity[]> {
-    return await this.provinceRepository.createQueryBuilder("province").where("province.libelle_province like :labelProvince", {labelProvince: '%' + labelProvince + '%' }).orderBy("province.libelle_province", "ASC").getMany();
+    return await this.provinceRepository.createQueryBuilder("province").where("province.libelle_province like :labelProvince", {labelProvince: '%' + labelProvince.toUpperCase() + '%' }).orderBy("province.libelle_province", "ASC").getMany();
 
   }
 

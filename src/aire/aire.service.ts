@@ -1,20 +1,23 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { AireEntity } from './aire.entity';
 import { AddAireDto } from './dto/add-aire.dto';
 import { UpdateAireDto } from './dto/update-aire.dto';
+import {FilteredAire} from './FilteredAire.entity';
 
 @Injectable()
 export class AireService {
   constructor(
     @InjectRepository(AireEntity)
     private aireRepository: Repository<AireEntity>,
+    @InjectRepository(FilteredAire)
+    private filteredAireRepository: Repository<FilteredAire>,
   ) {}
 
   async getAires(): Promise<AireEntity[]> {
-    return await this.aireRepository.find();
+    return await this.aireRepository.find({ relations: ["zone"] });
   }
 
   async addAire(aire: AddAireDto): Promise<AireEntity> {
@@ -30,4 +33,10 @@ export class AireService {
     const aire = await this.aireRepository.findOne(idaire);
     return await this.aireRepository.remove(aire);
   }
+
+
+  async getAiresByLabel(labelAire:string): Promise<FilteredAire[]> {
+    const aires= await this.filteredAireRepository.find({ labelAire: Like(`%${labelAire.toLocaleUpperCase()}%`)});
+    return aires;      
+    }
 }

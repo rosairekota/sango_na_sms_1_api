@@ -2,6 +2,7 @@
 import { IsNotEmpty, IsOptional } from "class-validator";
 import { GenericValidatorMessages } from "src/helpers/generic-validator-message.dto";
 import { ApiProperty, ApiTags } from "@nestjs/swagger";
+import { UserEntity } from "src/auth/user.entity";
 
 export class AddResponsibleDto extends GenericValidatorMessages{
     @IsNotEmpty(AddResponsibleDto.genericEmptyMessage("le nom du (de la) responsable"))
@@ -20,9 +21,9 @@ export class AddResponsibleDto extends GenericValidatorMessages{
     @ApiProperty()
     responsiblePhoneNumer:string
     @IsOptional()
-    @ApiProperty()
-    responsibleEmail :string;
     @IsNotEmpty(AddResponsibleDto.genericEmptyMessage("le sexe du (de la) responsable"))
     @ApiProperty()
     sexe:string;
+    @IsNotEmpty()
+    user:UserEntity;
 }

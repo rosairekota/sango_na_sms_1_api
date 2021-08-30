@@ -9,10 +9,8 @@ import { UserCredentialsDto } from './dto/user-credentials.dto';
 @Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Post('signup')
-  async signup(
-    @Body() newUser: Partial<AddUserDto>,
-  ): Promise<Partial<UserEntity>> {
+  @Post('register')
+  async signup(@Body() newUser: AddUserDto): Promise<Partial<UserEntity>> {
     return await this.userService.register(newUser);
   }
 

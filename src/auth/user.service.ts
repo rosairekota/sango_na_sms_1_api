@@ -20,7 +20,7 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async register(newUser?: Partial<AddUserDto>) {
+  async register(newUser: Partial<AddUserDto>) {
     const user = await this.userRepository.create({ ...newUser });
 
     // Encript password

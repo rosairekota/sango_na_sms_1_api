@@ -7,8 +7,8 @@ import { UserEntity } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { ConflictException } from '@nestjs/common';
 import { UserCredentialsDto } from './dto/user-credentials.dto';
-import { ResponsibleService } from 'src/responsible/responsible.service';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
+import { AddResponsibleDto } from 'src/responsible/dto/add-responsible.dto';
 
 @Injectable()
 export class UserService {
@@ -18,41 +18,26 @@ export class UserService {
     private jwtService: JwtService,
     private connection: Connection,
     @InjectRepository(ResponsibleEntity)
-    private responsibleService: Repository<ResponsibleEntity>,
+    private responsibleRepository: Repository<ResponsibleEntity>,
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  async register(data: any) {
+  async register(responsableDto: AddResponsibleDto) {
     const {
-      username,
-      email,
-      password,
       responsibleName,
       responsibleLastName,
       firstNameResponsible,
       responsibleAdress,
       responsiblePhoneNumer,
-      responsibleEmail,
       sexe,
-    } = data;
-    const newUser = { username, email, password };
-    const responsable = {
-      responsibleName,
-      responsibleLastName,
-      firstNameResponsible,
-      responsibleAdress,
-      responsiblePhoneNumer,
-      responsibleEmail,
-      sexe,
-    };
-    const user = await this.userRepository.create({ ...newUser });
-    const responsableEntity = await this.responsibleService.create({
-      ...responsable,
-    });
-    console.log(responsableEntity);
+      user,
+    } = responsableDto;
+
+    const userEntity = await this.userRepository.create({ ...user });
+
     const connection = getConnection();
     const queryRunner = connection.createQueryRunner();
 
@@ -60,13 +45,30 @@ export class UserService {
     await queryRunner.startTransaction();
     // console.dir(queryRunner);
 
-    user.salt = await bcrypt.genSalt();
-    user.password = await bcrypt.hash(user.password, user.salt);
+    userEntity.salt = await bcrypt.genSalt();
+    userEntity.password = await bcrypt.hash(
+      userEntity.password,
+      userEntity.salt,
+    );
 
     try {
-      const rep = await queryRunner.manager.save(user);
-      console.log('responsable:', rep);
-      await queryRunner.commitTransaction();
+      const userRepo = await queryRunner.manager.save(userEntity);
+      if (userRepo) {
+        const responsableEntity = await this.responsibleRepository.create({
+          ...{
+            responsibleName,
+            responsibleLastName,
+            firstNameResponsible,
+            responsibleAdress,
+            responsiblePhoneNumer,
+            sexe,
+          },
+        });
+        responsableEntity.user = { ...userRepo };
+        await queryRunner.manager.save(responsableEntity);
+        await queryRunner.commitTransaction();
+      } else {
+      }
     } catch (e) {
       await queryRunner.rollbackTransaction();
       throw new Error('Une erreur est survenue');
@@ -75,13 +77,6 @@ export class UserService {
     }
     // Encript password
 
-    // user.salt = await bcrypt.genSalt();
-    // user.password = await bcrypt.hash(user.password, user.salt);
-    // try {
-    //   await this.userRepository.save(user);
-    // } catch (e) {
-    //   throw new ConflictException('Cet utilisateur existe déjà');
-    // }
     return await {
       id: user.id,
       username: user.username,

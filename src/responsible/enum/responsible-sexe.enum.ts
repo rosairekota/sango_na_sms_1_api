@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-export enum responsibleSexe{
-    Homme="Homme",
-    Femme="Femme"
+export enum responsibleSexe {
+  Homme = 'M',
+  Femme = 'F',
 }

@@ -17,6 +17,7 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
     private connection: Connection,
+    @InjectRepository(ResponsibleEntity)
     private responsibleService: Repository<ResponsibleEntity>,
   ) {}
 

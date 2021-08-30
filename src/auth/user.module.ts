@@ -6,10 +6,10 @@ import { UserEntity } from './user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtConstant } from './strategy/jwt-constant';
-
+import { ResponsibleEntity } from '../responsible/responsible.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, ResponsibleEntity]),
 
     // JWT configurations
     PassportModule.register({

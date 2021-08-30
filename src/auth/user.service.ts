@@ -1,12 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Connection, getConnection, Repository } from 'typeorm';
 import { AddUserDto } from './dto/add-user.dto';
 import { UserEntity } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { ConflictException } from '@nestjs/common';
 import { UserCredentialsDto } from './dto/user-credentials.dto';
+import { ResponsibleService } from 'src/responsible/responsible.service';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 
 @Injectable()
 export class UserService {
@@ -14,24 +16,71 @@ export class UserService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
+    private connection: Connection,
+    private responsibleService: Repository<ResponsibleEntity>,
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  async register(newUser: Partial<AddUserDto>) {
+  async register(data: any) {
+    const {
+      username,
+      email,
+      password,
+      responsibleName,
+      responsibleLastName,
+      firstNameResponsible,
+      responsibleAdress,
+      responsiblePhoneNumer,
+      responsibleEmail,
+      sexe,
+    } = data;
+    const newUser = { username, email, password };
+    const responsable = {
+      responsibleName,
+      responsibleLastName,
+      firstNameResponsible,
+      responsibleAdress,
+      responsiblePhoneNumer,
+      responsibleEmail,
+      sexe,
+    };
     const user = await this.userRepository.create({ ...newUser });
+    const responsableEntity = await this.responsibleService.create({
+      ...responsable,
+    });
+    console.log(responsableEntity);
+    const connection = getConnection();
+    const queryRunner = connection.createQueryRunner();
 
-    // Encript password
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    // console.dir(queryRunner);
 
     user.salt = await bcrypt.genSalt();
     user.password = await bcrypt.hash(user.password, user.salt);
+
     try {
-      await this.userRepository.save(user);
+      const rep = await queryRunner.manager.save(user);
+      console.log('responsable:', rep);
+      await queryRunner.commitTransaction();
     } catch (e) {
-      throw new ConflictException('Cet utilisateur existe déjà');
+      await queryRunner.rollbackTransaction();
+      throw new Error('Une erreur est survenue');
+    } finally {
+      await queryRunner.release();
     }
+    // Encript password
+
+    // user.salt = await bcrypt.genSalt();
+    // user.password = await bcrypt.hash(user.password, user.salt);
+    // try {
+    //   await this.userRepository.save(user);
+    // } catch (e) {
+    //   throw new ConflictException('Cet utilisateur existe déjà');
+    // }
     return await {
       id: user.id,
       username: user.username,

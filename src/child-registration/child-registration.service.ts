@@ -9,28 +9,34 @@ import { UpdateChildRegistrationDto } from './dto/update-child-registration.dto'
 
 @Injectable()
 export class ChildRegistrationService {
-    constructor(
-        @InjectRepository(ChildRegistrationEntity)
-        private childRegistrationRepository : Repository<ChildRegistrationEntity>
-      
-    ){}
+  constructor(
+    @InjectRepository(ChildRegistrationEntity)
+    private childRegistrationRepository: Repository<ChildRegistrationEntity>,
+  ) {}
 
+  async add(
+    childRegistration: AddChildRegistrationDto,
+  ): Promise<ChildRegistrationEntity> {
+    return await this.childRegistrationRepository.save(childRegistration);
+  }
 
-    async add(childRegistration :AddChildRegistrationDto) : Promise<ChildRegistrationEntity>{
-        return await this.childRegistrationRepository.save(childRegistration);
-    }
+  async delete(id: number): Promise<ChildRegistrationEntity> {
+    const registration = await this.childRegistrationRepository.findOne(id);
+    return await this.childRegistrationRepository.remove(registration);
+  }
 
-    async delete(id:number) :Promise<ChildRegistrationEntity>{
-        const registration = await this.childRegistrationRepository.findOne(id);
-        return await this.childRegistrationRepository.remove(registration)
-    }
+  async update(
+    id: number,
+    registration: Partial<UpdateChildRegistrationDto>,
+  ): Promise<ChildRegistrationEntity> {
+    const entity = await this.childRegistrationRepository.preload({
+      id,
+      ...registration,
+    });
+    return await this.childRegistrationRepository.save(entity);
+  }
 
-    async update(idChildRegistration:number,registration:UpdateChildRegistrationDto) : Promise<ChildRegistrationEntity>{
-        const editingRegistration = await this.childRegistrationRepository.preload({idChildRegistration,...registration})
-        return await this.childRegistrationRepository.save(editingRegistration);
-    }
-
-    async findAll():Promise<ChildRegistrationEntity[]>{
-        return await this.childRegistrationRepository.find();
-    }
+  async findAll(): Promise<ChildRegistrationEntity[]> {
+    return await this.childRegistrationRepository.find();
+  }
 }

@@ -33,14 +33,14 @@ export class ChildAntigenController {
   ): Promise<ChildAntigenEntity> {
     return await this.childAntigenService.add(newChildAntigen);
   }
-  @Patch(':id')
+  @Patch('/:id')
   async edit(
     @Param('id', ParseIntPipe) id: number,
     @Body() childAntigen: Partial<UpdatechildAntigenDto>,
   ) {
     return await this.childAntigenService.update(id, childAntigen);
   }
-  @Delete(':id')
+  @Delete('/:id')
   async remove(@Param('id', ParseIntPipe) id: number) {
     return await this.childAntigenService.delete(id);
   }

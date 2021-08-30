@@ -7,7 +7,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
 dotenv.config();
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule,{cors: true});
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors();
   //configure pipe Validations
   app.useGlobalPipes(
@@ -20,7 +20,7 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
- 
+
   // configure swagger Module
   const config = new DocumentBuilder()
     .setTitle('API SANGO NA SMS 1')

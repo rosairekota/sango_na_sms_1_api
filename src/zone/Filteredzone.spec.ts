@@ -1,4 +1,4 @@
-import { Filteredzone } from './filteredzone';
+import { Filteredzone } from './Filteredzone.entity';
 
 describe('Filteredzone', () => {
   it('should be defined', () => {

@@ -32,8 +32,7 @@ export class AireController {
 
   @Patch('/:id')
   async editAire( @Param('id',ParseIntPipe) id : number, @Body() editedAire : UpdateAireDto) : Promise<AireEntity>{
-   
-    console.log(editedAire)
+  
     return await this.aireService.updateAire(id,editedAire);
   }
   

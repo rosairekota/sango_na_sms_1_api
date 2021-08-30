@@ -20,7 +20,15 @@ import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
 import { ChildVaccinationModule } from './child-vaccination/child-vaccination.module';
-import { DefaultController } from './default/default.controller';
+import { WomanVaccinationModule } from './woman-vaccination/woman-vaccination.module';
+import { ResponsibleModule } from './responsible/responsible.module';
+import { ChildRegistrationModule } from './child-registration/child-registration.module';
+import { ProfessionalModule } from './professional/professional.module';
+import { FemmeModule } from './femme/femme.module';
+import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
+import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
+import { CenterProfessionalModule } from './center-professional/center-professional.module';
+import { UserModule } from './auth/user.module';
 
 dotenv.config();
 @Module({
@@ -39,17 +47,26 @@ dotenv.config();
       synchronize: true,
     }),
     AireModule,
-    ZoneModule,
-    ProvinceModule,
+    AntigenefemmeModule,
     CentreModule,
     ChildPeriodModule,
     ChildAntigenModule,
-    WomanInscriptionModule,
     ChildModule,
-    WifeperiodModule,
+    ChildRegistrationModule,
+    ProfessionalModule,
     ChildVaccinationModule,
+    ZoneModule,
+    ProvinceModule,
+    WomanInscriptionModule,
+    WomanVaccinationModule,
+    FemmeModule,
+    WifeperiodModule,
+    ResponsibleModule,
+    ProvincialProfessionalModule,
+    CenterProfessionalModule,
+    UserModule,
   ],
-  controllers: [AppController, DefaultController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {

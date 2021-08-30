@@ -13,7 +13,7 @@ export class ZoneService {
     private readonly zoneRepository: Repository<ZoneEntity>,
   ) {}
   async findAll(): Promise<ZoneEntity[]> {
-    return await this.zoneRepository.find();
+    return await this.zoneRepository.find({ relations: ["province"] });
   }
   async findById(id: number): Promise<ZoneEntity> {
     const zone = await this.zoneRepository.findOne(id);
@@ -23,7 +23,11 @@ export class ZoneService {
   }
   async add(newZone: AddZoneDto): Promise<ZoneEntity> {
     try {
-      return await this.zoneRepository.save(newZone);
+      const zone = await this.zoneRepository.save(newZone);
+
+      console.log(zone);
+
+      return zone;
     } catch (error) {
       throw new ConflictException(
         `La Zone de santé de ${newZone.labelZone} existe déjà`,

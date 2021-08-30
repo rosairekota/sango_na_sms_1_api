@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AireEntity } from 'src/aire/aire.entity';
 import { ProvinceEntity } from 'src/province/province.entity';
 import {
@@ -16,12 +17,13 @@ export class ZoneEntity extends TimesTempEntity {
     name: 'libelle_zone',
     type: 'varchar',
     length: 100,
+  
   })
   labelZone: string;
 
   @ManyToOne(() => ProvinceEntity, (province) => province.zones, {
-    cascade: ['insert', 'update'],
-    nullable: true,
+    cascade: ["update","insert","remove"],
+    nullable: false,
   })
   province: ProvinceEntity;
 

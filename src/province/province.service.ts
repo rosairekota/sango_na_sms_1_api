@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import {
   ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { isUppercase, IS_UPPERCASE } from 'class-validator';
 import { Repository } from 'typeorm';
 import { AddProvinceDto } from './dto/add-province.dto';
 import { UpdateProvinceDto } from './dto/update-province.dto';
@@ -31,6 +31,10 @@ export class ProvinceService {
   // Get all provinces
   async getProvince(): Promise<ProvinceEntity[]> {
     return await this.provinceRepository.find();
+  }
+  async getProvinceByLabel(labelProvince:string): Promise<ProvinceEntity[]> {
+    return await this.provinceRepository.createQueryBuilder("province").where("province.libelle_province like :labelProvince", {labelProvince: '%' + labelProvince + '%' }).orderBy("province.libelle_province", "ASC").getMany();
+
   }
 
   // Get province by id
@@ -61,7 +65,7 @@ export class ProvinceService {
   }
 
   // Delete province
-  async removeProvince(id: number) {
+  async removeProvince(id: number) :Promise<ProvinceEntity>{
     const provinceToRemove = await this.provinceRepository.findOne(id);
 
     if (!provinceToRemove) {

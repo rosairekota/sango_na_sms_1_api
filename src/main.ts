@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
@@ -6,7 +7,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
 dotenv.config();
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.enableCors();
   //configure pipe Validations
   app.useGlobalPipes(
     new ValidationPipe({
@@ -18,6 +20,7 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
+
   // configure swagger Module
   const config = new DocumentBuilder()
     .setTitle('API SANGO NA SMS 1')

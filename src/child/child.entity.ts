@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 import { ChildVaccinationEntity } from '../child-vaccination/child-vaccination.entity';
+import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 
 @Entity('enfant')
 export class ChildEntity extends TimesTempEntity {
@@ -47,4 +48,13 @@ export class ChildEntity extends TimesTempEntity {
     },
   )
   childVaccinations: ChildVaccinationEntity[];
+
+  @OneToMany(
+    () => ChildRegistrationEntity,
+    (childRegistration) => childRegistration.child,
+    {
+      cascade: true,
+    },
+  )
+  registrations: ChildRegistrationEntity[];
 }

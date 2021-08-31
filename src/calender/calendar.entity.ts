@@ -2,6 +2,7 @@
 import { CentreEntity } from 'src/centre/centre.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
+import { PeriodEntity } from 'src/period/period.entity';
 import {
   Column,
   Entity,
@@ -10,12 +11,13 @@ import {
 } from 'typeorm';
 
 @Entity('calendrier')
-export class ChildRegistrationEntity extends TimesTempEntity {
+export class CalendarEntity extends TimesTempEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   indice:string;
-  @ManyToOne(())
+  @ManyToOne(()=>PeriodEntity,(period)=>period.calenders)
+  period:PeriodEntity
 
  
 }

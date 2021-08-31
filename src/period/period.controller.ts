@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -9,42 +10,42 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ChildPeriodEntity } from './period.entity';
-import { ChildPeriodService } from './period.service';
-import { AddChildPeriodDto } from './dto/add-period.dto';
-import { UpdateChildPeriodDto } from './dto/update-period.dto';
+import { PeriodEntity} from './period.entity';
+import { PeriodService} from './period.service';
+import { AddPeriodDto } from './dto/add-period.dto';
+import { UpdatePeriodDto } from './dto/update-period.dto';
 
 @ApiTags('periodes_enfant:')
 @Controller('api/period')
-export class ChildPeriodController {
-  constructor(private readonly childPeriodService: ChildPeriodService) {}
+export class PeriodController {
+  constructor(private readonly PeriodService: PeriodService) {}
   @Get()
-  async getAllChildPeriods(): Promise<ChildPeriodEntity[]> {
-    return await this.childPeriodService.findAll();
+  async getAllPeriods(): Promise<PeriodEntity[]> {
+    return await this.PeriodService.findAll();
   }
 
   @Get('/:id')
-  async getChildPeriodById(
+  async getPeriodById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<ChildPeriodEntity> {
-    return await this.childPeriodService.findById(id);
+  ): Promise<PeriodEntity> {
+    return await this.PeriodService.findById(id);
   }
   @Post()
-  async addChildPeriod(
-    @Body() newChildPeriod: AddChildPeriodDto,
-  ): Promise<ChildPeriodEntity> {
-    return await this.childPeriodService.add(newChildPeriod);
+  async addPeriod(
+    @Body() newPeriod: AddPeriodDto,
+  ): Promise<PeriodEntity> {
+    return await this.PeriodService.add(newPeriod);
   }
 
   @Patch('/:id')
-  async updateChildPeriod(
+  async updatePeriod(
     @Param('id', ParseIntPipe) id: number,
-    @Body() childPeriod: Partial<UpdateChildPeriodDto>,
-  ): Promise<ChildPeriodEntity> {
-    return await this.childPeriodService.update(id, childPeriod);
+    @Body() Period: Partial<UpdatePeriodDto>,
+  ): Promise<PeriodEntity> {
+    return await this.PeriodService.update(id, Period);
   }
   @Delete(':id')
-  async deleteChildPeriod(@Param('id', ParseIntPipe) id: number) {
-    return await this.childPeriodService.delete(id);
+  async deletePeriod(@Param('id', ParseIntPipe) id: number) {
+    return await this.PeriodService.delete(id);
   }
 }

@@ -11,6 +11,7 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { periodCategory } from './enum/period-category.enum';
+import {CalendarEntity } from 'src/calender/calendar.entity';
 @Entity('periode')
 export class PeriodEntity {
   @PrimaryGeneratedColumn()
@@ -25,4 +26,7 @@ export class PeriodEntity {
   @Column({type:"enum",enum: periodCategory,
     default: periodCategory.CPN,})
   categorie:string;
+
+  @OneToMany(()=>CalendarEntity, (calendar)=>calendar.period)
+  calendars: CalendarEntity[]
 }

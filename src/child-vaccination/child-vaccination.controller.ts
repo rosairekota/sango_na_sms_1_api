@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -19,16 +20,20 @@ export class ChildVaccinationController {
   constructor(
     private readonly childVaccinationService: ChildVaccinationService,
   ) {}
+
   @Get()
   async getAll(): Promise<ChildVaccinationEntity[]> {
     return await this.childVaccinationService.findAll();
   }
+
+  
   @Post()
   async create(
     @Body() newDto: AddChildVaccinationDto,
   ): Promise<ChildVaccinationEntity> {
     return await this.childVaccinationService.add(newDto);
   }
+
   @Patch()
   async edit(
     @Param('id', ParseIntPipe) id: number,
@@ -36,6 +41,7 @@ export class ChildVaccinationController {
   ): Promise<ChildVaccinationEntity> {
     return await this.childVaccinationService.Update(id, newDto);
   }
+
   @Delete()
   async remove(@Param('id', ParseIntPipe) id: number) {
     return await this.childVaccinationService.delete(id);

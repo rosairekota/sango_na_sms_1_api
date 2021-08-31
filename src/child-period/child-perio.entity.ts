@@ -10,32 +10,24 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
+import { periodCategory } from './enum/period-category.enum';
 
 
-@Entity('periode_enfant')
+@Entity('periode')
 export class ChildPeriodEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'text' })
-  description: string;
+  @Column({ type: 'text',name:"libelle" })
+  labelPeriod: string;
 
-  @Column({ name: 'duree', type: 'double' })
+  @Column({ name: 'nombre_jour', type: 'double' })
   duration: number;
+  @Column({enum: periodCategory,
+    default: periodCategory.CPN,})
+  categorie:string;
+  
+ 
 
-  @OneToMany(
-    () => ChildAntigenEntity,
-    (childAntigene) => childAntigene.childPeriod,
-    {
-      eager: true,
-      cascade: true,
-    },
-  )
-  childAntigenes: ChildAntigenEntity[];
-
-  @ManyToOne(
-    () => ChildAntigenEntity,
-    (childAntigen) => childAntigen.childPeriod,
-  )
-  childAntigens: ChildAntigenEntity[];
+ 
 }

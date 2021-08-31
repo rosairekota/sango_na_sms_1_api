@@ -37,7 +37,7 @@ export class ChildVaccinationEntity {
   @JoinColumn({ name: 'enfant_id' })
   child: ChildEntity;
   @ManyToOne(()=>ChildAntigenEntity,(childAntigen)=>childAntigen.vaccinations)
-  antigen: ChildVaccinationEntity;
+  antigen: ChildAntigenEntity;
 @ManyToOne(()=>CentreEntity,
 (centre)=>centre.vaccinations
 )

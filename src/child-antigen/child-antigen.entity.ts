@@ -16,14 +16,7 @@ export class ChildAntigenEntity {
   title: string;
   @Column({ name: 'descrption_ae', type: 'text' })
   description: string;
-
-  @ManyToOne(
-    () => ChildPeriodEntity,
-    (childPeriod) => childPeriod.childAntigenes,
-    { cascade: ['insert', 'update']},
-  )
   childPeriod: ChildPeriodEntity;
-
   @OneToMany(()=>ChildVaccinationEntity,
   (vaccination)=>vaccination.antigen
   )

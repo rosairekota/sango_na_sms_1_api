@@ -24,6 +24,6 @@ export class UserEntity {
   @Column()
   salt: string;
 
-  @Column({ type: 'enum', enum: UserRoles, default: UserRoles.ROLE_USER })
+  @Column()
   roles: string;
 }

@@ -22,7 +22,7 @@ export class ChildPeriodEntity {
   @Column({ name: 'nombre_jour', type: 'double' })
   duration: number;
   
-  @Column({enum: periodCategory,
+  @Column({type:"enum",enum: periodCategory,
     default: periodCategory.CPN,})
   categorie:string;
 }

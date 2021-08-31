@@ -15,7 +15,6 @@ import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 import { CentreModule } from './centre/centre.module';
 import { ChildPeriodModule } from './child-period/child-period.module';
-import { ChildAntigenModule } from './child-antigen/child-antigen.module';
 import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
@@ -25,10 +24,10 @@ import { ResponsibleModule } from './responsible/responsible.module';
 import { ChildRegistrationModule } from './child-registration/child-registration.module';
 import { ProfessionalModule } from './professional/professional.module';
 import { FemmeModule } from './femme/femme.module';
-import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
 import { CenterProfessionalModule } from './center-professional/center-professional.module';
 import { UserModule } from './auth/user.module';
+import { AntigenModule } from './antigen/antigen.module';
 
 dotenv.config();
 @Module({
@@ -47,10 +46,9 @@ dotenv.config();
       synchronize: true,
     }),
     AireModule,
-    AntigenefemmeModule,
+    AntigenModule,
     CentreModule,
     ChildPeriodModule,
-    ChildAntigenModule,
     ChildModule,
     ChildRegistrationModule,
     ProfessionalModule,

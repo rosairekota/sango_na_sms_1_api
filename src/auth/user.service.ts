@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,6 +37,7 @@ export class UserService {
       user,
     } = responsableDto;
 
+    console.log(responsableDto)
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();
@@ -53,7 +55,7 @@ export class UserService {
 
     try {
       const userRepo = await queryRunner.manager.save(userEntity);
-      if (userRepo) {
+     
         const responsableEntity = await this.responsibleRepository.create({
           ...{
             responsibleName,
@@ -67,8 +69,6 @@ export class UserService {
         responsableEntity.user = { ...userRepo };
         await queryRunner.manager.save(responsableEntity);
         await queryRunner.commitTransaction();
-      } else {
-      }
     } catch (e) {
       await queryRunner.rollbackTransaction();
       throw new Error('Une erreur est survenue');

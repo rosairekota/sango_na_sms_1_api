@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ChildPeriodEntity } from '../child-period/child-perio.entity';
 import {
   Entity,
@@ -6,6 +7,7 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
+import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
 @Entity('antigene_enfant')
 export class ChildAntigenEntity {
   @PrimaryGeneratedColumn()
@@ -18,7 +20,12 @@ export class ChildAntigenEntity {
   @ManyToOne(
     () => ChildPeriodEntity,
     (childPeriod) => childPeriod.childAntigenes,
-    { cascade: ['insert', 'update'], nullable: true },
+    { cascade: ['insert', 'update']},
   )
   childPeriod: ChildPeriodEntity;
+
+  @OneToMany(()=>ChildVaccinationEntity,
+  (vaccination)=>vaccination.antigen
+  )
+  vaccinations:ChildVaccinationEntity[];
 }

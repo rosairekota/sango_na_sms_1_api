@@ -1,12 +1,9 @@
+/* eslint-disable prettier/prettier */
 import {
   IsNotEmpty,
-  MaxLength,
-  MinLength,
-  IsString,
   IsOptional,
 } from 'class-validator';
-import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
-import { ChildEntity } from 'src/child/child.entity';
+import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 
 export class AddChildVaccinationDto extends GenericValidatorMessages {
@@ -17,22 +14,11 @@ export class AddChildVaccinationDto extends GenericValidatorMessages {
   receivedDate: Date;
 
   @IsNotEmpty(AddChildVaccinationDto.genericEmptyMessage('la notification'))
-  notification: string;
+  notificate: string;
 
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage('la date de notification'),
-  )
+  @IsOptional()
   notificationDate: Date;
 
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage('Ajouter un enfant svp'),
-  )
-  child: ChildEntity;
-
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage(
-      "Ajouter la periode de l'enfant svp",
-    ),
-  )
-  childPeriod: ChildPeriodEntity;
+  @IsNotEmpty()
+  registration : ChildRegistrationEntity;
 }

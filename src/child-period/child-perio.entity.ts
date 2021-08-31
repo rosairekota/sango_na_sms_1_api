@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ChildAntigenEntity } from '../child-antigen/child-antigen.entity';
 import { ChildEntity } from '../child/child.entity';
 import { JoinTable } from 'typeorm';
@@ -9,7 +10,7 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
-import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
+
 
 @Entity('periode_enfant')
 export class ChildPeriodEntity {
@@ -28,14 +29,13 @@ export class ChildPeriodEntity {
     {
       eager: true,
       cascade: true,
-      nullable: true,
     },
   )
   childAntigenes: ChildAntigenEntity[];
 
-  @OneToMany(
-    () => ChildVaccinationEntity,
-    (vaccination) => vaccination.childPeriod,
+  @ManyToOne(
+    () => ChildAntigenEntity,
+    (childAntigen) => childAntigen.childPeriod,
   )
-  childVaccinations: ChildVaccinationEntity[];
+  childAntigens: ChildAntigenEntity[];
 }

@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { AireEntity } from 'src/aire/aire.entity';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
+import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
 import { ProfessionalEntity } from 'src/professional/professional.entity';
 import { WomanInscriptionEntity } from 'src/woman-inscription/woman-inscription.entity';
 import {
@@ -37,13 +38,6 @@ export class CentreEntity {
     (registration) => registration.centre,
   )
   childRegistrations: ChildRegistrationEntity[];
-  // @ManyToMany(
-  //   () => ProfessionalEntity,
-  //   (professional) => professional.centres,
-  //   {
-  //     cascade: true,
-  //   },
-  // )
-  // @JoinTable()
-  // professionals: ProfessionalEntity[];
+  @OneToMany(()=>ChildVaccinationEntity, (vaccination)=>vaccination.centre)
+  vaccinations:ChildVaccinationEntity[];
 }

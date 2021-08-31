@@ -28,7 +28,7 @@ export class ChildVaccinationEntity {
     enum: NotificationEnum,
     default: NotificationEnum.YES,
   })
-  notification: string;
+  notificate: string;
 
   @Column({ name: 'date_notification' })
   notificationDate: Date;

@@ -36,7 +36,6 @@ export class UserService {
       user,
     } = responsableDto;
 
-    console.log(responsableDto)
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();

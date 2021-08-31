@@ -86,9 +86,11 @@ export class AddChildDto extends GenericValidatorMessages {
   @IsString()
   motherPhone: string;
 
+  @IsNotEmpty(AddChildDto.genericEmptyMessage('Le centre'))
   @ApiProperty()
   center: CentreEntity;
 
+  @IsNotEmpty(AddChildDto.genericEmptyMessage("L'etat"))
   @ApiProperty()
   registrationState: string;
 }

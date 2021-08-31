@@ -43,8 +43,8 @@ export class ChildService {
       motherName,
       dateOfBirthMother,
       motherPhone,
-      registrationState,
       center,
+      registrationState,
     } = newChild;
     const centreEntity = this.centreRepository.create({ ...center });
     const centreRepo = await this.centreRepository.findOne(centreEntity);
@@ -76,7 +76,7 @@ export class ChildService {
         );
         ChildRegistrationEntity.centre = centreRepo;
         ChildRegistrationEntity.child = childRepo;
-
+        await queryRunner.manager.save(ChildRegistrationEntity);
         await queryRunner.commitTransaction();
         console.log('La transaction a réussi !');
         return childRepo;

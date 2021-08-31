@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { periodCategory } from './enum/period-category.enum';
 @Entity('periode')
-export class ChildPeriodEntity {
+export class PeriodEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

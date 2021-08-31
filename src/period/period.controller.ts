@@ -9,13 +9,13 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ChildPeriodEntity } from './child-perio.entity';
-import { ChildPeriodService } from './child-period.service';
-import { AddChildPeriodDto } from './dto/add-child-period.dto';
-import { UpdateChildPeriodDto } from './dto/update-child.dto';
+import { ChildPeriodEntity } from './period.entity';
+import { ChildPeriodService } from './period.service';
+import { AddChildPeriodDto } from './dto/add-period.dto';
+import { UpdateChildPeriodDto } from './dto/update-period.dto';
 
 @ApiTags('periodes_enfant:')
-@Controller('api/period_enfant')
+@Controller('api/period')
 export class ChildPeriodController {
   constructor(private readonly childPeriodService: ChildPeriodService) {}
   @Get()

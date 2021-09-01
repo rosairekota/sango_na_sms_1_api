@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { AntigenEntity } from 'src/antigen/antigen.entity';
 import { AntigenefemmeEntity } from 'src/antigenefemme/antigenefemme.entity';
 import { FemmeEntity } from 'src/femme/femme.entity';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
@@ -26,6 +27,6 @@ export class WomanVaccinationEntity extends TimesTempEntity {
   notificationDate: Date;
   @OneToMany(() => FemmeEntity, (femme) => femme.vaccinations)
   femme: FemmeEntity;
-  @OneToMany(() => AntigenefemmeEntity, (antigene) => antigene.vaccinations)
-  antigen: AntigenefemmeEntity;
+  @OneToMany(() => AntigenEntity, (antigen) => antigen.calendars)
+  antigen: AntigenEntity;
 }

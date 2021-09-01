@@ -1,4 +1,4 @@
-import { CalendarEntity } from 'src/calender/calendar.entity';
+import { CalendarEntity } from 'src/calendar/calendar.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('antigene')

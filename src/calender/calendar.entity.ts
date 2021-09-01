@@ -16,8 +16,9 @@ export class CalendarEntity extends TimesTempEntity {
   id: number;
   @Column()
   indice:string;
-  @ManyToOne(()=>PeriodEntity,(period)=>period.calenders)
+  @ManyToOne(()=>PeriodEntity,(period)=>period.calendars)
   period:PeriodEntity
+  @ManyToOne()
 
  
 }

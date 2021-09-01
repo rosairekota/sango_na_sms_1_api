@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiProperty} from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.dto';

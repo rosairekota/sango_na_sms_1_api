@@ -1,17 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { ChildAntigenEntity } from '../antigen/child-antigen.entity';
-import { ChildEntity } from '../child/child.entity';
-import { JoinTable } from 'typeorm';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
-  OneToMany,
-  ManyToMany,
-} from 'typeorm';
+  OneToMany,} from 'typeorm';
 import { periodCategory } from './enum/period-category.enum';
-import {CalendarEntity } from 'src/calender_old/calendar.entity';
+import { CalendarEntity } from 'src/calendar/calendar.entity';
+
 @Entity('periode')
 export class PeriodEntity {
   @PrimaryGeneratedColumn()

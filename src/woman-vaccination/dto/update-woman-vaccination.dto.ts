@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsOptional } from "class-validator";
-import { AntigenefemmeEntity } from "src/antigenefemme/antigenefemme.entity";
+// import { AntigenefemmeEntity } from "src/antigenefemme/antigenefemme.entity";
 import { FemmeEntity } from "src/femme/femme.entity";
 import { GenericValidatorMessages } from "src/helpers/generic-validator-message.dto";
 import { ApiProperty } from '@nestjs/swagger';

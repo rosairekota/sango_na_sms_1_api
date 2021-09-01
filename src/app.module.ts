@@ -14,10 +14,6 @@ import { ProvinceModule } from './province/province.module';
 import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 import { CentreModule } from './centre/centre.module';
-<<<<<<< HEAD
-// import { ChildPeriodModule } from './child-period/child-period.module';
-=======
->>>>>>> 4539f70fa5f8a6cf4cdefc506e44b19ceb32c2a6
 import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
@@ -52,10 +48,6 @@ dotenv.config();
     AireModule,
     AntigenModule,
     CentreModule,
-<<<<<<< HEAD
-    // ChildPeriodModule,
-=======
->>>>>>> 4539f70fa5f8a6cf4cdefc506e44b19ceb32c2a6
     ChildModule,
     ChildRegistrationModule,
     ProfessionalModule,

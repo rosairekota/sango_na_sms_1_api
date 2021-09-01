@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { ChildRegistrationService } from './child-registration.service';
 import { ChildRegistrationController } from './child-registration.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ChildRegistrationEntity } from './child-registration.entity';
+import { ChildRegistrationEntity } from './calendar.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ChildRegistrationEntity])],

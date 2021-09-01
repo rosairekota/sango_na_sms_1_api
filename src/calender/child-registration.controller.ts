@@ -10,10 +10,10 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ChildRegistrationEntity } from './child-registration.entity';
+import { ChildRegistrationEntity } from './calendar.entity';
 import { ChildRegistrationService } from './child-registration.service';
-import { AddChildRegistrationDto } from './dto/add-child-registration.dto';
-import { UpdateChildRegistrationDto } from './dto/update-child-registration.dto';
+import { AddChildRegistrationDto } from './dto/add-calendar.dto';
+import { UpdateChildRegistrationDto } from './dto/update-calendar.dto';
 
 @ApiTags('inscription enfant:')
 @Controller('api/enregistrement_enfant')

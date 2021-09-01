@@ -8,8 +8,8 @@ import {
 } from 'typeorm';
 import { NotificationEnum } from './enum/notification.enum';
 import { ChildEntity } from '../child/child.entity';
-import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
-import { ChildAntigenEntity } from 'src/child-antigen/child-antigen.entity';
+import { ChildPeriodEntity } from 'src/period/period.entity';
+import { ChildAntigenEntity } from 'src/antigen/child-antigen.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 @Entity('vaccination_enfant')
 export class ChildVaccinationEntity {

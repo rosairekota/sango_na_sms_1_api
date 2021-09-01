@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { ChildAntigenEntity } from '../child-antigen/child-antigen.entity';
+import { ChildAntigenEntity } from '../antigen/child-antigen.entity';
 import { ChildEntity } from '../child/child.entity';
 import { JoinTable } from 'typeorm';
 import {

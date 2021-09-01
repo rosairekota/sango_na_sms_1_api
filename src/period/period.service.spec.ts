@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ChildPeriodService } from './child-period.service';
+import { ChildPeriodService } from './period.service';
 
 describe('ChildPeriodService', () => {
   let service: ChildPeriodService;

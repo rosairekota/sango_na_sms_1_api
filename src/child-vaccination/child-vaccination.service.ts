@@ -5,7 +5,7 @@ import { Repository, Transaction } from 'typeorm';
 import { ChildVaccinationEntity } from './child-vaccination.entity';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
-import { ChildAntigenEntity } from 'src/child-antigen/child-antigen.entity';
+import { ChildAntigenEntity } from 'src/antigen/child-antigen.entity';
 import { getConnection } from 'typeorm';
 
 @Injectable()

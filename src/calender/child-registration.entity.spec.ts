@@ -1,4 +1,4 @@
-import { ChildRegistrationEntity } from './child-registration.entity';
+import { ChildRegistrationEntity } from './calendar.entity';
 
 describe('ChildRegistrationEntity', () => {
   it('should be defined', () => {

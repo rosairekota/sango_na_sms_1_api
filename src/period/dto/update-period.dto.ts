@@ -2,7 +2,7 @@
 import { IsString, IsOptional, IsNumber, IsNotEmpty } from 'class-validator';
 import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.dto';
 import { AddPeriodDto } from './add-period.dto';
-export class UpdateChildPeriodDto extends GenericValidatorMessages {
+export class UpdatePeriodDto extends GenericValidatorMessages {
   @IsString(
     AddPeriodDto.genericStringMessage(
       "la description de la periode de l'enfant ",

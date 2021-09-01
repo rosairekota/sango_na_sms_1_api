@@ -18,7 +18,7 @@ export class CalendarEntity extends TimesTempEntity {
   indice:string;
   @ManyToOne(()=>PeriodEntity,(period)=>period.calendars)
   period:PeriodEntity
-  @ManyToOne()
+  @ManyToOne(()=>AntigenEn)
 
  
 }

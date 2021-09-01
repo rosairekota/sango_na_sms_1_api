@@ -3,9 +3,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateAireDto } from 'src/aire/dto/update-aire.dto';
 import { Repository } from 'typeorm';
-import { ChildRegistrationEntity } from './child-registration.entity';
-import { AddChildRegistrationDto } from './dto/add-child-registration.dto';
-import { UpdateChildRegistrationDto } from './dto/update-child-registration.dto';
+import { ChildRegistrationEntity } from './calendar.entity';
+import { AddChildRegistrationDto } from './dto/add-calendar.dto';
+import { UpdateChildRegistrationDto } from './dto/update-calendar.dto';
 
 @Injectable()
 export class ChildRegistrationService {

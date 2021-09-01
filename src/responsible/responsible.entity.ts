@@ -20,19 +20,14 @@ export class ResponsibleEntity extends TimesTempEntity {
   idResponsible: number;
   @Column({ name: 'nom_responsable', nullable: false })
   responsibleName: string;
-
   @Column({ name: 'post_nom_responsable', nullable: false })
   responsibleLastName: string;
-
   @Column({ name: 'prenom_responsable' })
   firstNameResponsible: string;
-
   @Column({ name: 'adresse_responsable' })
   responsibleAdress: string;
-
   @Column({ name: 'numero_telephone_responsable', length: 14 })
   responsiblePhoneNumer: string;
-
   @Column({
     name: 'sexe',
     type: 'enum',
@@ -46,4 +41,5 @@ export class ResponsibleEntity extends TimesTempEntity {
   @OneToOne(() => UserEntity)
   @JoinColumn()
   user: UserEntity;
+  
 }

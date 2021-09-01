@@ -11,8 +11,6 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { periodCategory } from './enum/period-category.enum';
-
-
 @Entity('periode')
 export class ChildPeriodEntity {
   @PrimaryGeneratedColumn()
@@ -23,11 +21,8 @@ export class ChildPeriodEntity {
 
   @Column({ name: 'nombre_jour', type: 'double' })
   duration: number;
+  
   @Column({enum: periodCategory,
     default: periodCategory.CPN,})
   categorie:string;
-  
- 
-
- 
 }

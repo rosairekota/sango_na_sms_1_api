@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { AntigenEntity } from 'src/antigen/antigen.entity';
-import { AntigenefemmeEntity } from 'src/antigenefemme/antigenefemme.entity';
 import { FemmeEntity } from 'src/femme/femme.entity';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';

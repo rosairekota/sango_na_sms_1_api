@@ -1,22 +1,20 @@
 /* eslint-disable prettier/prettier */
-import { ApiProperty, ApiTags, PartialType } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
-import { CentreEntity } from 'src/centre/centre.entity';
-import { ChildEntity } from 'src/child/child.entity';
+import { AntigenEntity } from 'src/antigen/antigen.entity';
 import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.dto';
-export class UpdateChildRegistrationDto extends GenericValidatorMessages {
+import { PeriodEntity } from 'src/period/period.entity';
+export class UpdateCalenderDto extends GenericValidatorMessages {
   @IsOptional()
-  @IsNotEmpty(UpdateChildRegistrationDto.genericEmptyMessage("l'état"))
   @ApiProperty()
-  registrationState: string;
+  indice: string;
 
   @IsOptional()
-  @IsNotEmpty(UpdateChildRegistrationDto.genericEmptyMessage('le centre'))
   @ApiProperty()
-  centre: CentreEntity;
+  period: PeriodEntity;
 
   @IsOptional()
-  @IsNotEmpty(UpdateChildRegistrationDto.genericEmptyMessage("L'enfant"))
   @ApiProperty()
-  child: ChildEntity;
+  @IsNotEmpty(UpdateCalenderDto.genericEmptyMessage("l'antigene"))
+  antigen: AntigenEntity;
 }

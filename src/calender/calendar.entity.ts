@@ -9,16 +9,22 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity('calendrier')
 export class CalendarEntity extends TimesTempEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
-  indice:string;
-  @ManyToOne(()=>PeriodEntity,(period)=>period.calendars)
-  period:PeriodEntity
-  @ManyToOne(()=>AntigenEntity,(antigen)=>antigen.calendars)
-  antigen : AntigenEntity
+  indice: string;
+
+  @ManyToOne(() => PeriodEntity, (period) => period.calendars)
+  @JoinColumn({ name: 'periode_id' })
+  period: PeriodEntity;
+
+  @ManyToOne(() => AntigenEntity, (antigen) => antigen.calendars)
+  @JoinColumn({ name: 'antigen_id' })
+  antigen: AntigenEntity;
 }

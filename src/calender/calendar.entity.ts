@@ -15,10 +15,13 @@ import {
 export class CalendarEntity extends TimesTempEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   indice:string;
+
   @ManyToOne(()=>PeriodEntity,(period)=>period.calendars)
   period:PeriodEntity
+  
   @ManyToOne(()=>AntigenEntity,(antigen)=>antigen.calendars)
   antigen : AntigenEntity
 }

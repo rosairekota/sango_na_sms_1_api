@@ -1,7 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 import { ChildVaccinationEntity } from '../child-vaccination/child-vaccination.entity';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 
 @Entity('enfant')
 export class ChildEntity extends TimesTempEntity {
@@ -57,4 +59,10 @@ export class ChildEntity extends TimesTempEntity {
     },
   )
   registrations: ChildRegistrationEntity[];
+
+  @ManyToOne(
+    ()=> ResponsibleEntity,
+    (responsible)=>responsible.children
+  )
+  responsible : ResponsibleEntity
 }

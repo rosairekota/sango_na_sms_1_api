@@ -41,5 +41,7 @@ export class ResponsibleEntity extends TimesTempEntity {
   @OneToOne(() => UserEntity)
   @JoinColumn()
   user: UserEntity;
+  @OneToMany(()=>ChildEntity,(child)=>child.responsible)
+  children:ChildEntity[];
   
 }

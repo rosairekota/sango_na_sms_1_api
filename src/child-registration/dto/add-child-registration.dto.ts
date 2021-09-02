@@ -15,4 +15,7 @@ export class AddChildRegistrationDto extends GenericValidatorMessages {
   @IsNotEmpty(AddChildRegistrationDto.genericEmptyMessage("L'enfant"))
   @ApiProperty()
   child: ChildEntity;
+  @IsNotEmpty(AddChildRegistrationDto.genericEmptyMessage("Le type "))
+  @ApiProperty()
+  typeRegistration: string
 }

@@ -6,7 +6,6 @@ import { PeriodEntity } from 'src/period/period.entity';
 import { AntigenEntity } from 'src/antigen/antigen.entity';
 export class AddCalenderDto extends GenericValidatorMessages {
   @ApiProperty()
-  @IsNotEmpty(AddCalenderDto.genericEmptyMessage("L'indice"))
   indice: string;
 
   @ApiProperty()

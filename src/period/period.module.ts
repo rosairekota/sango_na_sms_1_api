@@ -9,4 +9,4 @@ import { PeriodEntity } from './period.entity';
   controllers: [PeriodController],
   providers: [PeriodService],
 })
-export class ChildPeriodModule {}
+export class PeriodModule {}

@@ -28,6 +28,7 @@ import { CenterProfessionalModule } from './center-professional/center-professio
 import { UserModule } from './auth/user.module';
 import { AntigenModule } from './antigen/antigen.module';
 import { CalendarModule } from './calendar/calendar.module';
+import { PeriodModule } from './period/period.module';
 
 dotenv.config();
 @Module({
@@ -63,6 +64,7 @@ dotenv.config();
     CenterProfessionalModule,
     UserModule,
     CalendarModule,
+    PeriodModule,
   ],
   controllers: [AppController],
   providers: [AppService],

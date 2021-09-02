@@ -13,7 +13,7 @@ export class UpdateCentreDto extends GenericValidatorMessages {
   @IsOptional()
   @ApiProperty()
   centreAdress: string;
-  @IsString()
+ 
   @IsOptional()
   @ApiProperty()
   aire: AireEntity;

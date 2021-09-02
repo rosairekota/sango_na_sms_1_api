@@ -17,6 +17,7 @@ export class AntigenService {
   }
 
   async add(antigen: AddAntigenDto): Promise<AntigenEntity> {
+    console.log(antigen)
     return await this.antigenRepository.save(antigen);
   }
 

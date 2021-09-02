@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { ChildPeriodEntity } from 'src/period/period.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 export class UpdateChildVaccinationDto extends GenericValidatorMessages {
@@ -16,4 +17,7 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
 
   @IsOptional()
   child: ChildEntity;
+
+  @IsOptional()
+  childPeriod: ChildPeriodEntity;
 }

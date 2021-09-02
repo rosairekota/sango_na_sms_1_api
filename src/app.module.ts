@@ -29,6 +29,12 @@ import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
 import { CenterProfessionalModule } from './center-professional/center-professional.module';
 import { UserModule } from './auth/user.module';
+<<<<<<< HEAD
+=======
+import { AntigenModule } from './antigen/antigen.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { PeriodModule } from './period/period.module';
+>>>>>>> 97da4fd16e6b605b1d7af2a9bd6faa80c18c814e
 
 dotenv.config();
 @Module({
@@ -65,6 +71,11 @@ dotenv.config();
     ProvincialProfessionalModule,
     CenterProfessionalModule,
     UserModule,
+<<<<<<< HEAD
+=======
+    CalendarModule,
+    PeriodModule,
+>>>>>>> 97da4fd16e6b605b1d7af2a9bd6faa80c18c814e
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CalendarEntity } from 'src/calendar/calendar.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 

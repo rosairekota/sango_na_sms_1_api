@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Module,
   NestModule,
@@ -14,8 +15,6 @@ import { ProvinceModule } from './province/province.module';
 import * as dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 import { CentreModule } from './centre/centre.module';
-import { ChildPeriodModule } from './period/period.module';
-import { ChildAntigenModule } from './antigen/child-antigen.module';
 import { ChildModule } from './child/child.module';
 import { WifeperiodModule } from './wifeperiod/wifeperiod.module';
 import { WomanInscriptionModule } from './woman-inscription/woman-inscription.module';
@@ -25,16 +24,12 @@ import { ResponsibleModule } from './responsible/responsible.module';
 import { ChildRegistrationModule } from './child-registration/child-registration.module';
 import { ProfessionalModule } from './professional/professional.module';
 import { FemmeModule } from './femme/femme.module';
-import { AntigenefemmeModule } from './antigenefemme/antigenefemme.module';
 import { ProvincialProfessionalModule } from './provincial-professional/provincial-professional.module';
 import { CenterProfessionalModule } from './center-professional/center-professional.module';
 import { UserModule } from './auth/user.module';
-<<<<<<< HEAD
-=======
 import { AntigenModule } from './antigen/antigen.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { PeriodModule } from './period/period.module';
->>>>>>> 97da4fd16e6b605b1d7af2a9bd6faa80c18c814e
 
 dotenv.config();
 @Module({
@@ -53,10 +48,8 @@ dotenv.config();
       synchronize: true,
     }),
     AireModule,
-    AntigenefemmeModule,
+    AntigenModule,
     CentreModule,
-    ChildPeriodModule,
-    ChildAntigenModule,
     ChildModule,
     ChildRegistrationModule,
     ProfessionalModule,
@@ -71,11 +64,8 @@ dotenv.config();
     ProvincialProfessionalModule,
     CenterProfessionalModule,
     UserModule,
-<<<<<<< HEAD
-=======
     CalendarModule,
     PeriodModule,
->>>>>>> 97da4fd16e6b605b1d7af2a9bd6faa80c18c814e
   ],
   controllers: [AppController],
   providers: [AppService],

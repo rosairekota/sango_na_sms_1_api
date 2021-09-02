@@ -4,11 +4,8 @@ import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.
 
 export class UpdateAntigenDto extends GenericValidatorMessages {
   @ApiProperty()
-  @IsNotEmpty(UpdateAntigenDto.genericEmptyMessage("l'intitulé de l'antigène"))
   @IsOptional()
   antigen_title: string;
-
-  @IsNotEmpty(UpdateAntigenDto.genericEmptyMessage("l'intitulé de l'antigène"))
   @IsOptional()
   @ApiProperty()
   antigen_description: string;

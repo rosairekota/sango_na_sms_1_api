@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsOptional } from 'class-validator';
-import { ChildPeriodEntity } from 'src/period/period.entity';
 import { ChildEntity } from 'src/child/child.entity';
+import { PeriodEntity } from 'src/period/period.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   @IsNotEmpty(UpdateChildVaccinationDto.genericEmptyMessage('la date prevue'))
@@ -19,5 +20,5 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   child: ChildEntity;
 
   @IsOptional()
-  childPeriod: ChildPeriodEntity;
+  period: PeriodEntity;
 }

@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AntigenEntity } from 'src/antigen/antigen.entity';
+import { PeriodEntity } from 'src/period/period.entity';
 import { Repository } from 'typeorm';
 import { CalendarEntity } from './calendar.entity';
 import { AddCalenderDto } from './dto/add-calendar.dto';
@@ -10,8 +12,30 @@ export class CalendarService {
   constructor(
     @InjectRepository(CalendarEntity)
     private calendarRepository: Repository<CalendarEntity>,
+
+    @InjectRepository(AntigenEntity)
+    private antigeRepository: Repository<AntigenEntity>,
+
+    @InjectRepository(PeriodEntity)
+    private periodeRepository: Repository<PeriodEntity>,
   ) {}
 
+  async filterByAntigenAndPeriod() {
+    return await this.calendarRepository
+      .createQueryBuilder('calendar')
+      .innerJoinAndSelect(
+        AntigenEntity,
+        'antigen',
+        'calendar.antigen_id=antigen.id',
+      )
+      .innerJoinAndSelect(
+        PeriodEntity,
+        'period',
+        'calendar.period_id=period.id',
+      )
+      .addGroupBy("DATE_FORMAT(calendar.createdAt, '%d-%m-%Y')")
+      .orderBy("DATE_FORMAT(calendar.createdAt', '%d-%m-%Y')", 'ASC');
+  }
   async findAll(): Promise<CalendarEntity[]> {
     return await this.calendarRepository.find();
   }

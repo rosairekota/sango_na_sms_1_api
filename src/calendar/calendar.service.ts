@@ -13,7 +13,7 @@ export class CalendarService {
   ) {}
 
   async findAll(): Promise<CalendarEntity[]> {
-    return await this.calendarRepository.find();
+    return await this.calendarRepository.find({relations:["period"]});
   }
   async add(calendar: AddCalenderDto): Promise<CalendarEntity> {
     return await this.calendarRepository.save(calendar);

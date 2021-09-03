@@ -19,10 +19,16 @@ export class CalendarEntity extends TimesTempEntity {
   @Column()
   indice: string;
 
-  @ManyToOne(() => PeriodEntity, (period) => period.calendars)
+  @ManyToOne(() => PeriodEntity, (period) => period.calendars,{
+    cascade: ["update","insert","remove"],
+    nullable: false,
+  })
   period: PeriodEntity;
 
-  @ManyToOne(() => AntigenEntity, (antigen) => antigen.calendars)
+  @ManyToOne(() => AntigenEntity, (antigen) => antigen.calendars,{
+    cascade: ["update","insert","remove"],
+    nullable: false,
+  })
   antigen: AntigenEntity;
 
   @OneToMany(

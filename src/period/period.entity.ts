@@ -22,6 +22,8 @@ export class PeriodEntity {
     default: periodCategory.CPN,})
   categorie:string;
 
-  @OneToMany(()=>CalendarEntity, (calendar)=>calendar.period)
+  @OneToMany(()=>CalendarEntity, (calendar)=>calendar.period,{
+    eager: true,
+  })
   calendars: CalendarEntity[]
 }

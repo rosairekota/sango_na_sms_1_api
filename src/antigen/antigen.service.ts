@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -23,6 +24,10 @@ export class AntigenService {
 
   async findById(id: number): Promise<AntigenEntity> {
     return await this.antigenRepository.findOne(id);
+  }
+
+  async findByTitle(title: string): Promise<AntigenEntity[]> {
+    return await this.antigenRepository.createQueryBuilder("antigen").where("intitule_antigene like :title", {title: '%' + title+ '%' }).orderBy("intitule_antigene", "ASC").getMany();
   }
 
   async update(

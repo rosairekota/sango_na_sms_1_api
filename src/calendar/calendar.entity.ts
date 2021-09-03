@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AntigenEntity } from 'src/antigen/antigen.entity';
 import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
 import TimesTempEntity from 'src/helpers/timestemp.entity';
@@ -16,7 +17,7 @@ export class CalendarEntity extends TimesTempEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({default:null})
   indice: string;
 
   @ManyToOne(() => PeriodEntity, (period) => period.calendars,{

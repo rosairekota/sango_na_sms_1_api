@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Body, Delete, Post } from '@nestjs/common';
 import { Patch } from '@nestjs/common';
 import { Get } from '@nestjs/common';
@@ -14,6 +15,11 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('api/antigen')
 export class AntigenController {
   constructor(private antigenService: AntigenService) {}
+
+  @Get(':title')
+  async getByTitle( @Param('title') title: string,): Promise<AntigenEntity[]> {
+    return await this.antigenService.findByTitle(title);
+  }
 
   @Post()
   async create(@Body() antigen: AddAntigenDto): Promise<AntigenEntity> {
@@ -33,7 +39,8 @@ export class AntigenController {
     @Param('id', ParseIntPipe) id: number,
     @Body() editedAntigen: UpdateAntigenDto,
   ): Promise<AntigenEntity> {
-    return await this.antigenService.update(id, editedAntigen);
+    return await this.antigenService.update(id, editedAntigen)
+   
   }
 
   @Get()

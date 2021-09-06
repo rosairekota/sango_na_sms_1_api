@@ -12,6 +12,8 @@ export class AntigenEntity {
 
   @Column({ name: 'description_antigene', nullable: true })
   antigen_description: string;
-  @OneToMany(() => CalendarEntity, (calendar) => calendar.antigen)
+  @OneToMany(() => CalendarEntity, (calendar) => calendar.antigen, {
+    cascade: true,
+  })
   calendars: CalendarEntity[];
 }

@@ -20,11 +20,9 @@ export class CalendarEntity extends TimesTempEntity {
   indice: string;
 
   @ManyToOne(() => PeriodEntity, (period) => period.calendars)
-  @JoinColumn({ name: 'periode_id' })
   period: PeriodEntity;
 
   @ManyToOne(() => AntigenEntity, (antigen) => antigen.calendars)
-  @JoinColumn({ name: 'antigen_id' })
   antigen: AntigenEntity;
 
   @OneToMany(

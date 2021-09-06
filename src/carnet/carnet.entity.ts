@@ -1,5 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { ViewEntity } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
+import { AntigenEntity } from "src/antigen/antigen.entity";
+import { CalendarEntity } from "src/calendar/calendar.entity";
+import { ChildVaccinationEntity } from "src/child-vaccination/child-vaccination.entity";
+import { PeriodEntity } from "src/period/period.entity";
+import { Column, Repository, ViewEntity } from "typeorm";
 
 @ViewEntity({
     name:"carnet_enfant",
@@ -11,6 +16,15 @@ import { ViewEntity } from "typeorm";
     calendrier.indice
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 
-    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId ;`
+    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId order by indice;`
  })
-export class CarnetEntity {}
+export class CarnetEntity {
+    @Column()
+    periode : PeriodEntity;
+    @Column()
+    antigene :AntigenEntity;
+    @Column()
+    vaccination : ChildVaccinationEntity;
+    @Column()
+    calendar : CalendarEntity;
+}

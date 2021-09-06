@@ -31,7 +31,7 @@ export class CalendarService {
       )
       // .addGroupBy("DATE_FORMAT(calendar.createdAt, '%d-%m-%Y')")
       // .orderBy("DATE_FORMAT(calendar.createdAt', '%d-%m-%Y')", 'ASC')
-      .getMany();
+      .getRawMany();
 
     return findCalendar;
   }

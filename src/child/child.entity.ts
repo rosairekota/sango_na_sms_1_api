@@ -64,7 +64,6 @@ export class ChildEntity extends TimesTempEntity {
     ()=> ResponsibleEntity,
     (responsible)=>responsible.children, {
       cascade: ["update","insert","remove"],
-     nullable: false,
     }
   )
   responsible : ResponsibleEntity

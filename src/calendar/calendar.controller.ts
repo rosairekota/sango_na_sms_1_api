@@ -14,11 +14,20 @@ import { CalendarService } from './calendar.service';
 import { AddCalenderDto } from './dto/add-calendar.dto';
 import { UpdateCalenderDto } from './dto/update-calendar.dto';
 
+<<<<<<< HEAD
 @ApiTags('Calendier')
 @Controller('api/calendar')
+=======
+@ApiTags('Calendrier')
+@Controller('calendrier')
+>>>>>>> c12df6938ac5b09a5c5960bbaefe9817069bbc79
 export class CalendarController {
   constructor(private readonly calendarService: CalendarService) {}
 
+  @Get('filtrer')
+  async getByAntigenAndPeriod() {
+    return this.calendarService.filterByAntigenAndPeriod();
+  }
   @Get()
   async getAll(): Promise<CalendarEntity[]> {
     return this.calendarService.findAll();

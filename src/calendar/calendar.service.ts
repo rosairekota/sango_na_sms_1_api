@@ -21,20 +21,19 @@ export class CalendarService {
   ) {}
 
   async filterByAntigenAndPeriod() {
-    return await this.calendarRepository
+    const findCalendar = await this.calendarRepository
       .createQueryBuilder('calendar')
       .innerJoinAndSelect(
         AntigenEntity,
         'antigen',
-        'calendar.antigen_id=antigen.id',
+        'calendar.antigen=antigen.id',
       )
-      .innerJoinAndSelect(
-        PeriodEntity,
-        'period',
-        'calendar.period_id=period.id',
-      )
-      .addGroupBy("DATE_FORMAT(calendar.createdAt, '%d-%m-%Y')")
-      .orderBy("DATE_FORMAT(calendar.createdAt', '%d-%m-%Y')", 'ASC');
+      // .innerJoinAndSelect(PeriodEntity, 'period', 'calendar.period=period.id')
+      // .addGroupBy("DATE_FORMAT(calendar.createdAt, '%d-%m-%Y')")
+      // .orderBy("DATE_FORMAT(calendar.createdAt', '%d-%m-%Y')", 'ASC')
+      .getMany();
+
+    return findCalendar;
   }
   async findAll(): Promise<CalendarEntity[]> {
     return await this.calendarRepository.find();

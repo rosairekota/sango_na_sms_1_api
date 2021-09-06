@@ -11,6 +11,6 @@ import { ViewEntity } from "typeorm";
     calendrier.indice
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 
-    calendrier.antigen_id = antigene.id_antigene inner join periode on periode.id = calendrier.periode_id;`
+    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId ;`
  })
 export class CarnetEntity {}

@@ -12,13 +12,8 @@ export class AntigenEntity {
 
   @Column({ name: 'description_antigene', nullable: true })
   antigen_description: string;
-<<<<<<< HEAD
-  @OneToMany(() => CalendarEntity, (calendar) => calendar.antigen,{
-    eager: true,
-=======
   @OneToMany(() => CalendarEntity, (calendar) => calendar.antigen, {
     cascade: true,
->>>>>>> 170b1def70629f0402855f2ae29671948cf11f29
   })
   calendars: CalendarEntity[];
 }

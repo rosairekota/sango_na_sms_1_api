@@ -14,12 +14,6 @@ export class PeriodEntity {
   @Column({ name: 'nombre_jour', type: 'double' })
   duration: number;
 
-<<<<<<< HEAD
-  @OneToMany(()=>CalendarEntity, (calendar)=>calendar.period,{
-    eager: true,
-  })
-  calendars: CalendarEntity[]
-=======
   @Column({ type: 'enum', enum: periodCategory, default: periodCategory.CPN })
   categorie: string;
 
@@ -27,5 +21,4 @@ export class PeriodEntity {
     cascade: true,
   })
   calendars: CalendarEntity[];
->>>>>>> 170b1def70629f0402855f2ae29671948cf11f29
 }

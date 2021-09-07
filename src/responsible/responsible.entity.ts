@@ -43,7 +43,7 @@ export class ResponsibleEntity extends TimesTempEntity {
   user: UserEntity;
   @OneToMany(()=>ChildEntity,(child)=>child.responsible,{
     eager: true,
-    nullable: true,
+    nullable: false,
   })
   children:ChildEntity[];
   

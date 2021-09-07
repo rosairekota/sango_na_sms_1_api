@@ -69,7 +69,7 @@ export class ChildService {
       motherPhone,
       responsible
     });
-
+childEntity.responsible={...respoEntity}
     // manage transaction:
 
     const queryRunner = this.connection.createQueryRunner();
@@ -109,5 +109,11 @@ export class ChildService {
   async delete(id: number) {
     const child = await this.findById(id);
     return await this.childRepository.remove(child);
+  }
+
+  async findChildrenByResponsable(responsable: ResponsibleEntity) : Promise<ChildEntity[]>{
+    return  await this.childRepository.createQueryBuilder("enfant")
+    .where("responsibleIdResponsible = :id", { id: responsable.idResponsible})
+    .getMany();
   }
 }

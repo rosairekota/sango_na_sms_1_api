@@ -102,7 +102,7 @@ export class UserService {
 
   async login(credetials: UserCredentialsDto) {
     const { username, password } = credetials;
-    console.log(credetials)
+
     const user = await this.userRepository
       .createQueryBuilder('user')
       .andWhere('user.username=:username or user.email=:username')
@@ -113,13 +113,12 @@ export class UserService {
     const hashPassword = await bcrypt.hash(password, user.salt);
     if (hashPassword === user.password) {
       const userType = await this.getExtraParameter(user)
-      console.log(userType)
       const payload = {
+        userType:userType,
         id: user.id,
         username: user.username,
         email: user.email,
-        roles: user.roles,
-        userType 
+        roles: user.roles, 
       };
 
      

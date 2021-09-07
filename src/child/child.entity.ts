@@ -1,7 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 import { ChildVaccinationEntity } from '../child-vaccination/child-vaccination.entity';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 
 @Entity('enfant')
 export class ChildEntity extends TimesTempEntity {
@@ -40,6 +47,8 @@ export class ChildEntity extends TimesTempEntity {
   @Column({ name: 'telephone_mere' })
   motherPhone: string;
 
+  @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.childs)
+  responsible: ResponsibleEntity;
   @OneToMany(
     () => ChildVaccinationEntity,
     (childVaccination) => childVaccination.child,

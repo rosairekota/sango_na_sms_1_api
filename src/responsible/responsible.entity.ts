@@ -10,7 +10,6 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  Timestamp,
 } from 'typeorm';
 import { responsibleSexe } from './enum/responsible-sexe.enum';
 
@@ -38,8 +37,11 @@ export class ResponsibleEntity extends TimesTempEntity {
   sexe: string;
   @OneToMany(() => FemmeEntity, (femme) => femme.responsible)
   femmes: FemmeEntity[];
+
+  @OneToMany(() => ChildEntity, (child) => child.responsible, {})
+  childs: ChildEntity[];
+
   @OneToOne(() => UserEntity)
   @JoinColumn()
   user: UserEntity;
-  
 }

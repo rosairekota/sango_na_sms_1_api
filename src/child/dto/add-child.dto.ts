@@ -92,7 +92,7 @@ export class AddChildDto extends GenericValidatorMessages {
   center: CentreEntity;
   @IsNotEmpty(AddChildDto.genericEmptyMessage('Le responsable'))
   @ApiProperty()
-  responsable: ResponsibleEntity;
+  responsible: ResponsibleEntity;
 
   @IsNotEmpty(AddChildDto.genericEmptyMessage("L'etat"))
   @ApiProperty()

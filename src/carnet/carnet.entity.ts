@@ -20,11 +20,31 @@ import { Column, Repository, ViewEntity } from "typeorm";
  })
 export class CarnetEntity {
     @Column()
-    periode : PeriodEntity;
-    @Column()
-    antigene :AntigenEntity;
-    @Column()
-    vaccination : ChildVaccinationEntity;
-    @Column()
-    calendar : CalendarEntity;
+     idEnfant: number
+     @Column()
+     nomEnfant: string
+     @Column()
+     sexe:string
+     @Column()
+     postNomEnfant: string
+     @Column()
+     prenom: string
+     @Column()
+     libelle_periode : string
+     @Column()
+     nombre_jour : number
+     @Column()
+     categoriePeriode : string
+     @Column()
+     intitule_antigene : string
+     @Column()
+     description_antigene :string
+     @Column()
+     date_prevue: Date
+     @Column()
+     date_recu : Date
+     @Column()
+     notifier :string
+     @Column()
+     indice:string 
 }

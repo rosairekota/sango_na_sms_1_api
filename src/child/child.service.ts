@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ChildEntity } from './child.entity';
@@ -7,6 +8,7 @@ import { UpdateChildDto } from './dto/update-child.dto';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { Connection } from 'typeorm';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 
 @Injectable()
 export class ChildService {
@@ -17,6 +19,8 @@ export class ChildService {
     private childRegistrationRepository: Repository<ChildRegistrationEntity>,
     @InjectRepository(CentreEntity)
     private readonly centreRepository: Repository<CentreEntity>,
+    @InjectRepository(ResponsibleEntity)
+    private readonly respoRepository: Repository<ResponsibleEntity>,
     private connection: Connection,
   ) {}
 
@@ -44,9 +48,12 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
       center,
+      responsible,
       registrationState,
+
     } = newChild;
     const centreEntity = this.centreRepository.create({ ...center });
+    const respoEntity = this.respoRepository.create({...responsible})
     const centreRepo = await this.centreRepository.findOne(centreEntity);
     const childEntity = this.childRepository.create({
       name,
@@ -60,6 +67,7 @@ export class ChildService {
       motherName,
       dateOfBirthMother,
       motherPhone,
+      responsible
     });
 
     // manage transaction:

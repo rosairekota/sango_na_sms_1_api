@@ -9,6 +9,8 @@ import { ChildRegistrationEntity } from 'src/child-registration/child-registrati
 import { CentreEntity } from 'src/centre/centre.entity';
 import { Connection } from 'typeorm';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
+import { ChildSearchView } from './search/child-search.entity';
+import { childSearchInterface } from './search/childSearch.interface';
 
 @Injectable()
 export class ChildService {
@@ -22,6 +24,9 @@ export class ChildService {
     @InjectRepository(ResponsibleEntity)
     private readonly respoRepository: Repository<ResponsibleEntity>,
     private connection: Connection,
+
+    @InjectRepository(ChildSearchView)
+    private readonly childSerachViewrepository: Repository<ChildSearchView>,
   ) {}
 
   async findAll(): Promise<ChildEntity[]> {
@@ -120,5 +125,25 @@ export class ChildService {
         id: responsable.idResponsible,
       })
       .getMany();
+  }
+  async filterChildByAny(
+    newChildSearchView: childSearchInterface[],
+  ): Promise<ChildSearchView[]> {
+    let query = 'SELECT * FROM  statistique_enfant_view';
+    if (newChildSearchView.length > 0) {
+      for (let i = 0; i < newChildSearchView.length; i++) {
+        if (i === 0) {
+          query += ` WHERE `;
+        }
+        query += `${newChildSearchView[i].key}=${newChildSearchView[i].value} `;
+        if (i < newChildSearchView.length - 1) {
+          query += `AND `;
+        }
+      }
+
+      query += ` ORDER BY nom ; `;
+    }
+
+    return await this.childSerachViewrepository.query(query);
   }
 }

@@ -1,12 +1,18 @@
 import { AddChildRegistrationDto } from 'src/child-registration/dto/add-child-registration.dto';
 import { AddChildRegistration } from 'src/child-registration/enum/add-child-registration.enum';
-import { Column, PrimaryGeneratedColumn, ViewEntity } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  ViewEntity,
+} from 'typeorm';
 
 @ViewEntity({
   name: 'statistique_enfant_view',
   expression: `(select province.id as provinceId,libelle_province,
      zone.id as zoneId,libelle_zone,aire.idaire as aireId,libelle_aire,
-     centre.idcentre as centreId,libelle_centre,etat_inscription, nom, postnom,
+     centre.idcentre as centreId,libelle_centre,etat_inscription,inscription_enfant.createdAt,inscription_enfant.updatedAt, nom, postnom,
      prenom from province
      INNER JOIN zone ON province.id=zone.provinceId
      INNER JOIN aire ON zone.id=aire.zoneId
@@ -82,4 +88,10 @@ export class ChildSearchView {
     name: 'libelle_centre',
   })
   labelCentre: string;
+
+  @CreateDateColumn({ update: false })
+  createdAt: Date;
+
+  @UpdateDateColumn({ nullable: true })
+  updatedAt: Date;
 }

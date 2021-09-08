@@ -16,23 +16,33 @@ import { ChildEntity } from './child.entity';
 import { ChildService } from './child.service';
 import { AddChildDto } from './dto/add-child.dto';
 import { UpdateChildDto } from './dto/update-child.dto';
+import { ChildSearchView } from './search/child-search.entity';
+import { childSearchInterface } from './search/childSearch.interface';
 @ApiTags('Enfant:')
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
+  @Post('flitrer_enfants')
+  async filterChilds(
+    @Body() newChildSearch: childSearchInterface[],
+  ): Promise<ChildSearchView[]> {
+    return await this.childService.filterChildByAny(newChildSearch);
+  }
+
   @Get('childrenFromResponsible')
-  async getChildrenByResponsable(@Body() responsable :ResponsibleEntity): Promise<ChildEntity[]> {
-    console.log("heheheheh")
-    return  await this.childService.findChildrenByResponsable(responsable);
+  async getChildrenByResponsable(
+    @Body() responsable: ResponsibleEntity,
+  ): Promise<ChildEntity[]> {
+    return await this.childService.findChildrenByResponsable(responsable);
   }
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {
-    console.log("childee")
+    console.log('childee');
     return await this.childService.findById(id);
   }
   @Post()
   async create(@Body() newChild: AddChildDto): Promise<ChildEntity> {
-    console.log("ozozo")
+    console.log('ozozo');
     return await this.childService.add(newChild);
   }
 
@@ -50,8 +60,7 @@ export class ChildController {
   }
   @Get()
   async getAll(): Promise<ChildEntity[]> {
-    console.log("childeeZZZ")
+    console.log('childeeZZZ');
     return this.childService.findAll();
   }
-  
 }

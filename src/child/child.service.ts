@@ -71,7 +71,7 @@ export class ChildService {
 
     childEntity.responsible = responsibleRepo;
     // manage transaction:
-
+    console.log('Centre:', centreRepo);
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();

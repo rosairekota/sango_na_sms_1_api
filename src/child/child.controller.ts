@@ -20,19 +20,17 @@ import { UpdateChildDto } from './dto/update-child.dto';
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
-  @Get('childrenFromResponsible')
-  async getChildrenByResponsable(@Body() responsable :ResponsibleEntity): Promise<ChildEntity[]> {
-    console.log("heheheheh")
-    return  await this.childService.findChildrenByResponsable(responsable);
+  @Get('/childrenFromResponsible/:id')
+  async getChildrenByResponsable(@Param('id',ParseIntPipe) id : number): Promise<ChildEntity[]> {
+
+    return  await this.childService.findChildrenByResponsable(id);
   }
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {
-    console.log("childee")
     return await this.childService.findById(id);
   }
   @Post()
   async create(@Body() newChild: AddChildDto): Promise<ChildEntity> {
-    console.log("ozozo")
     return await this.childService.add(newChild);
   }
 

@@ -62,9 +62,7 @@ export class ChildEntity extends TimesTempEntity {
 
   @ManyToOne(
     ()=> ResponsibleEntity,
-    (responsible)=>responsible.children, {
-      cascade: ["update","insert","remove"],
-    }
+    (responsible)=>responsible.children
   )
   responsible : ResponsibleEntity
 }

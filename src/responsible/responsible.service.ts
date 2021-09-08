@@ -2,6 +2,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/user.entity';
+import { ChildEntity } from 'src/child/child.entity';
+import { ChildService } from 'src/child/child.service';
 import { Repository } from 'typeorm';
 import { AddResponsibleDto } from './dto/add-responsible.dto';
 import { UpdateResponsibleDto } from './dto/update-responsible.dto';
@@ -11,7 +13,9 @@ import { ResponsibleEntity } from './responsible.entity';
 export class ResponsibleService {
     constructor(
         @InjectRepository(ResponsibleEntity)
-        private responsibleRepository : Repository<ResponsibleEntity>
+        private responsibleRepository : Repository<ResponsibleEntity>,
+         
+         private childService : ChildService
     ){}
 
     
@@ -19,9 +23,15 @@ export class ResponsibleService {
         return await this.responsibleRepository.find()
     }
     async findResponsibleByUser(user:UserEntity):Promise<ResponsibleEntity>{
-      return  await this.responsibleRepository.createQueryBuilder("responsable")
+      const responsable=  await this.responsibleRepository.createQueryBuilder("responsable")
       .where("userId = :id", { id: user.id })
       .getOne();
+
+     if (responsable) {
+         
+        responsable.children = await  this.childService.findChildrenByResponsable(responsable.idResponsible);
+     }
+      return responsable;
     }
 
     async add(responsible:AddResponsibleDto) : Promise<ResponsibleEntity>{

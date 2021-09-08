@@ -111,9 +111,9 @@ childEntity.responsible={...respoEntity}
     return await this.childRepository.remove(child);
   }
 
-  async findChildrenByResponsable(responsable: ResponsibleEntity) : Promise<ChildEntity[]>{
+  async findChildrenByResponsable(idResponable :number) : Promise<ChildEntity[]>{
     return  await this.childRepository.createQueryBuilder("enfant")
-    .where("responsibleIdResponsible = :id", { id: responsable.idResponsible})
+    .where("responsibleIdResponsible = :id", { id:idResponable})
     .getMany();
   }
 }

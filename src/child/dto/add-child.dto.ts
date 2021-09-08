@@ -10,6 +10,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { CentreEntity } from 'src/centre/centre.entity';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 export class AddChildDto extends GenericValidatorMessages {
   @ApiProperty()
   @IsNotEmpty(AddChildDto.genericEmptyMessage("Le nom de l'enfant"))
@@ -89,6 +90,10 @@ export class AddChildDto extends GenericValidatorMessages {
   @IsNotEmpty(AddChildDto.genericEmptyMessage('Le centre'))
   @ApiProperty()
   center: CentreEntity;
+
+  @IsNotEmpty(AddChildDto.genericEmptyMessage('Le Responsable'))
+  @ApiProperty()
+  responsible: ResponsibleEntity;
 
   @IsNotEmpty(AddChildDto.genericEmptyMessage("L'etat"))
   @ApiProperty()

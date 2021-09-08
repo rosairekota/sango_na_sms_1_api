@@ -7,6 +7,7 @@ import { UpdateChildDto } from './dto/update-child.dto';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { Connection } from 'typeorm';
+import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 
 @Injectable()
 export class ChildService {
@@ -17,6 +18,9 @@ export class ChildService {
     private childRegistrationRepository: Repository<ChildRegistrationEntity>,
     @InjectRepository(CentreEntity)
     private readonly centreRepository: Repository<CentreEntity>,
+
+    @InjectRepository(ResponsibleEntity)
+    private readonly responsibleRepository: Repository<ResponsibleEntity>,
     private connection: Connection,
   ) {}
 
@@ -44,10 +48,17 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
       center,
+      responsible,
       registrationState,
     } = newChild;
     const centreEntity = this.centreRepository.create({ ...center });
     const centreRepo = await this.centreRepository.findOne(centreEntity);
+    const responsibleEntity = await this.childRegistrationRepository.create({
+      ...responsible,
+    });
+    const responsibleRepo = await this.responsibleRepository.findOne(
+      responsibleEntity,
+    );
     const childEntity = this.childRepository.create({
       name,
       lastName,
@@ -61,6 +72,7 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
     });
+    childEntity.responsible = responsibleRepo;
 
     // manage transaction:
 

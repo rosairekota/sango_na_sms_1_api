@@ -38,10 +38,12 @@ export class ResponsibleEntity extends TimesTempEntity {
   @OneToMany(() => FemmeEntity, (femme) => femme.responsible)
   femmes: FemmeEntity[];
 
-  @OneToMany(() => ChildEntity, (child) => child.responsible, {})
-  childs: ChildEntity[];
-
   @OneToOne(() => UserEntity)
   @JoinColumn()
   user: UserEntity;
+
+  @OneToMany(() => ChildEntity, (child) => child.responsible, {
+    cascade: true,
+  })
+  childs: ChildEntity[];
 }

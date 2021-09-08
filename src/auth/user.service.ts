@@ -10,6 +10,7 @@ import { ConflictException } from '@nestjs/common';
 import { UserCredentialsDto } from './dto/user-credentials.dto';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 import { AddResponsibleDto } from 'src/responsible/dto/add-responsible.dto';
+import { ResponsibleService } from 'src/responsible/responsible.service';
 
 @Injectable()
 export class UserService {
@@ -20,12 +21,25 @@ export class UserService {
     private connection: Connection,
     @InjectRepository(ResponsibleEntity)
     private responsibleRepository: Repository<ResponsibleEntity>,
+
+    private responsibleService : ResponsibleService
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
+  async  getExtraParameter(user:UserEntity) : Promise<any>{
+
+        switch  (user.roles) {
+          case "responsable":
+            return await this.responsibleService.findResponsibleByUser(user);
+            break;
+          default:
+            break;
+        }
+
+  } 
   async register(responsableDto: AddResponsibleDto) {
     const {
       responsibleName,
@@ -37,7 +51,7 @@ export class UserService {
       user,
     } = responsableDto;
 
-    console.log(responsableDto)
+   
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();
@@ -67,6 +81,8 @@ export class UserService {
           },
         });
         responsableEntity.user = { ...userRepo };
+        console.log("roles")
+        console.log(userRepo.roles)
         await queryRunner.manager.save(responsableEntity);
         await queryRunner.commitTransaction();
     } catch (e) {
@@ -96,12 +112,16 @@ export class UserService {
 
     const hashPassword = await bcrypt.hash(password, user.salt);
     if (hashPassword === user.password) {
+      const userType = await this.getExtraParameter(user)
       const payload = {
+        userType:userType,
         id: user.id,
         username: user.username,
-        email: user.password,
-        roles: user.roles,
+        email: user.email,
+        roles: user.roles, 
       };
+
+     
       const jwt = await this.jwtService.sign(payload);
       return { jwt_token: jwt };
     } else {

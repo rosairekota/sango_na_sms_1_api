@@ -10,6 +10,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { AddChildRegistration } from './enum/add-child-registration.enum';
+import { ChildRegistrationType } from './enum/child-registration-type.enum copy';
 
 @Entity('inscription_enfant')
 export class ChildRegistrationEntity extends TimesTempEntity {
@@ -27,4 +28,9 @@ export class ChildRegistrationEntity extends TimesTempEntity {
 
   @ManyToOne(() => ChildEntity, (child) => child.registrations)
   child: ChildEntity;
+
+  @Column({name:"type", type: 'enum',
+  enum: ChildRegistrationType,
+  default: ChildRegistrationType.BASE})
+  typeRegistration: string
 }

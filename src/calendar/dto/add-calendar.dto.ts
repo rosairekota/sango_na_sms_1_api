@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import { GenericValidatorMessages } from 'src/helpers/generic-validator-message.dto';
 import { PeriodEntity } from 'src/period/period.entity';
 import { AntigenEntity } from 'src/antigen/antigen.entity';
 export class AddCalenderDto extends GenericValidatorMessages {
   @ApiProperty()
-  @IsNotEmpty(AddCalenderDto.genericEmptyMessage("L'indice"))
+  @IsOptional()
   indice: string;
 
   @ApiProperty()

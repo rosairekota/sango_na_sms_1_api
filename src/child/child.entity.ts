@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   OneToMany,
   ManyToOne,
-  JoinColumn,
 } from 'typeorm';
 import TimesTempEntity from '../helpers/timestemp.entity';
 import { ChildVaccinationEntity } from '../child-vaccination/child-vaccination.entity';
@@ -48,10 +48,6 @@ export class ChildEntity extends TimesTempEntity {
   @Column({ name: 'telephone_mere' })
   motherPhone: string;
 
-  @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.childs)
-  @JoinColumn({ name: 'responsible_id' })
-  responsible: ResponsibleEntity;
-
   @OneToMany(
     () => ChildVaccinationEntity,
     (childVaccination) => childVaccination.child,
@@ -69,4 +65,9 @@ export class ChildEntity extends TimesTempEntity {
     },
   )
   registrations: ChildRegistrationEntity[];
+
+  @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.children, {
+    cascade: ['update', 'insert', 'remove'],
+  })
+  responsible: ResponsibleEntity;
 }

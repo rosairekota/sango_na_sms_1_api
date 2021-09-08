@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { ChildService } from './child.service';
 import { ChildController } from './child.controller';
@@ -12,7 +13,7 @@ import { ResponsibleEntity } from 'src/responsible/responsible.entity';
       ChildEntity,
       ChildRegistrationEntity,
       CentreEntity,
-      ResponsibleEntity,
+      ResponsibleEntity
     ]),
   ],
   providers: [ChildService],

@@ -30,6 +30,7 @@ import { UserModule } from './auth/user.module';
 import { AntigenModule } from './antigen/antigen.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { PeriodModule } from './period/period.module';
+import { CarnetModule } from './carnet/carnet.module';
 
 dotenv.config();
 @Module({
@@ -66,6 +67,7 @@ dotenv.config();
     UserModule,
     CalendarModule,
     PeriodModule,
+    CarnetModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ChildEntity } from './child.entity';
@@ -18,9 +19,8 @@ export class ChildService {
     private childRegistrationRepository: Repository<ChildRegistrationEntity>,
     @InjectRepository(CentreEntity)
     private readonly centreRepository: Repository<CentreEntity>,
-
     @InjectRepository(ResponsibleEntity)
-    private readonly responsibleRepository: Repository<ResponsibleEntity>,
+    private readonly respoRepository: Repository<ResponsibleEntity>,
     private connection: Connection,
   ) {}
 
@@ -52,13 +52,9 @@ export class ChildService {
       registrationState,
     } = newChild;
     const centreEntity = this.centreRepository.create({ ...center });
+    const respoEntity = this.respoRepository.create({ ...responsible });
     const centreRepo = await this.centreRepository.findOne(centreEntity);
-    const responsibleEntity = await this.childRegistrationRepository.create({
-      ...responsible,
-    });
-    const responsibleRepo = await this.responsibleRepository.findOne(
-      responsibleEntity,
-    );
+    const responsibleRepo = await this.respoRepository.findOne(respoEntity);
     const childEntity = this.childRepository.create({
       name,
       lastName,
@@ -72,8 +68,8 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
     });
-    childEntity.responsible = responsibleRepo;
 
+    childEntity.responsible = responsibleRepo;
     // manage transaction:
 
     const queryRunner = this.connection.createQueryRunner();
@@ -113,5 +109,16 @@ export class ChildService {
   async delete(id: number) {
     const child = await this.findById(id);
     return await this.childRepository.remove(child);
+  }
+
+  async findChildrenByResponsable(
+    responsable: ResponsibleEntity,
+  ): Promise<ChildEntity[]> {
+    return await this.childRepository
+      .createQueryBuilder('enfant')
+      .where('responsibleIdResponsible = :id', {
+        id: responsable.idResponsible,
+      })
+      .getMany();
   }
 }

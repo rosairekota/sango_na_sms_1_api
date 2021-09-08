@@ -7,6 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtConstant } from './strategy/jwt-constant';
 import { ResponsibleEntity } from '../responsible/responsible.entity';
+import { ResponsibleService } from 'src/responsible/responsible.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ResponsibleEntity]),
@@ -22,7 +23,7 @@ import { ResponsibleEntity } from '../responsible/responsible.entity';
       },
     }),
   ],
-  providers: [UserService],
+  providers: [UserService,ResponsibleService],
   controllers: [UserController],
 })
 export class UserModule {}

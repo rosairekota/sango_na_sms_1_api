@@ -2,9 +2,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/user.entity';
+import { CentreEntity } from 'src/centre/centre.entity';
+import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { ChildService } from 'src/child/child.service';
-import { Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { AddResponsibleDto } from './dto/add-responsible.dto';
 import { UpdateResponsibleDto } from './dto/update-responsible.dto';
 import { ResponsibleEntity } from './responsible.entity';
@@ -14,8 +16,7 @@ export class ResponsibleService {
     constructor(
         @InjectRepository(ResponsibleEntity)
         private responsibleRepository : Repository<ResponsibleEntity>,
-         
-         private childService : ChildService
+        private childService : ChildService
     ){}
 
     
@@ -29,8 +30,10 @@ export class ResponsibleService {
 
      if (responsable) {
          
-        responsable.children = await  this.childService.findChildrenByResponsable(responsable.idResponsible);
-     }
+        const children = await  this.childService.findChildrenByResponsable(responsable.idResponsible);
+        console.log(children)
+        responsable.children = [...children]
+    }
       return responsable;
     }
 

@@ -112,8 +112,9 @@ childEntity.responsible={...respoEntity}
   }
 
   async findChildrenByResponsable(idResponable :number) : Promise<ChildEntity[]>{
-    return  await this.childRepository.createQueryBuilder("enfant")
+    const enfants= await this.childRepository.createQueryBuilder("enfant")
     .where("responsibleIdResponsible = :id", { id:idResponable})
     .getMany();
+    return enfants;
   }
 }

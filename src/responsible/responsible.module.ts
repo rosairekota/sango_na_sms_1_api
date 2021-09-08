@@ -6,10 +6,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResponsibleEntity } from './responsible.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { ChildService } from 'src/child/child.service';
+import { CentreService } from 'src/centre/centre.service';
+import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
+import { ChildRegistrationService } from 'src/child-registration/child-registration.service';
+import { CentreEntity } from 'src/centre/centre.entity';
+import { ChildController } from 'src/child/child.controller';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([ResponsibleEntity,ChildEntity])],
-  providers: [ResponsibleService,ChildService],
+  imports:[TypeOrmModule.forFeature([ChildEntity,
+    ResponsibleEntity,ChildRegistrationEntity,CentreEntity])],
+  providers: [ResponsibleService,ChildService,ChildRegistrationService,CentreService],
   controllers: [ResponsibleController]
 })
 export class ResponsibleModule {}

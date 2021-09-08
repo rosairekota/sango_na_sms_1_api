@@ -66,8 +66,6 @@ export class ChildEntity extends TimesTempEntity {
   )
   registrations: ChildRegistrationEntity[];
 
-  @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.children, {
-    cascade: ['update', 'insert', 'remove'],
-  })
+  @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.children)
   responsible: ResponsibleEntity;
 }

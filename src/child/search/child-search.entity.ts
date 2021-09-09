@@ -1,97 +1,82 @@
-import { AddChildRegistrationDto } from 'src/child-registration/dto/add-child-registration.dto';
-import { AddChildRegistration } from 'src/child-registration/enum/add-child-registration.enum';
-import {
-  Column,
-  CreateDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  ViewEntity,
-} from 'typeorm';
+import { ViewColumn, ViewEntity } from 'typeorm';
 
 @ViewEntity({
   name: 'statistique_enfant_view',
   expression: `(select province.id as provinceId,libelle_province,
      zone.id as zoneId,libelle_zone,aire.idaire as aireId,libelle_aire,
-     centre.idcentre as centreId,libelle_centre,etat_inscription,inscription_enfant.createdAt,inscription_enfant.updatedAt, nom, postnom,
+     centre.idcentre as centreId,libelle_centre,etat_inscription,
+     inscription_enfant.createdAt,inscription_enfant.updatedAt,responsable.numero_telephone_responsable as telephone_responsable,nom, postnom,
      prenom from province
      INNER JOIN zone ON province.id=zone.provinceId
      INNER JOIN aire ON zone.id=aire.zoneId
      INNER JOIN centre ON aire.idaire=centre.aireIdaire
      INNER JOIN inscription_enfant ON centre.idcentre=inscription_enfant.centreIdcentre
-     INNER JOIN enfant ON enfant.id=inscription_enfant.childId);`,
+     INNER JOIN enfant ON enfant.id=inscription_enfant.childId
+     INNER JOIN responsable ON responsable.idresponsable=enfant.responsibleIdResponsible);`,
 })
 export class ChildSearchView {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ name: 'nom' })
+  @ViewColumn({ name: 'nom' })
   name: string;
-  @Column({ name: 'postnom' })
+  @ViewColumn({ name: 'postnom' })
   lastName: string;
 
-  @Column({ name: 'prenom' })
+  @ViewColumn({ name: 'prenom' })
   firstName: string;
 
-  @Column({
+  @ViewColumn({
     name: 'etat_inscription',
-    type: 'enum',
-    enum: AddChildRegistrationDto,
-    default: AddChildRegistration.ACTIF,
   })
   registrationState: string;
-  @Column({
-    length: 100,
-    unique: true,
+  @ViewColumn({
     name: 'libelle_province',
   })
-  @Column({
+  @ViewColumn({
     name: 'zoneProvinceId',
   })
   provinceZoneId: number;
-  @Column({
+  @ViewColumn({
     name: 'provinceId',
   })
   provinceId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'zoneId',
   })
   zoneId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'aireId',
   })
   aireId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'centreId',
   })
   centreId: number;
 
   labelProvince: string;
 
-  @Column({
+  @ViewColumn({
     name: 'libelle_zone',
-    type: 'varchar',
-    length: 100,
   })
   labelZone: string;
 
-  @Column({
+  @ViewColumn({
     name: 'libelle_aire',
-    nullable: false,
   })
   labelAire: string;
 
-  @Column({
-    unique: true,
+  @ViewColumn({
     name: 'libelle_centre',
   })
   labelCentre: string;
 
-  @CreateDateColumn({ update: false })
+  @ViewColumn({ name: 'telephone_responsable' })
+  responsiblePhoneNumer: string;
+
+  @ViewColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ nullable: true })
+  @ViewColumn()
   updatedAt: Date;
 }

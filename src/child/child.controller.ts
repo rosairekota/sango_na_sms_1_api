@@ -10,7 +10,6 @@ import {
   Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AddResponsibleDto } from 'src/responsible/dto/add-responsible.dto';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 import { ChildEntity } from './child.entity';
 import { ChildService } from './child.service';

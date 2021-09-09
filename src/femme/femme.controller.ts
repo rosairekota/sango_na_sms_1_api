@@ -10,10 +10,12 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { ChildSearchView } from 'src/child/search/child-search.entity';
 import { AddWifeDto } from './dto/Add-Wife.dto';
 import { UpdateWifeDto } from './dto/Update-wife.dto';
 import { FemmeEntity } from './femme.entity';
 import { FemmeService } from './femme.service';
+import { WomanSearchInterface } from './search/woman-search.interface';
 
 @ApiTags('femme:')
 @Controller('api/femme')
@@ -23,6 +25,12 @@ export class FemmeController {
   @Get()
   async getAllWives(): Promise<FemmeEntity[]> {
     return await this.wifeService.getWives();
+  }
+  @Post('flitrer_femmes')
+  async filterWifes(
+    @Body() newChildSearch: WomanSearchInterface[],
+  ): Promise<ChildSearchView[]> {
+    return await this.filterWifes(newChildSearch);
   }
   @Post()
   async addWife(@Body() wife: AddWifeDto): Promise<FemmeEntity> {

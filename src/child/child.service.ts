@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { ChildEntity } from './child.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddChildDto } from './dto/add-child.dto';
 import { UpdateChildDto } from './dto/update-child.dto';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 import { ChildSearchView } from './search/child-search.entity';
 import { childSearchInterface } from './search/childSearch.interface';

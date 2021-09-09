@@ -74,9 +74,9 @@ export class ChildSearchView {
   @ViewColumn({ name: 'telephone_responsable' })
   responsiblePhoneNumer: string;
 
-  @ViewColumn()
+  @ViewColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @ViewColumn()
+  @ViewColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

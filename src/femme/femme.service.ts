@@ -8,6 +8,9 @@ import { FemmeEntity } from './femme.entity';
 import { ResponsibleEntity } from '../responsible/responsible.entity';
 import { WomanInscriptionEntity } from 'src/woman-inscription/woman-inscription.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
+import { WomanSearchInterface } from './search/woman-search.interface';
+import { ChildSearchView } from 'src/child/search/child-search.entity';
+import { WomanSearchView } from './search/woman-search.entity';
 
 @Injectable()
 export class FemmeService {
@@ -20,6 +23,9 @@ export class FemmeService {
     private womanInscriptionRepository: Repository<WomanInscriptionEntity>,
     @InjectRepository(CentreEntity)
     private readonly centreRepository: Repository<CentreEntity>,
+
+    @InjectRepository(WomanSearchView)
+    private readonly womanSearchViewrepository: Repository<WomanSearchView>,
     private connection: Connection,
   ) {}
 
@@ -83,5 +89,25 @@ export class FemmeService {
   async deleteWife(idWife: number): Promise<FemmeEntity> {
     const deleteWife = await this.wifeRepository.findOne(idWife);
     return await this.wifeRepository.remove(deleteWife);
+  }
+  async filterWifeByAny(
+    newWomanSearchView: WomanSearchInterface[],
+  ): Promise<ChildSearchView[]> {
+    let query = 'SELECT * FROM statistique_femme_view';
+    if (newWomanSearchView.length > 0) {
+      for (let i = 0; i < newWomanSearchView.length; i++) {
+        if (i === 0) {
+          query += ` WHERE `;
+        }
+        query += `${newWomanSearchView[i].key}=${newWomanSearchView[i].value} `;
+        if (i < newWomanSearchView.length - 1) {
+          query += `AND `;
+        }
+      }
+
+      query += ` ORDER BY nom_femme ; `;
+    }
+
+    return await this.womanSearchViewrepository.query(query);
   }
 }

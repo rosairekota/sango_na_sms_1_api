@@ -1,75 +1,79 @@
-import {
-  ViewEntity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { ViewEntity, ViewColumn } from 'typeorm';
 
+@ViewEntity({
+  name: 'statistique_femme_view',
+  expression: `(select province.id as provinceId,libelle_province,
+    zone.id as zoneId,libelle_zone,aire.idaire as aireId,libelle_aire,
+    centre.idcentre as centreId,libelle_centre,	inscription_femme_etat,
+    inscription_femme.createdAt,inscription_femme.updatedAt,responsable.numero_telephone_responsable as telephone_responsable,nom_femme, post_nom_femmme,
+    prenom_femme from province
+    INNER JOIN zone ON province.id=zone.provinceId
+    INNER JOIN aire ON zone.id=aire.zoneId
+    INNER JOIN centre ON aire.idaire=centre.aireIdaire
+    INNER JOIN inscription_femme ON centre.idcentre=inscription_femme.centreIdcentre
+    INNER JOIN femme ON femme.idfemme=inscription_femme.femmeIdwife
+    INNER JOIN responsable ON responsable.idresponsable=femme.responsibleIdResponsible);`,
+})
 export class WomanSearchView {
-  @Column({ name: 'nom_femme', nullable: false })
+  @ViewColumn({ name: 'nom_femme' })
   nameWife: string;
 
-  @Column({ name: 'post_nom_femmme', nullable: false })
+  @ViewColumn({ name: 'post_nom_femmme' })
   lastName: string;
 
-  @Column({ name: 'prenom_femme' })
+  @ViewColumn({ name: 'prenom_femme' })
   firstName: string;
 
-  @Column({
+  @ViewColumn({
     name: 'telephone_femme',
-    nullable: false,
-    unique: true,
-    length: 14,
   })
   wifePhoneNumber: string;
   provinceZoneId: number;
-  @Column({
+  @ViewColumn({
     name: 'provinceId',
   })
   provinceId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'zoneId',
   })
   zoneId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'aireId',
   })
   aireId: number;
 
-  @Column({
+  @ViewColumn({
     name: 'centreId',
   })
   centreId: number;
 
   labelProvince: string;
 
-  @Column({
+  @ViewColumn({
     name: 'libelle_zone',
-    type: 'varchar',
-    length: 100,
   })
   labelZone: string;
 
-  @Column({
+  @ViewColumn({
     name: 'libelle_aire',
-    nullable: false,
   })
   labelAire: string;
 
-  @Column({
-    unique: true,
+  @ViewColumn({
     name: 'libelle_centre',
   })
   labelCentre: string;
 
-  @Column({ name: 'telephone_responsable', length: 14 })
+  @ViewColumn({ name: 'telephone_responsable' })
   responsiblePhoneNumer: string;
+  @ViewColumn({ name: '	inscription_femme_etat' })
+  woman_inscription_state: string;
 
-  @CreateDateColumn({ update: false })
+  @ViewColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ nullable: true })
+  @ViewColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

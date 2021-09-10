@@ -13,6 +13,6 @@ export class CarnetService {
     ){}
     
     async findCarnetsByEnfant(id:number) :Promise<CarnetEntity[]>{
-        return this.carnetRepository.find({ where: { idEnfant: id}});
+        return this.carnetRepository.find({ where: { idEnfant: id},order:{intitule_antigene:"ASC",indice:"ASC"}});
     }
 }

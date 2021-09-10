@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ViewEntity, ViewColumn } from 'typeorm';
 
 @ViewEntity({

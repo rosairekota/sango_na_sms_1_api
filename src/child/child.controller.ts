@@ -21,15 +21,6 @@ import { childSearchInterface } from './search/childSearch.interface';
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
-<<<<<<< HEAD
-  @Get('/childrenFromResponsible/:id')
-  async getChildrenByResponsable(@Param('id',ParseIntPipe) id : number): Promise<ChildEntity[]> {
-
-    return  await this.childService.findChildrenByResponsable(id);
-  }
-  @Get(':id')
-  async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {
-=======
   @Post('flitrer_enfants')
   async filterChilds(
     @Body() newChildSearch: childSearchInterface[],
@@ -37,24 +28,19 @@ export class ChildController {
     return await this.childService.filterChildByAny(newChildSearch);
   }
 
-  @Get('childrenFromResponsible')
-  async getChildrenByResponsable(
-    @Body() responsable: ResponsibleEntity,
-  ): Promise<ChildEntity[]> {
-    return await this.childService.findChildrenByResponsable(responsable);
+  @Get('/childrenFromResponsible/:id')
+  async getChildrenByResponsable(@Param('id',ParseIntPipe) id : number): Promise<ChildEntity[]> {
+
+    return  await this.childService.findChildrenByResponsable(id);
   }
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {
     console.log('childee');
->>>>>>> eea50a0887ddde4bb674ffab1a2211579e65f939
     return await this.childService.findById(id);
   }
   @Post()
   async create(@Body() newChild: AddChildDto): Promise<ChildEntity> {
-<<<<<<< HEAD
-=======
     console.log('ozozo');
->>>>>>> eea50a0887ddde4bb674ffab1a2211579e65f939
     return await this.childService.add(newChild);
   }
 

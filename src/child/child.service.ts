@@ -115,13 +115,6 @@ export class ChildService {
     return await this.childRepository.remove(child);
   }
 
-<<<<<<< HEAD
-  async findChildrenByResponsable(idResponable :number) : Promise<ChildEntity[]>{
-    const enfants= await this.childRepository.createQueryBuilder("enfant")
-    .where("responsibleIdResponsible = :id", { id:idResponable})
-    .getMany();
-    return enfants;
-=======
   async findChildrenByResponsable(
     responsable: ResponsibleEntity,
   ): Promise<ChildEntity[]> {
@@ -151,6 +144,5 @@ export class ChildService {
     }
 
     return await this.childSerachViewrepository.query(query);
->>>>>>> eea50a0887ddde4bb674ffab1a2211579e65f939
   }
 }

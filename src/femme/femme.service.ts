@@ -74,6 +74,7 @@ export class FemmeService {
         womanInscriptionEntity.femme = wifeRepo;
         await queryRunner.manager.save(womanInscriptionEntity);
         await queryRunner.commitTransaction();
+        console.log('esimbi');
       }
     } catch (e) {
       await queryRunner.rollbackTransaction();

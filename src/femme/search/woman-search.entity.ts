@@ -5,7 +5,7 @@ import { ViewEntity, ViewColumn } from 'typeorm';
   expression: `(select province.id as provinceId,libelle_province,
     zone.id as zoneId,libelle_zone,aire.idaire as aireId,libelle_aire,
     centre.idcentre as centreId,libelle_centre,	inscription_femme_etat,
-    inscription_femme.createdAt,inscription_femme.updatedAt,responsable.numero_telephone_responsable as telephone_responsable,nom_femme, post_nom_femmme,
+    inscription_femme.createdAt,responsable.numero_telephone_responsable as telephone_responsable,nom_femme, post_nom_femmme,
     prenom_femme from province
     INNER JOIN zone ON province.id=zone.provinceId
     INNER JOIN aire ON zone.id=aire.zoneId
@@ -73,7 +73,4 @@ export class WomanSearchView {
 
   @ViewColumn({ name: 'created_at' })
   createdAt: Date;
-
-  @ViewColumn({ name: 'updated_at' })
-  updatedAt: Date;
 }

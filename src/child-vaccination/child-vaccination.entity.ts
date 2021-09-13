@@ -26,10 +26,11 @@ export class ChildVaccinationEntity {
     type: 'enum',
     enum: NotificationEnum,
     default: NotificationEnum.YES,
+    nullable:true
   })
   notificate: string;
 
-  @Column({ name: 'date_notification' })
+  @Column({ name: 'date_notification',nullable:true })
   notificationDate: Date;
 
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)

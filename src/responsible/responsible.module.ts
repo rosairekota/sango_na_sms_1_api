@@ -11,10 +11,11 @@ import { ChildRegistrationEntity } from 'src/child-registration/child-registrati
 import { ChildRegistrationService } from 'src/child-registration/child-registration.service';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { ChildController } from 'src/child/child.controller';
+import { ChildSearchView } from 'src/child/search/child-search.entity';
 
 @Module({
   imports:[TypeOrmModule.forFeature([ChildEntity,
-    ResponsibleEntity,ChildRegistrationEntity,CentreEntity])],
+    ResponsibleEntity,ChildRegistrationEntity,CentreEntity,ChildSearchView])],
   providers: [ResponsibleService,ChildService,ChildRegistrationService,CentreService],
   controllers: [ResponsibleController]
 })

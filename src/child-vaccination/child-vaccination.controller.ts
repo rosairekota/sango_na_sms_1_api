@@ -15,7 +15,7 @@ import { ChildVaccinationService } from './child-vaccination.service';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
 @ApiTags('vaccination enfant:')
-@Controller('vaccination_enfant')
+@Controller('api/vaccination_enfant')
 export class ChildVaccinationController {
   constructor(
     private readonly childVaccinationService: ChildVaccinationService,
@@ -31,6 +31,8 @@ export class ChildVaccinationController {
   async create(
     @Body() newDto: AddChildVaccinationDto,
   ): Promise<ChildVaccinationEntity> {
+    console.log("vaccination_enfant")
+    console.log(newDto)
     return await this.childVaccinationService.add(newDto);
   }
 

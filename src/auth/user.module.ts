@@ -14,9 +14,10 @@ import { ChildService } from 'src/child/child.service';
 import { ChildRegistrationEntity } from 'src/child-registration/child-registration.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { CentreService } from 'src/centre/centre.service';
+import { ChildSearchView } from 'src/child/search/child-search.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, ResponsibleEntity,ChildEntity,ChildRegistrationEntity,CentreEntity]),
+    TypeOrmModule.forFeature([UserEntity, ChildSearchView,ResponsibleEntity,ChildEntity,ChildRegistrationEntity,CentreEntity]),
 
     // JWT configurations
     PassportModule.register({

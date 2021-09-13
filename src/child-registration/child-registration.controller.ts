@@ -20,6 +20,11 @@ import { UpdateChildRegistrationDto } from './dto/update-child-registration.dto'
 export class ChildRegistrationController {
   constructor(private childRegistrationService: ChildRegistrationService) {}
 
+
+  @Get(":id")
+  async getActiveRegistrationById(@Param("id",ParseIntPipe) id : number): Promise<ChildRegistrationEntity> {
+    return await this.childRegistrationService.findActiveRegistrationById(id);
+  }
   @Post()
   async create(
     @Body() childRegistration: AddChildRegistrationDto,

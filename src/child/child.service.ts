@@ -116,12 +116,12 @@ export class ChildService {
   }
 
   async findChildrenByResponsable(
-    responsable: ResponsibleEntity,
+    id : number
   ): Promise<ChildEntity[]> {
     return await this.childRepository
       .createQueryBuilder('enfant')
       .where('responsibleIdResponsible = :id', {
-        id: responsable.idResponsible,
+        id: id,
       })
       .getMany();
   }

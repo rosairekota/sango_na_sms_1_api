@@ -134,6 +134,7 @@ export class ChildService {
         if (i === 0) {
           query += ` WHERE `;
         }
+       
         query += `${newChildSearchView[i].key}=${newChildSearchView[i].value} `;
         if (i < newChildSearchView.length - 1) {
           query += `AND `;

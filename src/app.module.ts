@@ -47,7 +47,7 @@ dotenv.config();
       password: process.env.MYSQL_ADDON_PASSWORD,
       database: process.env.MYSQL_ADDON_DB,
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     AireModule,
     AntigenModule,

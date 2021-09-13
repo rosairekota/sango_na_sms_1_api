@@ -6,7 +6,7 @@ import { ViewColumn, ViewEntity } from 'typeorm';
      zone.id as zoneId,libelle_zone,aire.idaire as aireId,libelle_aire,
      centre.idcentre as centreId,libelle_centre,etat_inscription,
      inscription_enfant.createdAt,inscription_enfant.updatedAt,responsable.numero_telephone_responsable as telephone_responsable,nom, postnom,
-     prenom from province
+     prenom,sexe,adress_enfant,date_naissance from province
      INNER JOIN zone ON province.id=zone.provinceId
      INNER JOIN aire ON zone.id=aire.zoneId
      INNER JOIN centre ON aire.idaire=centre.aireIdaire
@@ -22,6 +22,12 @@ export class ChildSearchView {
 
   @ViewColumn({ name: 'prenom' })
   firstName: string;
+  @ViewColumn({ name: 'sexe' })
+  gender: string;
+  @ViewColumn({ name: 'adress_enfant' })
+  childAddress: string;
+  @ViewColumn({ name: 'date_naissance' })
+  birthDate: string;
 
   @ViewColumn({
     name: 'etat_inscription',

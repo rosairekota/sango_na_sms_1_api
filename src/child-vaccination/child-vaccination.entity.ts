@@ -18,7 +18,7 @@ export class ChildVaccinationEntity {
   @Column({ name: 'date_prevue' })
   dueDate: Date;
 
-  @Column({ name: 'date_recu' })
+  @Column({ name: 'date_recu' ,nullable:true})
   receivedDate: Date;
 
   @Column({
@@ -32,6 +32,9 @@ export class ChildVaccinationEntity {
 
   @Column({ name: 'date_notification',nullable:true })
   notificationDate: Date;
+
+  @Column({ name: 'date_prevue_modifie',default:false })
+  isDueDateModified:boolean;
 
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
   @JoinColumn({ name: 'enfant_id' })

@@ -12,8 +12,8 @@ import { Column, Repository, ViewEntity } from "typeorm";
     enfant.id as idEnfant,enfant.nom as nomEnfant, enfant.sexe,enfant.postnom as postNomEnfant, enfant.date_naissance as date_naissance, enfant.prenom as prenom,
     periode.id as periodeId, periode.libelle as libelle_periode,periode.nombre_jour as nombre_jour, periode.categorie as categoriePeriode,
     antigene.id_antigene, antigene.intitule_antigene, antigene.description_antigene,
-    vaccination_enfant.id,ADDDATE(enfant.date_naissance,periode.nombre_jour) as date_prevue,vaccination_enfant.date_recu,vaccination_enfant.notifier,
-    calendrier.indice,calendrier.id as calendrierId
+    vaccination_enfant.id,ADDDATE(date_prevue,nombre_jour) as date_prevue_generee,date_prevue,vaccination_enfant.date_recu,vaccination_enfant.notifier,
+    calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue_modifie as date_prevue_modifie
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 
     calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId order by indice;`
@@ -41,7 +41,7 @@ export class CarnetEntity {
      description_antigene :string
      @Column()
      date_prevue: Date
-     @Column()
+     @Column({nullable:true})
      date_recu : Date
      @Column()
      notifier :string
@@ -49,4 +49,8 @@ export class CarnetEntity {
      indice:string 
      @Column()
      calendrierId:number 
+     @Column()
+     date_prevue_modifie:boolean
+     @Column()
+     date_prevue_generee: Date
 }

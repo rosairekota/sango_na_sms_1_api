@@ -13,6 +13,8 @@ export class ChildVaccinationService {
   constructor(
     @InjectRepository(ChildVaccinationEntity)
     private readonly childVaccinationRepository: Repository<ChildVaccinationEntity>,
+    @InjectRepository(ChildVaccinationView)
+    private readonly childVaccinationSerachViewrepository: Repository<ChildVaccinationView>,
   ) {}
   async findAll(): Promise<ChildVaccinationEntity[]> {
     return await this.childVaccinationRepository.find();
@@ -96,6 +98,6 @@ export class ChildVaccinationService {
       query += ` ORDER BY nom ; `;
     }
 
-    return await this.childVaccinationRepository.query(query);
+    return await this.childVaccinationSerachViewrepository.query(query);
   }
 }

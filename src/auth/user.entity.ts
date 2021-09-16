@@ -26,4 +26,6 @@ export class UserEntity {
 
   @Column()
   roles: string;
+
+  status: boolean;
 }

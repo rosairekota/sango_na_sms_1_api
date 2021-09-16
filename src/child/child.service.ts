@@ -9,7 +9,7 @@ import { CentreEntity } from 'src/centre/centre.entity';
 import { Connection, Repository } from 'typeorm';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 import { ChildSearchView } from './search/child-search.entity';
-import { childSearchInterface } from './search/childSearch.interface';
+import { SearchInterface } from 'src/helpers/search.interface';
 
 @Injectable()
 export class ChildService {
@@ -115,9 +115,7 @@ export class ChildService {
     return await this.childRepository.remove(child);
   }
 
-  async findChildrenByResponsable(
-    id : number
-  ): Promise<ChildEntity[]> {
+  async findChildrenByResponsable(id: number): Promise<ChildEntity[]> {
     return await this.childRepository
       .createQueryBuilder('enfant')
       .where('responsibleIdResponsible = :id', {
@@ -126,15 +124,15 @@ export class ChildService {
       .getMany();
   }
   async filterChildByAny(
-    newChildSearchView: childSearchInterface[],
+    newChildSearchView: SearchInterface[],
   ): Promise<ChildSearchView[]> {
-    let query = 'SELECT * FROM  statistique_enfant_view';
+    let query = 'SELECT * FROM  statistique_souscription_enfant';
     if (newChildSearchView.length > 0) {
       for (let i = 0; i < newChildSearchView.length; i++) {
         if (i === 0) {
           query += ` WHERE `;
         }
-       
+
         query += `${newChildSearchView[i].key}=${newChildSearchView[i].value} `;
         if (i < newChildSearchView.length - 1) {
           query += `AND `;
@@ -146,7 +144,5 @@ export class ChildService {
     } else {
       return await this.childSerachViewrepository.query(query);
     }
-
-    
   }
 }

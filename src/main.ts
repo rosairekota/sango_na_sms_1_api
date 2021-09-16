@@ -3,10 +3,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import dotenv from 'dotenv';
 
-import * as dotenv from 'dotenv';
 dotenv.config();
-async function bootstrap() {
+
+const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors();
   //configure pipe Validations
@@ -31,5 +32,5 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT || 3080);
-}
+};
 bootstrap();

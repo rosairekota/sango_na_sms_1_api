@@ -12,7 +12,7 @@ import { AppService } from './app.service';
 import { AireModule } from './aire/aire.module';
 import { ZoneModule } from './zone/zone.module';
 import { ProvinceModule } from './province/province.module';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import { CheckExistZoneMiddleware } from './middlewares/check-exist-zone.middleware';
 import { CentreModule } from './centre/centre.module';
 import { ChildModule } from './child/child.module';

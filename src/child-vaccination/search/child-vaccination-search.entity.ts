@@ -1,29 +1,57 @@
-import { ViewColumn, ViewEntity } from 'typeorm';
-import { template } from './view-template';
-
+import { ViewEntity, ViewColumn } from 'typeorm';
+import { template as viewTemplate } from './view-template';
 @ViewEntity({
-  name: 'statistique_souscription_enfant',
-  expression: `${template()}`,
+  name: 'statistique_vaccination_enfant',
+  expression: `${viewTemplate()}`,
 })
-export class ChildSearchView {
+export default class ChildVaccinationView {
   @ViewColumn({ name: 'nom' })
   name: string;
+
   @ViewColumn({ name: 'postnom' })
   lastName: string;
 
   @ViewColumn({ name: 'prenom' })
   firstName: string;
+
   @ViewColumn({ name: 'sexe' })
   gender: string;
+
   @ViewColumn({ name: 'adress_enfant' })
   childAddress: string;
+
   @ViewColumn({ name: 'date_naissance' })
   birthDate: string;
 
-  @ViewColumn({
-    name: 'etat_inscription',
-  })
-  registrationState: string;
+  @ViewColumn({ name: 'date_prevue' })
+  dueDate: Date;
+
+  @ViewColumn({ name: 'date_recue' })
+  receivedDate: Date;
+
+  @ViewColumn({ name: 'notifier' })
+  notificate: string;
+
+  @ViewColumn({ name: 'date_notification' })
+  notificationDate: Date;
+
+  @ViewColumn()
+  indice: string;
+
+  @ViewColumn({ name: 'libelle' })
+  labelPeriod: string;
+
+  @ViewColumn({ name: 'nombre_jour' })
+  duration: number;
+
+  @ViewColumn()
+  categorie: string;
+
+  @ViewColumn({ name: 'intitule_antigene' })
+  antigen_title: string;
+
+  @ViewColumn({ name: 'description_antigene' })
+  antigen_description: string;
   @ViewColumn({
     name: 'libelle_province',
   })
@@ -31,6 +59,7 @@ export class ChildSearchView {
     name: 'zoneProvinceId',
   })
   provinceZoneId: number;
+
   @ViewColumn({
     name: 'provinceId',
   })
@@ -51,6 +80,9 @@ export class ChildSearchView {
   })
   centreId: number;
 
+  @ViewColumn({
+    name: 'provinceId',
+  })
   labelProvince: string;
 
   @ViewColumn({

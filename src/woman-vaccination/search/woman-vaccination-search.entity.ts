@@ -1,7 +1,7 @@
 import { ViewEntity, ViewColumn } from 'typeorm';
 import { template as viewTemplate } from './view-template';
 @ViewEntity({
-  name: 'statistique_vaccination_enfant',
+  name: 'statistique_vaccination_femme',
   expression: `${viewTemplate()}`,
 })
 export default class WomanVaccinationView {
@@ -23,6 +23,15 @@ export default class WomanVaccinationView {
     name: 'telephone_femme',
   })
   wifePhoneNumber: string;
+
+  @ViewColumn({ name: 'date_prevue' })
+  plannedDate: Date;
+
+  @ViewColumn({ name: 'date_recue' })
+  receivedDate: Date;
+
+  @ViewColumn({ name: 'est_notifie' })
+  IsNotified: string;
 
   @ViewColumn({ name: 'date_notification' })
   notificationDate: Date;

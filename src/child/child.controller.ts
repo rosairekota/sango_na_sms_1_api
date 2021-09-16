@@ -10,28 +10,28 @@ import {
   Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ResponsibleEntity } from 'src/responsible/responsible.entity';
+import { SearchInterface } from 'src/helpers/search.interface';
 import { ChildEntity } from './child.entity';
 import { ChildService } from './child.service';
 import { AddChildDto } from './dto/add-child.dto';
 import { UpdateChildDto } from './dto/update-child.dto';
 import { ChildSearchView } from './search/child-search.entity';
-import { childSearchInterface } from './search/childSearch.interface';
 @ApiTags('Enfant:')
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
   @Post('flitrer_enfants')
   async filterChilds(
-    @Body() newChildSearch: childSearchInterface[],
+    @Body() newChildSearch: SearchInterface[],
   ): Promise<ChildSearchView[]> {
     return await this.childService.filterChildByAny(newChildSearch);
   }
 
   @Get('/childrenFromResponsible/:id')
-  async getChildrenByResponsable(@Param('id',ParseIntPipe) id : number): Promise<ChildEntity[]> {
-
-    return  await this.childService.findChildrenByResponsable(id);
+  async getChildrenByResponsable(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ChildEntity[]> {
+    return await this.childService.findChildrenByResponsable(id);
   }
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {

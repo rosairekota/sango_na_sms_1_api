@@ -35,23 +35,6 @@ export default class ChildVaccinationView {
   @ViewColumn({ name: 'date_notification' })
   notificationDate: Date;
 
-  @ViewColumn()
-  indice: string;
-
-  @ViewColumn({ name: 'libelle' })
-  labelPeriod: string;
-
-  @ViewColumn({ name: 'nombre_jour' })
-  duration: number;
-
-  @ViewColumn()
-  categorie: string;
-
-  @ViewColumn({ name: 'intitule_antigene' })
-  antigen_title: string;
-
-  @ViewColumn({ name: 'description_antigene' })
-  antigen_description: string;
   @ViewColumn({
     name: 'libelle_province',
   })
@@ -100,9 +83,30 @@ export default class ChildVaccinationView {
   })
   labelCentre: string;
 
+  @ViewColumn({ name: 'calendarId' })
+  calendarId: number;
+
+  @ViewColumn()
+  indice: string;
+
+  @ViewColumn({ name: 'periodId' })
+  periodId: number;
+
+  @ViewColumn({ name: 'libellePeriod' })
+  labelPeriod: string;
+
+  @ViewColumn({ name: 'nombre_jour' })
+  duration: number;
+
+  @ViewColumn()
+  categorie: string;
+
+  @ViewColumn({ name: 'antigenId' })
+  antigenId: number;
+
+  @ViewColumn({ name: 'intitule_antigene' })
+  antigen_title: string;
+
   @ViewColumn({ name: 'telephone_responsable' })
   responsiblePhoneNumer: string;
-
-  @ViewColumn({ name: 'created_at' })
-  createdAt: Date;
 }

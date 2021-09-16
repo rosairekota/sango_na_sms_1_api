@@ -8,9 +8,9 @@ import { FemmeEntity } from './femme.entity';
 import { ResponsibleEntity } from '../responsible/responsible.entity';
 import { WomanInscriptionEntity } from 'src/woman-inscription/woman-inscription.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
-import { WomanSearchInterface } from './search/woman-search.interface';
 import { ChildSearchView } from 'src/child/search/child-search.entity';
 import { WomanSearchView } from './search/woman-search.entity';
+import { SearchInterface } from 'src/helpers/search.interface';
 
 @Injectable()
 export class FemmeService {
@@ -83,16 +83,19 @@ export class FemmeService {
 
     return null;
   }
+
   async editWife(idwife: number, wife: UpdateWifeDto): Promise<FemmeEntity> {
     const editedWife = await this.wifeRepository.preload({ idwife, ...wife });
     return await this.wifeRepository.save(editedWife);
   }
+
   async deleteWife(idWife: number): Promise<FemmeEntity> {
     const deleteWife = await this.wifeRepository.findOne(idWife);
     return await this.wifeRepository.remove(deleteWife);
   }
+
   async filterWifeByAny(
-    newWomanSearchView: WomanSearchInterface[],
+    newWomanSearchView: SearchInterface[],
   ): Promise<ChildSearchView[]> {
     let query = 'SELECT * FROM statistique_femme_view';
     if (newWomanSearchView.length > 0) {

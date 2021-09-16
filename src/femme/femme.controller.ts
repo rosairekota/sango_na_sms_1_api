@@ -25,7 +25,7 @@ export class FemmeController {
   async getAllWives(): Promise<FemmeEntity[]> {
     return await this.wifeService.getWives();
   }
-  @Post('flitrer_femmes')
+  @Post('statistique_souscription_femmes')
   async filterWifes(
     @Body() newEntity: SearchInterface[],
   ): Promise<WomanSearchView[]> {

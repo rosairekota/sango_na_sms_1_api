@@ -81,6 +81,7 @@ export class ChildVaccinationService {
     newChildVaccinationView: SearchInterface[],
   ): Promise<ChildVaccinationView[]> {
     let query = 'SELECT * FROM statistique_vaccination_enfant';
+
     if (newChildVaccinationView.length > 0) {
       for (let i = 0; i < newChildVaccinationView.length; i++) {
         if (i === 0) {

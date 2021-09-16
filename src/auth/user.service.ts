@@ -11,6 +11,9 @@ import { UserCredentialsDto } from './dto/user-credentials.dto';
 import { ResponsibleEntity } from 'src/responsible/responsible.entity';
 import { AddResponsibleDto } from 'src/responsible/dto/add-responsible.dto';
 import { ResponsibleService } from 'src/responsible/responsible.service';
+import { LogoutDto } from './dto/logout.dto';
+import * as redis from 'redis';
+import * as JWTR from 'jwt-redis';
 
 @Injectable()
 export class UserService {
@@ -22,24 +25,22 @@ export class UserService {
     @InjectRepository(ResponsibleEntity)
     private responsibleRepository: Repository<ResponsibleEntity>,
 
-    private responsibleService : ResponsibleService
+    private responsibleService: ResponsibleService,
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  async  getExtraParameter(user:UserEntity) : Promise<any>{
-
-        switch  (user.roles) {
-          case "responsable":
-            return await this.responsibleService.findResponsibleByUser(user);
-            break;
-          default:
-            break;
-        }
-
-  } 
+  async getExtraParameter(user: UserEntity): Promise<any> {
+    switch (user.roles) {
+      case 'responsable':
+        return await this.responsibleService.findResponsibleByUser(user);
+        break;
+      default:
+        break;
+    }
+  }
   async register(responsableDto: AddResponsibleDto) {
     const {
       responsibleName,
@@ -51,7 +52,6 @@ export class UserService {
       user,
     } = responsableDto;
 
-   
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();
@@ -69,22 +69,22 @@ export class UserService {
 
     try {
       const userRepo = await queryRunner.manager.save(userEntity);
-     
-        const responsableEntity = await this.responsibleRepository.create({
-          ...{
-            responsibleName,
-            responsibleLastName,
-            firstNameResponsible,
-            responsibleAdress,
-            responsiblePhoneNumer,
-            sexe,
-          },
-        });
-        responsableEntity.user = { ...userRepo };
-        console.log("roles")
-        console.log(userRepo.roles)
-        await queryRunner.manager.save(responsableEntity);
-        await queryRunner.commitTransaction();
+      console.log(userRepo);
+      const responsableEntity = await this.responsibleRepository.create({
+        ...{
+          responsibleName,
+          responsibleLastName,
+          firstNameResponsible,
+          responsibleAdress,
+          responsiblePhoneNumer,
+          sexe,
+        },
+      });
+      responsableEntity.user = { ...userRepo };
+      console.log('roles');
+      console.log(userRepo.roles);
+      await queryRunner.manager.save(responsableEntity);
+      await queryRunner.commitTransaction();
     } catch (e) {
       await queryRunner.rollbackTransaction();
       throw new Error('Une erreur est survenue');
@@ -112,20 +112,31 @@ export class UserService {
 
     const hashPassword = await bcrypt.hash(password, user.salt);
     if (hashPassword === user.password) {
-      const userType = await this.getExtraParameter(user)
+      const userType = await this.getExtraParameter(user);
       const payload = {
-        userType:userType,
+        userType: userType,
         id: user.id,
         username: user.username,
         email: user.email,
-        roles: user.roles, 
+        roles: user.roles,
       };
 
-     
       const jwt = await this.jwtService.sign(payload);
       return { jwt_token: jwt };
     } else {
       throw new NotFoundException('Mot de passe incorrect');
     }
+  }
+  async destroyToken(newLogoutDto: LogoutDto) {
+    const redisClient = redis.createClient();
+    const jwtr = new JWTR.default(redisClient);
+    const { jwtToken } = newLogoutDto;
+    const jwt = await jwtr.destroy(jwtToken);
+    if (!jwt) throw new NotFoundException('Ce token est invalide!');
+    else {
+      console.log('deconnexion:', jwt);
+    }
+
+    return true;
   }
 }

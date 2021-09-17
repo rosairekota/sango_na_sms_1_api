@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { UserEntity } from '../user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtConstant } from './jwt-constant';
-import { UserInterface } from '../interfaces/user.interface';
+import { UserInterface } from '../interface/user.interface';
 import { UnauthorizedException } from '@nestjs/common';
 
 

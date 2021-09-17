@@ -5,12 +5,16 @@ import { Repository } from 'typeorm';
 import { ChildVaccinationEntity } from './child-vaccination.entity';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
+import { SearchInterface } from 'src/helpers/search.interface';
+import {ChildVaccinationView} from './search/child-vaccination-search.entity';
 
 @Injectable()
 export class ChildVaccinationService {
   constructor(
     @InjectRepository(ChildVaccinationEntity)
     private readonly childVaccinationRepository: Repository<ChildVaccinationEntity>,
+    @InjectRepository(ChildVaccinationView)
+    private readonly childVaccinationSerachViewrepository: Repository<ChildVaccinationView>,
   ) {}
   async findAll(): Promise<ChildVaccinationEntity[]> {
     return await this.childVaccinationRepository.find();
@@ -65,6 +69,7 @@ export class ChildVaccinationService {
       );
     return await this.childVaccinationRepository.save(childVaccination);
   }
+
   async delete(id: number) {
     const childVaccination = await this.findById(id);
     if (!childVaccination)
@@ -72,5 +77,27 @@ export class ChildVaccinationService {
         "Cet enregistrement n'existe pas dans le système",
       );
     return await this.childVaccinationRepository.remove(childVaccination);
+  }
+
+  async filterChildsByVaccinations(
+    newChildVaccinationView: SearchInterface[],
+  ): Promise<ChildVaccinationView[]> {
+    let query = 'SELECT * FROM statistique_vaccination_enfant';
+
+    if (newChildVaccinationView.length > 0) {
+      for (let i = 0; i < newChildVaccinationView.length; i++) {
+        if (i === 0) {
+          query += ` WHERE `;
+        }
+        query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
+        if (i < newChildVaccinationView.length - 1) {
+          query += `AND `;
+        }
+      }
+
+      query += ` ORDER BY nom ; `;
+    }
+
+    return await this.childVaccinationSerachViewrepository.query(query);
   }
 }

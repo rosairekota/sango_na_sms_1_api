@@ -51,7 +51,8 @@ export class UserService {
       sexe,
       user,
     } = responsableDto;
-
+    
+    user.status=false;
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();
@@ -97,6 +98,7 @@ export class UserService {
       id: user.id,
       username: user.username,
       email: user.email,
+      status: user.status
     };
   }
 
@@ -111,14 +113,19 @@ export class UserService {
     if (!user) throw new NotFoundException('Cet Utilisateur existe déjà');
 
     const hashPassword = await bcrypt.hash(password, user.salt);
+
+
     if (hashPassword === user.password) {
-      const userType = await this.getExtraParameter(user);
+      user.status = true;
+      const userStatusUpdated = await this.userRepository.save(user);
+      const userType = await this.getExtraParameter(userStatusUpdated);
       const payload = {
         userType: userType,
         id: user.id,
         username: user.username,
         email: user.email,
         roles: user.roles,
+        status: user.status,
       };
 
       const jwt = await this.jwtService.sign(payload);

@@ -10,10 +10,13 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { SearchInterface } from 'src/helpers/search.interface';
 import { ChildVaccinationEntity } from './child-vaccination.entity';
 import { ChildVaccinationService } from './child-vaccination.service';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
+
+
 @ApiTags('vaccination enfant:')
 @Controller('api/vaccination_enfant')
 export class ChildVaccinationController {
@@ -21,18 +24,23 @@ export class ChildVaccinationController {
     private readonly childVaccinationService: ChildVaccinationService,
   ) {}
 
+  @Post('statistique_vaccination_enfant')
+  async filterChilds(@Body() newChildVaccinationView: SearchInterface[]) {
+    return await this.childVaccinationService.filterChildsByVaccinations(
+      newChildVaccinationView,
+    );
+  }
   @Get()
   async getAll(): Promise<ChildVaccinationEntity[]> {
     return await this.childVaccinationService.findAll();
   }
 
-  
   @Post()
   async create(
     @Body() newDto: AddChildVaccinationDto,
   ): Promise<ChildVaccinationEntity> {
-    console.log("vaccination_enfant")
-    console.log(newDto)
+    console.log('vaccination_enfant');
+    console.log(newDto);
     return await this.childVaccinationService.add(newDto);
   }
 

@@ -30,12 +30,12 @@ export class CalendarService {
         'antigen',
         'calendar.antigen=antigen.id',
       )
-      // .addGroupBy("DATE_FORMAT(calendar.createdAt, '%d-%m-%Y')")
-      // .orderBy("DATE_FORMAT(calendar.createdAt', '%d-%m-%Y')", 'ASC')
       .getRawMany();
 
     return findCalendar;
   }
+
+
   async findAll(): Promise<CalendarEntity[]> {
     return await this.calendarRepository.find({relations:["period"]});
   }
@@ -43,11 +43,15 @@ export class CalendarService {
     return await this.calendarRepository.save(calendar);
   }
 
+
+
   async findById(id: number): Promise<CalendarEntity> {
     const calendar = await this.calendarRepository.findOne(id);
     if (calendar) return calendar;
     throw new NotFoundException("Ce calendrier n'existe pas !");
   }
+
+
   async update(
     id: number,
     calendar: Partial<UpdateCalenderDto>,
@@ -58,6 +62,8 @@ export class CalendarService {
     });
     return await this.calendarRepository.save(entity);
   }
+
+  
   async delete(id: number): Promise<CalendarEntity> {
     const calendar = await this.findById(id);
     return await this.calendarRepository.remove(calendar);

@@ -26,4 +26,7 @@ export class UserEntity {
 
   @Column()
   roles: string;
+  
+  @Column({default:false})
+  status: boolean;
 }

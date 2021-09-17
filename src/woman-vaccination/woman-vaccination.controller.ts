@@ -13,7 +13,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { SearchInterface } from 'src/helpers/search.interface';
 import { AddWomanVaccinationDto } from './dto/add-woman-vaccination.dto';
 import { UpdateWomanVaccinationDto } from './dto/update-woman-vaccination.dto';
-import WomanVaccinationView from './search/woman-vaccination-search.entity';
+import {WomanVaccinationView } from './search/woman-vaccination-search.entity';
 import { WomanVaccinationEntity } from './woman-vaccination.entity';
 import { WomanVaccinationService } from './woman-vaccination.service';
 

@@ -4,7 +4,7 @@ import { template as viewTemplate } from './view-template';
   name: 'statistique_vaccination_enfant',
   expression: `${viewTemplate()}`,
 })
-export default class ChildVaccinationView {
+export class ChildVaccinationView {
   @ViewColumn({ name: 'nom' })
   name: string;
 

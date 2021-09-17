@@ -6,7 +6,7 @@ import { ChildVaccinationEntity } from './child-vaccination.entity';
 import { UpdateChildVaccinationDto } from './dto/update-child-vaccination.dto';
 import { AddChildVaccinationDto } from './dto/add-child-vaccination.dto';
 import { SearchInterface } from 'src/helpers/search.interface';
-import ChildVaccinationView from './search/child-vaccination-search.entity';
+import {ChildVaccinationView} from './search/child-vaccination-search.entity';
 
 @Injectable()
 export class ChildVaccinationService {

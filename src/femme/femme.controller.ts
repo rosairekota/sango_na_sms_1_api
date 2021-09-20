@@ -10,11 +10,12 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { SearchInterface } from 'src/helpers/search.interface';
 import { AddWifeDto } from './dto/Add-Wife.dto';
 import { UpdateWifeDto } from './dto/Update-wife.dto';
 import { FemmeEntity } from './femme.entity';
 import { FemmeService } from './femme.service';
-
+import { WomanSearchView } from './search/woman-search.entity';
 @ApiTags('femme:')
 @Controller('api/femme')
 export class FemmeController {
@@ -24,8 +25,15 @@ export class FemmeController {
   async getAllWives(): Promise<FemmeEntity[]> {
     return await this.wifeService.getWives();
   }
+  @Post('statistique_souscription_femmes')
+  async filterWifes(
+    @Body() newEntity: SearchInterface[],
+  ): Promise<WomanSearchView[]> {
+    return await this.wifeService.filterWifeBySubscribers(newEntity);
+  }
   @Post()
   async addWife(@Body() wife: AddWifeDto): Promise<FemmeEntity> {
+    console.log(wife);
     return await this.wifeService.addWife(wife);
   }
 

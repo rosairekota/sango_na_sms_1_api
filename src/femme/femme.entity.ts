@@ -8,8 +8,6 @@ import { WomanVaccinationEntity } from 'src/woman-vaccination/woman-vaccination.
 import {
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -46,5 +44,5 @@ export class FemmeEntity extends TimesTempEntity {
   vaccinations: WomanVaccinationEntity[];
 
   @ManyToOne(() => ResponsibleEntity, (responsible) => responsible.femmes)
-  responsible: FemmeEntity;
+  responsible: ResponsibleEntity;
 }

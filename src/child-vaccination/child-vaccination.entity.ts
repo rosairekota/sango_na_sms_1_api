@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Entity,
   Column,
@@ -7,7 +8,8 @@ import {
 } from 'typeorm';
 import { NotificationEnum } from './enum/notification.enum';
 import { ChildEntity } from '../child/child.entity';
-import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
+import { CentreEntity } from 'src/centre/centre.entity';
+import { CalendarEntity } from 'src/calendar/calendar.entity';
 @Entity('vaccination_enfant')
 export class ChildVaccinationEntity {
   @PrimaryGeneratedColumn()
@@ -16,7 +18,7 @@ export class ChildVaccinationEntity {
   @Column({ name: 'date_prevue' })
   dueDate: Date;
 
-  @Column({ name: 'date_recu' })
+  @Column({ name: 'date_recu' ,nullable:true})
   receivedDate: Date;
 
   @Column({
@@ -24,20 +26,23 @@ export class ChildVaccinationEntity {
     type: 'enum',
     enum: NotificationEnum,
     default: NotificationEnum.YES,
+    nullable:true
   })
-  notification: string;
+  notificate: string;
 
-  @Column({ name: 'date_notification' })
+  @Column({ name: 'date_notification',nullable:true })
   notificationDate: Date;
+
+  @Column({ name: 'date_prevue_modifie',default:false })
+  isDueDateModified:boolean;
 
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
   @JoinColumn({ name: 'enfant_id' })
   child: ChildEntity;
 
-  @ManyToOne(
-    () => ChildPeriodEntity,
-    (childPeriod) => childPeriod.childVaccinations,
-  )
-  @JoinColumn({ name: 'period_enfant_id' })
-  childPeriod: ChildPeriodEntity;
+  @ManyToOne(() => CalendarEntity, (calendar) => calendar.vaccinations)
+  calendar: CalendarEntity;
+
+  @ManyToOne(() => CentreEntity, (centre) => centre.vaccinations)
+  centre: CentreEntity;
 }

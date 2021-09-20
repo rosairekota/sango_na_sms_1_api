@@ -9,7 +9,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ChildRegistrationSexe } from './enum/child-registration-sex.enum';
+import { AddChildRegistration } from './enum/add-child-registration.enum';
+import { ChildRegistrationType } from './enum/child-registration-type.enum copy';
 
 @Entity('inscription_enfant')
 export class ChildRegistrationEntity extends TimesTempEntity {
@@ -18,8 +19,8 @@ export class ChildRegistrationEntity extends TimesTempEntity {
   @Column({
     name: 'etat_inscription',
     type: 'enum',
-    enum: ChildRegistrationSexe,
-    default: ChildRegistrationSexe.Masculin,
+    enum: AddChildRegistration,
+    default: AddChildRegistration.ACTIF,
   })
   registrationState: string;
   @ManyToOne(() => CentreEntity, (centre) => centre.childRegistrations)
@@ -27,4 +28,9 @@ export class ChildRegistrationEntity extends TimesTempEntity {
 
   @ManyToOne(() => ChildEntity, (child) => child.registrations)
   child: ChildEntity;
+
+  @Column({name:"type", type: 'enum',
+  enum: ChildRegistrationType,
+  default: ChildRegistrationType.BASE})
+  typeRegistration: string
 }

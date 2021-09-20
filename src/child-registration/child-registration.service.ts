@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { identity } from 'rxjs';
 import { UpdateAireDto } from 'src/aire/dto/update-aire.dto';
 import { Repository } from 'typeorm';
 import { ChildRegistrationEntity } from './child-registration.entity';
@@ -38,5 +39,8 @@ export class ChildRegistrationService {
 
   async findAll(): Promise<ChildRegistrationEntity[]> {
     return await this.childRegistrationRepository.find();
+  }
+  async findActiveRegistrationById(id:number): Promise<ChildRegistrationEntity> {
+    return await this.childRegistrationRepository.findOne({relations: ["centre"],where:[{"child":id,"registrationState":"actif"}]},);
   }
 }

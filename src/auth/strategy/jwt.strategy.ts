@@ -9,6 +9,7 @@ import { JwtConstant } from './jwt-constant';
 import { UserInterface } from '../interfaces/user.interface';
 import { UnauthorizedException } from '@nestjs/common';
 
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(

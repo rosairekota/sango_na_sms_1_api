@@ -1,38 +1,45 @@
+/* eslint-disable prettier/prettier */
 import {
   IsNotEmpty,
-  MaxLength,
-  MinLength,
-  IsString,
   IsOptional,
 } from 'class-validator';
-import { ChildPeriodEntity } from 'src/child-period/child-perio.entity';
-import { ChildEntity } from 'src/child/child.entity';
+import {ChildEntity} from "../../child/child.entity";
+import {CentreEntity} from "../../centre/centre.entity"
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
+import {CalendarEntity} from "../../calendar/calendar.entity";
+import { ApiProperty } from '@nestjs/swagger';
+
 
 export class AddChildVaccinationDto extends GenericValidatorMessages {
+  @ApiProperty()
   @IsNotEmpty(AddChildVaccinationDto.genericEmptyMessage('la date prevue'))
   dueDate: Date;
 
+  @ApiProperty()
   @IsOptional()
   receivedDate: Date;
 
-  @IsNotEmpty(AddChildVaccinationDto.genericEmptyMessage('la notification'))
-  notification: string;
+  @ApiProperty()
+  @IsOptional()
+  notificate: string;
 
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage('la date de notification'),
-  )
+  @ApiProperty()
+  @IsOptional()
   notificationDate: Date;
 
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage('Ajouter un enfant svp'),
-  )
-  child: ChildEntity;
+  @ApiProperty()
+  @IsNotEmpty()
+  child : ChildEntity
 
-  @IsNotEmpty(
-    AddChildVaccinationDto.genericEmptyMessage(
-      "Ajouter la periode de l'enfant svp",
-    ),
-  )
-  childPeriod: ChildPeriodEntity;
+  @ApiProperty()
+  @IsNotEmpty()
+  center : CentreEntity
+
+  @ApiProperty()
+  @IsNotEmpty()
+  calendar : CalendarEntity
+
+  @ApiProperty()
+  @IsOptional()
+  isDueDateModified:boolean;
 }

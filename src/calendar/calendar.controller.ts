@@ -16,7 +16,7 @@ import { AddCalenderDto } from './dto/add-calendar.dto';
 import { UpdateCalenderDto } from './dto/update-calendar.dto';
 
 @ApiTags('Calendrier')
-@Controller('calendrier')
+@Controller('api/calendrier')
 export class CalendarController {
   constructor(private readonly calendarService: CalendarService) {}
 

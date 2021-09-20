@@ -38,4 +38,8 @@ export class AddChildVaccinationDto extends GenericValidatorMessages {
   @ApiProperty()
   @IsNotEmpty()
   calendar : CalendarEntity
+
+  @ApiProperty()
+  @IsOptional()
+  isDueDateModified:boolean;
 }

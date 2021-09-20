@@ -30,6 +30,7 @@ export class AddWifeDto extends GenericValidatorMessages {
   @IsNotEmpty(AddWifeDto.genericEmptyMessage('le numéro de téléphone'))
   wifePhoneNumber: string;
 
+  @IsNotEmpty(AddWifeDto.genericEmptyMessage('Le centre'))
   @ApiProperty()
   centre: CentreEntity;
 

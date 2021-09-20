@@ -10,5 +10,5 @@ export const template = (): string => {
      INNER JOIN centre ON aire.idaire=centre.aireIdaire
      INNER JOIN inscription_enfant ON inscription_enfant.centreIdcentre=centre.idcentre
      INNER JOIN enfant ON enfant.id=inscription_enfant.childId
-     INNER JOIN responsable ON responsable.idresponsable=enfant.responsibleIdResponsible;)`;
+     INNER JOIN responsable ON responsable.idresponsable=enfant.responsibleIdResponsible)`;
 };

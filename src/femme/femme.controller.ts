@@ -31,9 +31,8 @@ export class FemmeController {
   ): Promise<WomanSearchView[]> {
     return await this.wifeService.filterWifeBySubscribers(newEntity);
   }
-  @Post()
+  @Post("ajouter")
   async addWife(@Body() wife: AddWifeDto): Promise<FemmeEntity> {
-    console.log(wife);
     return await this.wifeService.addWife(wife);
   }
 

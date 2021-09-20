@@ -21,7 +21,7 @@ export class FemmeEntity extends TimesTempEntity {
   idwife: number;
   @Column({ name: 'nom_femme', nullable: false })
   nameWife: string;
-  @Column({ name: 'post_nom_femmme', nullable: false })
+  @Column({ name: 'post_nom_femme', nullable: false })
   lastName: string;
   @Column({ name: 'prenom_femme' })
   firstName: string;

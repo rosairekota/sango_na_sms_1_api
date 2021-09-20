@@ -21,7 +21,7 @@ export class FemmeService {
     @InjectRepository(WomanInscriptionEntity)
     private womanInscriptionRepository: Repository<WomanInscriptionEntity>,
     @InjectRepository(CentreEntity)
-    private readonly centreRepository: Repository<CentreEntity>,
+    private  centreRepository: Repository<CentreEntity>,
 
     @InjectRepository(WomanSearchView)
     private readonly womanSearchViewrepository: Repository<WomanSearchView>,
@@ -43,6 +43,7 @@ export class FemmeService {
       responsible,
       woman_inscription_state,
     } = newWife;
+    
     const centreEntity = this.centreRepository.create({ ...centre });
     const respoEntity = this.responsibleRepository.create({ ...responsible });
     const centreRepo = await this.centreRepository.findOne(centreEntity);
@@ -65,7 +66,7 @@ export class FemmeService {
     await queryRunner.startTransaction();
     try {
       const wifeRepo = await queryRunner.manager.save(wifeEntity);
-      if (wifeRepo && centreRepo) {
+      if (wifeRepo) {
         const womanInscriptionEntity = this.womanInscriptionRepository.create({
           woman_inscription_state,
         });
@@ -73,7 +74,6 @@ export class FemmeService {
         womanInscriptionEntity.femme = wifeRepo;
         await queryRunner.manager.save(womanInscriptionEntity);
         await queryRunner.commitTransaction();
-        console.log('esimbi');
       }
     } catch (e) {
       await queryRunner.rollbackTransaction();

@@ -33,7 +33,7 @@ export class FemmeController {
   }
   @Post()
   async addWife(@Body() wife: AddWifeDto): Promise<FemmeEntity> {
-    console.log(wife);
+    console.log("femme dto",wife);
     return await this.wifeService.addWife(wife);
   }
 

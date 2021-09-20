@@ -43,8 +43,6 @@ export class CalendarService {
     return await this.calendarRepository.save(calendar);
   }
 
-
-
   async findById(id: number): Promise<CalendarEntity> {
     const calendar = await this.calendarRepository.findOne(id);
     if (calendar) return calendar;

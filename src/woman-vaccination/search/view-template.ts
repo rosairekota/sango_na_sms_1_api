@@ -6,7 +6,7 @@ export const template = (): string => {
      femme.date_naissance,vaccination_femme.id as vaccinationId,vaccination_femme.date_prevue,
      vaccination_femme.date_recue,vaccination_femme.est_notifie,vaccination_femme.date_notification,
      calendrier.id as calendarId,calendrier.indice,periode.id as periodId,periode.libelle_periode,
-     periode.nombre_jour,periode.categorie,antigene.id_antigene as antigenId,antigene.intitule_antigene,
+     periode.nombre_jour,periode.categorie,antigene.id_antigene as antigenId,antigene.intitule_antigene
      FROM province
      INNER JOIN zone ON province.id=zone.provinceId
      INNER JOIN aire ON zone.id=aire.zoneId
@@ -17,5 +17,5 @@ export const template = (): string => {
      INNER JOIN calendrier ON calendrier.id=vaccination_femme.calendarIdCalendar
      INNER JOIN antigene ON antigene.id=calendrier.antigenIdAntigen
      INNER JOIN periode ON periode.id=calendrier.periodIdPeriod
-     ;)`;
+     )`;
 };

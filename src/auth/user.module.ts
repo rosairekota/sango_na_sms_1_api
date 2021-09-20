@@ -17,7 +17,14 @@ import { CentreService } from 'src/centre/centre.service';
 import { ChildSearchView } from 'src/child/search/child-search.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, ChildSearchView,ResponsibleEntity,ChildEntity,ChildRegistrationEntity,CentreEntity]),
+    TypeOrmModule.forFeature([
+      UserEntity,
+      ChildSearchView,
+      ResponsibleEntity,
+      ChildEntity,
+      ChildRegistrationEntity,
+      CentreEntity,
+    ]),
 
     // JWT configurations
     PassportModule.register({
@@ -25,12 +32,16 @@ import { ChildSearchView } from 'src/child/search/child-search.entity';
     }),
     JwtModule.register({
       secret: JwtConstant.JWT_SECRET_KEY,
-      signOptions: {
-        expiresIn: 3600,
-      },
+      signOptions: { expiresIn: 3600 },
     }),
   ],
-  providers: [UserService,ResponsibleService,ChildService,ChildRegistrationEntity,CentreService],
+  providers: [
+    UserService,
+    ResponsibleService,
+    ChildService,
+    ChildRegistrationEntity,
+    CentreService,
+  ],
   controllers: [UserController],
 })
 export class UserModule {}

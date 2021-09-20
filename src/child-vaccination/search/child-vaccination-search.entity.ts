@@ -26,7 +26,7 @@ export class ChildVaccinationView {
   @ViewColumn({ name: 'date_prevue' })
   dueDate: Date;
 
-  @ViewColumn({ name: 'date_recue' })
+  @ViewColumn({ name: 'date_recu' })
   receivedDate: Date;
 
   @ViewColumn({ name: 'notifier' })

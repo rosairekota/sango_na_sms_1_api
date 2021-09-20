@@ -3,7 +3,7 @@ import { template } from './view-template';
 
 @ViewEntity({
   name: 'statistique_souscription_enfant',
-  expression: `${template()}`,
+  expression: template(),
 })
 export class ChildSearchView {
   @ViewColumn({ name: 'nom' })

@@ -8,6 +8,7 @@ import {
   Param,
   ParseIntPipe,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SearchInterface } from 'src/helpers/search.interface';
@@ -16,13 +17,20 @@ import { ChildService } from './child.service';
 import { AddChildDto } from './dto/add-child.dto';
 import { UpdateChildDto } from './dto/update-child.dto';
 import { ChildSearchView } from './search/child-search.entity';
+import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
+import { User } from 'src/auth/decorator/user.decorator';
+
 @ApiTags('Enfant:')
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
+
+  @UseGuards(JwtAuthGuard)
   @Post('flitrer_enfants')
   async filterChilds(
-    @Body() newChildSearch: SearchInterface[],
+    @User() user,
+    @Body()
+    newChildSearch: SearchInterface[],
   ): Promise<ChildSearchView[]> {
     return await this.childService.filterChildByAny(newChildSearch);
   }

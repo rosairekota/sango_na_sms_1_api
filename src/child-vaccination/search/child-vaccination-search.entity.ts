@@ -2,7 +2,7 @@ import { ViewEntity, ViewColumn } from 'typeorm';
 import { template as viewTemplate } from './view-template';
 @ViewEntity({
   name: 'statistique_vaccination_enfant',
-  expression: `${viewTemplate()}`,
+  expression: viewTemplate(),
 })
 export class ChildVaccinationView {
   @ViewColumn({ name: 'nom' })

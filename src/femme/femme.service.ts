@@ -107,9 +107,9 @@ export class FemmeService {
           query += `AND `;
         }
       }
-
-      query += ` ORDER BY nom_femme ; `;
     }
+
+    query += ` ORDER BY nom_femme ; `;
 
     return await this.womanSearchViewrepository.query(query);
   }

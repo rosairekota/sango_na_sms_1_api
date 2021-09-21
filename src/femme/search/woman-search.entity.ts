@@ -67,4 +67,6 @@ export class WomanSearchView {
   createdAt: Date;
   @ViewColumn({ name: 'date_naissance_femme' })
   bithDate: Date;
+  @ViewColumn({ name: 'adresse_femme' })
+  wifeAdress: string;
 }

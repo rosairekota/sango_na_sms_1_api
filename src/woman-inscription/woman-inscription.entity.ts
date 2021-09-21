@@ -13,7 +13,7 @@ export class WomanInscriptionEntity extends TimesTempEntity {
     name: 'inscription_femme_etat',
     type: 'enum',
     enum: WomanInscriptionEtat,
-    default: WomanInscriptionEtat.Active,
+    default: WomanInscriptionEtat.ACTIVE,
   })
   woman_inscription_state: string;
   @ManyToOne(() => FemmeEntity, (femme) => femme.inscriptions, {

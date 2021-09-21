@@ -43,7 +43,7 @@ export class FemmeService {
       responsible,
       woman_inscription_state,
     } = newWife;
-    
+    console.log(newWife);
     const centreEntity = this.centreRepository.create({ ...centre });
     const respoEntity = this.responsibleRepository.create({ ...responsible });
     const centreRepo = await this.centreRepository.findOne(centreEntity);
@@ -77,7 +77,7 @@ export class FemmeService {
       }
     } catch (e) {
       await queryRunner.rollbackTransaction();
-      throw new Error("Une erreur inattendue s'est  produit!");
+      throw new Error("Une erreur inattendue s'est  produit!: " + e);
     }
 
     return null;

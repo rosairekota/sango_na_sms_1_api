@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-export enum WomanInscriptionEtat{
-    Active='Active',
-    NonActive ='Non active'
+export enum WomanInscriptionEtat {
+  ACTIVE = 'ACTIVE',
+  NO_ACTIVE = 'NO ACTIVE',
 }

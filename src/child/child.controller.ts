@@ -28,7 +28,6 @@ export class ChildController {
   @UseGuards(JwtAuthGuard)
   @Post('flitrer_enfants')
   async filterChilds(
-    @User() user,
     @Body()
     newChildSearch: SearchInterface[],
   ): Promise<ChildSearchView[]> {

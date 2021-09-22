@@ -94,10 +94,8 @@ export class ChildVaccinationService {
           query += `AND `;
         }
       }
-
-      query += ` ORDER BY nom ; `;
     }
-
+    query += ` ORDER BY nom ; `;
     return await this.childVaccinationSerachViewrepository.query(query);
   }
 }

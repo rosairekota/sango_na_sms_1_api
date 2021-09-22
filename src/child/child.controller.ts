@@ -24,8 +24,6 @@ import { User } from 'src/auth/decorator/user.decorator';
 @Controller('api/enfant')
 export class ChildController {
   constructor(private readonly childService: ChildService) {}
-
-  @UseGuards(JwtAuthGuard)
   @Post('flitrer_enfants')
   async filterChilds(
     @Body()

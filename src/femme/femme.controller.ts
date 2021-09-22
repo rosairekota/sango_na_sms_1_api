@@ -22,7 +22,7 @@ export class FemmeController {
   constructor(private wifeService: FemmeService) {}
  
   @Get("wifeByName/:name")
-  async getWivesByName(@Param("name") labelName): Promise<WomanSearchView[]> {
+  async getWivesByName(@Param("name") labelName:string): Promise<WomanSearchView[]> {
     return await this.wifeService.findWivesByName(labelName);
   }
 

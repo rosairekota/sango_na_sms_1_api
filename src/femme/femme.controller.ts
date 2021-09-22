@@ -20,6 +20,11 @@ import { WomanSearchView } from './search/woman-search.entity';
 @Controller('api/femme')
 export class FemmeController {
   constructor(private wifeService: FemmeService) {}
+ 
+  @Get("wifeByName/:name")
+  async getWivesByName(@Param("name") labelName): Promise<WomanSearchView[]> {
+    return await this.wifeService.findWivesByName(labelName);
+  }
 
   @Get()
   async getAllWives(): Promise<FemmeEntity[]> {

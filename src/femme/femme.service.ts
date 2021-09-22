@@ -113,4 +113,11 @@ export class FemmeService {
 
     return await this.womanSearchViewrepository.query(query);
   }
+
+  async findWivesByName(
+    labelName:string
+  ): Promise<WomanSearchView[]> {
+    const query = `SELECT * FROM statistique_souscription_femme where nom_femme like %${labelName}% ORDER BY nom_femme`;
+    return await this.womanSearchViewrepository.query(query);
+  }
 }

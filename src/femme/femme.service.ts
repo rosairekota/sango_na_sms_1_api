@@ -102,7 +102,12 @@ export class FemmeService {
         if (i === 0) {
           query += ` WHERE `;
         }
-        query += `${newEntity[i].key}=${newEntity[i].value} `;
+        if (typeof(newEntity[i].value)==="string") {
+          query += `${newEntity[i].key}= "${newEntity[i].value}"`;
+        }
+        else{
+          query += `${newEntity[i].key}=${newEntity[i].value} `;
+        }
         if (i < newEntity.length - 1) {
           query += `AND `;
         }

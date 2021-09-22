@@ -60,7 +60,7 @@ export class WomanSearchView {
 
   @ViewColumn({ name: 'telephone_responsable' })
   responsiblePhoneNumer: string;
-  @ViewColumn({ name: '	inscription_femme_etat' })
+  @ViewColumn({ name: 'inscription_femme_etat' })
   woman_inscription_state: string;
 
   @ViewColumn({ name: 'created_at' })

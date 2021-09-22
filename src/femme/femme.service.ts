@@ -123,7 +123,7 @@ export class FemmeService {
   ): Promise<WomanSearchView[]> {
     const query = `SELECT * FROM statistique_souscription_femme where nom_femme like %${labelName}% ORDER BY nom_femme`;
     
-    console.log(query)
+    console.log(" fekfkeke ",query)
     return await this.womanSearchViewrepository.query(query);
   }
 }

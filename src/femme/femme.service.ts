@@ -121,6 +121,8 @@ export class FemmeService {
     }
 
     query += ` ORDER BY nom_femme ; `;
+
+    console.log(query)
     return await this.womanSearchViewrepository.query(query);
   }
 

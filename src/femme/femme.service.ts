@@ -103,10 +103,10 @@ export class FemmeService {
           query += ` WHERE `;
         }
         if (newEntity[i].key==="dateDebut") {
-          query += `createdAt >= ${newEntity[i].value}`;
+          query += `createdAt >='${newEntity[i].value}'`;
         }
         else if (newEntity[i].key==="dateFin") {
-          query += `createdAt <= ${newEntity[i].value}`;
+          query += `createdAt <= '${newEntity[i].value}'`;
         }
         else if (typeof(newEntity[i].value)==="string") {
           query += `${newEntity[i].key}= "${newEntity[i].value}"`;

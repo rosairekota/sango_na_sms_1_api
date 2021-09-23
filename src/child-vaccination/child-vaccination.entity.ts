@@ -29,13 +29,14 @@ export class ChildVaccinationEntity {
     nullable:true
   })
   notificate: string;
-
   @Column({ name: 'date_notification',nullable:true })
   notificationDate: Date;
-
+  @Column({ name: 'poids',nullable:true })
+  weight: number;
+  @Column({ name: 'taille',nullable:true })
+  size: number;
   @Column({ name: 'date_prevue_modifie',default:false })
   isDueDateModified:boolean;
-
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
   @JoinColumn({ name: 'enfant_id' })
   child: ChildEntity;

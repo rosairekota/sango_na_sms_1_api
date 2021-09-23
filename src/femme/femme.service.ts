@@ -102,7 +102,13 @@ export class FemmeService {
         if (i === 0) {
           query += ` WHERE `;
         }
-        if (typeof(newEntity[i].value)==="string") {
+        if (newEntity[i].key==="dateDebut") {
+          query += `createdAt >= ${newEntity[i].value}`;
+        }
+        else if (newEntity[i].key==="dateFin") {
+          query += `createdAt <= ${newEntity[i].value}`;
+        }
+        else if (typeof(newEntity[i].value)==="string") {
           query += `${newEntity[i].key}= "${newEntity[i].value}"`;
         }
         else{
@@ -122,8 +128,6 @@ export class FemmeService {
     labelName:string
   ): Promise<WomanSearchView[]> {
     const query = `SELECT * FROM statistique_souscription_femme where nom_femme like '%${labelName}%' ORDER BY nom_femme`;
-    
-    console.log(" fekfkeke ",query)
     return await this.womanSearchViewrepository.query(query);
   }
 }

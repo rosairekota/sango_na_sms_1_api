@@ -120,7 +120,7 @@ export class FemmeService {
       }
     }
 
-    query += ` ORDER BY nom_femme ; `;
+    query += ` ORDER BY nom_femme, createdAt ;`;
 
     console.log(query)
     return await this.womanSearchViewrepository.query(query);

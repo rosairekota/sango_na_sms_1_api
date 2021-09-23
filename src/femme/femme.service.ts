@@ -115,7 +115,7 @@ export class FemmeService {
           query += `${newEntity[i].key}=${newEntity[i].value} `;
         }
         if (i < newEntity.length - 1) {
-          query += `AND `;
+          query += ` AND `;
         }
       }
     }

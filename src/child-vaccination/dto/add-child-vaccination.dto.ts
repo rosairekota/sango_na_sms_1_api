@@ -42,4 +42,14 @@ export class AddChildVaccinationDto extends GenericValidatorMessages {
   @ApiProperty()
   @IsOptional()
   isDueDateModified:boolean;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  weight : number;
+  @ApiProperty()
+  @IsNotEmpty()
+  size : number;
+  @ApiProperty()
+  @IsNotEmpty()
+   received:boolean;
 }

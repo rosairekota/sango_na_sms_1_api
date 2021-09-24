@@ -21,6 +21,9 @@ export class ChildVaccinationEntity {
   @Column({ name: 'date_recu' ,nullable:true})
   receivedDate: Date;
 
+  @Column({ name: 'est_pris' ,nullable:true})
+  received:boolean;
+
   @Column({
     name: 'notifier',
     type: 'enum',

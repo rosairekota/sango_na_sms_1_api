@@ -44,7 +44,7 @@ export class ChildVaccinationController {
     return await this.childVaccinationService.add(newDto);
   }
 
-  @Patch()
+  @Patch('id')
   async edit(
     @Param('id', ParseIntPipe) id: number,
     @Body() newDto: UpdateChildVaccinationDto,

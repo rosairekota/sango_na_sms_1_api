@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { CalendarEntity } from 'src/calendar/calendar.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { PeriodEntity } from 'src/period/period.entity';
@@ -16,14 +17,24 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
 
   @IsOptional()
   notificationDate: Date;
-
   @IsOptional()
   child: ChildEntity;
-
   @IsOptional()
   period: PeriodEntity;
-
   @IsOptional()
   center : CentreEntity
+  @IsOptional()
+  size:number;
+  @IsOptional()
+  weight: number;
+  @IsOptional()
+  isDueDateModified:boolean;
+  @IsOptional()
+  calendar: CalendarEntity;
+  @IsOptional()
+  notificate: string;
+
+ 
+  
 
 }

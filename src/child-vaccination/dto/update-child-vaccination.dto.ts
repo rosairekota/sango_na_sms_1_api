@@ -6,7 +6,7 @@ import { ChildEntity } from 'src/child/child.entity';
 import { PeriodEntity } from 'src/period/period.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 export class UpdateChildVaccinationDto extends GenericValidatorMessages {
-  @IsNotEmpty(UpdateChildVaccinationDto.genericEmptyMessage('la date prevue'))
+  @IsOptional()
   dueDate: Date;
   @IsOptional()
   receivedDate: Date;

@@ -33,6 +33,8 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   calendar: CalendarEntity;
   @IsOptional()
   notificate: string;
+  @IsOptional()
+  received: boolean;
 
  
   

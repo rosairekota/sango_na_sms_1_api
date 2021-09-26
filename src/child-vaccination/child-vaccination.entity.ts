@@ -14,13 +14,10 @@ import { CalendarEntity } from 'src/calendar/calendar.entity';
 export class ChildVaccinationEntity {
   @PrimaryGeneratedColumn()
   id: number;
-
   @Column({ name: 'date_prevue' })
   dueDate: Date;
-
   @Column({ name: 'date_recu' ,nullable:true})
   receivedDate: Date;
-
   @Column({ name: 'est_pris' ,nullable:true})
   received:boolean;
   @Column({

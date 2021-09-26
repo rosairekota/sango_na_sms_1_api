@@ -17,33 +17,13 @@ export class ChildVaccinationService {
     private readonly childVaccinationSerachViewrepository: Repository<ChildVaccinationView>,
   ) {}
   async findAll(): Promise<ChildVaccinationEntity[]> {
-    return await this.childVaccinationRepository.find();
+    return await this.childVaccinationRepository.find({relations:["centre"]});
   }
 
   async add(
     childVaccination: AddChildVaccinationDto,
   ): Promise<ChildVaccinationEntity> {
-    return await this.childVaccinationRepository.save(childVaccination);
-    // const antigens = await this.childAntigenRepository.find();
-    // const connection = getConnection();
-    // const queryRunner = connection.createQueryRunner();
-    // await queryRunner.connect();
-    // await queryRunner.startTransaction();
-
-    // try {
-    //   for await (const childAntigen of antigens) {
-    //     const antigenEtity = await this.childAntigenRepository.create({...childAntigen});
-    //     const vaccination = await this.childVaccinationRepository.create({...childVaccination})
-    //           vaccination.antigen= antigenEtity;
-    //           await queryRunner.manager.save(vaccination);
-    //           await queryRunner.commitTransaction();
-    //   }
-
-    // } catch (error) {
-    //   await queryRunner.rollbackTransaction();
-    //   throw new Error('Une erreur est survenue');
-
-    // }
+    return await this.childVaccinationRepository.save(childVaccination); 
   }
 
   async findById(id: number): Promise<ChildVaccinationEntity> {

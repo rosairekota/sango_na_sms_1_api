@@ -23,7 +23,6 @@ export class ChildVaccinationEntity {
 
   @Column({ name: 'est_pris' ,nullable:true})
   received:boolean;
-
   @Column({
     name: 'notifier',
     type: 'enum',
@@ -41,12 +40,9 @@ export class ChildVaccinationEntity {
   @Column({ name: 'date_prevue_modifie',default:false })
   isDueDateModified:boolean;
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
-  @JoinColumn({ name: 'enfant_id' })
   child: ChildEntity;
-
   @ManyToOne(() => CalendarEntity, (calendar) => calendar.vaccinations)
   calendar: CalendarEntity;
-
   @ManyToOne(() => CentreEntity, (centre) => centre.vaccinations)
   centre: CentreEntity;
 }

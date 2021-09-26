@@ -2,7 +2,9 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { CarnetEntity } from './carnet.entity';
 import { CarnetService } from './carnet.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('carnet_enfant')
 @Controller('api/carnet')
 export class CarnetController {
     constructor(private readonly carnetRepository: CarnetService) {}

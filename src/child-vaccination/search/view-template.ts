@@ -1,5 +1,5 @@
 export const template = (): string => {
-  return `(SELECT province.id as provinceId,province.libelle_province,
+  return `(SELECT distinct province.id as provinceId,province.libelle_province,
      zone.id as zoneId,zone.libelle_zone,aire.idaire as aireId,aire.libelle_aire,
      centre.idcentre as centreId,centre.libelle_centre,responsable.numero_telephone_responsable as telephone_responsable,
      enfant.nom,enfant.postnom,enfant.prenom,enfant.sexe,enfant.adress_enfant,

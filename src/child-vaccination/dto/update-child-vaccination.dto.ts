@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { CentreEntity } from 'src/centre/centre.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { PeriodEntity } from 'src/period/period.entity';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
@@ -21,4 +22,8 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
 
   @IsOptional()
   period: PeriodEntity;
+
+  @IsOptional()
+  center : CentreEntity
+
 }

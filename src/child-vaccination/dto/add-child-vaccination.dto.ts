@@ -12,7 +12,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class AddChildVaccinationDto extends GenericValidatorMessages {
   @ApiProperty()
-  @IsNotEmpty(AddChildVaccinationDto.genericEmptyMessage('la date prevue'))
+  @IsOptional()
   dueDate: Date;
 
   @ApiProperty()

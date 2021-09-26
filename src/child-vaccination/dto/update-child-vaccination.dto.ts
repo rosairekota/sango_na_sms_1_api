@@ -8,13 +8,10 @@ import { GenericValidatorMessages } from '../../helpers/generic-validator-messag
 export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   @IsNotEmpty(UpdateChildVaccinationDto.genericEmptyMessage('la date prevue'))
   dueDate: Date;
-
   @IsOptional()
   receivedDate: Date;
-
   @IsOptional()
   notification: string;
-
   @IsOptional()
   notificationDate: Date;
   @IsOptional()

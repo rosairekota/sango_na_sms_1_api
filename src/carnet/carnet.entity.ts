@@ -9,11 +9,13 @@ import { Column, Repository, ViewEntity } from "typeorm";
 @ViewEntity({
     name:"carnet_enfant",
     expression:`select 
-    enfant.id as idEnfant,enfant.nom as nomEnfant, enfant.sexe,enfant.postnom as postNomEnfant, enfant.date_naissance as date_naissance, enfant.prenom as prenom,
+    enfant.id as idEnfant,enfant.nom as nomEnfant, enfant.sexe,enfant.postnom as postNomEnfant, 
+    enfant.date_naissance as date_naissance, enfant.prenom as prenom,
     periode.id as periodeId, periode.libelle as libelle_periode,periode.nombre_jour as nombre_jour, periode.categorie as categoriePeriode,
     antigene.id_antigene, antigene.intitule_antigene, antigene.description_antigene,vaccination_enfant.more_days,
-    vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_naissance,SUM(nombre_jour,more_days) date_prevue,vaccination_enfant.date_recu,vaccination_enfant.notifier,
-    calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue_modifie as date_prevue_modifie
+    vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_naissance,nombre_jour) default_date_prevue,
+    vaccination_enfant.date_recu,vaccination_enfant.notifier,
+    calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevu as date_prevu
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 
     calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId order by indice;`
@@ -50,8 +52,8 @@ export class CarnetEntity {
      @Column()
      calendrierId:number 
      @Column()
-     date_prevue_modifie:boolean
-     @Column()
+     date_prevue_modifie:Date
+     @Column({name:"default_date_prevue"})
      date_prevue_generee: Date
      @Column()
      vaccinationEnfantId: number

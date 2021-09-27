@@ -26,6 +26,7 @@ export class ChildVaccinationController {
 
   @Post('statistique_vaccination_enfant')
   async filterChilds(@Body() newChildVaccinationView: SearchInterface[]) {
+    console.log(" new Child ",newChildVaccinationView)
     return await this.childVaccinationService.filterChildsByVaccinations(
       newChildVaccinationView,
     );

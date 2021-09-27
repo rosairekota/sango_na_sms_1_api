@@ -127,6 +127,7 @@ export class ChildService {
     newEntity: SearchInterface[],
   ): Promise<ChildSearchView[]> {
     let query = 'SELECT * FROM  statistique_souscription_enfant';
+    
     if (newEntity.length > 0) {
       for (let i = 0; i < newEntity.length; i++) {
         if (i === 0) {
@@ -148,9 +149,12 @@ export class ChildService {
       }
 
       query += ` ORDER BY nom ; `;
+      console.log(query);
       return await this.childSerachViewrepository.query(query);
     } else {
+      console.log(query);
       return await this.childSerachViewrepository.query(query);
     }
+    
   }
 }

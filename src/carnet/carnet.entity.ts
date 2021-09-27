@@ -51,10 +51,8 @@ export class CarnetEntity {
      indice:string 
      @Column()
      calendrierId:number 
-     @Column()
-     date_prevue_modifie:Date
      @Column({name:"default_date_prevue"})
-     date_prevue_generee: Date
+     default_date_prevue: Date
      @Column()
      vaccinationEnfantId: number
      @Column()

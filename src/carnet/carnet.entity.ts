@@ -12,7 +12,7 @@ import { Column, Repository, ViewEntity } from "typeorm";
     enfant.id as idEnfant,enfant.nom as nomEnfant, enfant.sexe,enfant.postnom as postNomEnfant, enfant.date_naissance as date_naissance, enfant.prenom as prenom,
     periode.id as periodeId, periode.libelle as libelle_periode,periode.nombre_jour as nombre_jour, periode.categorie as categoriePeriode,
     antigene.id_antigene, antigene.intitule_antigene, antigene.description_antigene,
-    vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_prevue,nombre_jour) as date_prevue_generee,date_prevue,vaccination_enfant.date_recu,vaccination_enfant.notifier,
+    vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_naissance,nombre_jour) as date_prevue_generee,date_prevue,vaccination_enfant.date_recu,vaccination_enfant.notifier,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue_modifie as date_prevue_modifie
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 

@@ -33,7 +33,7 @@ export class AddChildVaccinationDto extends GenericValidatorMessages {
 
   @ApiProperty()
   @IsNotEmpty()
-  center : CentreEntity
+  centre : CentreEntity
 
   @ApiProperty()
   @IsNotEmpty()

@@ -88,6 +88,10 @@ export class AppModule implements NestModule {
         path: '/api/zone/:id',
         method: RequestMethod.DELETE,
       },
+      {
+        path: '/api/enfant/:id',
+        method: RequestMethod.DELETE,
+      },
     );
   }
 }

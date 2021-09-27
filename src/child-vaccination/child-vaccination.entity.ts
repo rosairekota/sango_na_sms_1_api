@@ -36,6 +36,8 @@ export class ChildVaccinationEntity {
   size: number;
   @Column({ name: 'date_prevue_modifie',default:false })
   isDueDateModified:boolean;
+  @Column({ name: 'more_days',default:true,nullable:true })
+  moreDays:number;
   @ManyToOne(() => ChildEntity, (child) => child.childVaccinations)
   child: ChildEntity;
   @ManyToOne(() => CalendarEntity, (calendar) => calendar.vaccinations)

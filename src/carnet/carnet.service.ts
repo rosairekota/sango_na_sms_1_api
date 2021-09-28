@@ -20,11 +20,10 @@ export class CarnetService {
     
     async findCarnetsByEnfant(id:number) :Promise<SendingCarnetDto[]>{
         const carnet = await this.carnetRepository.find({ where: { idEnfant: id},order:{indice:"ASC",intitule_antigene:"ASC"}});
-        let myCarnet : SendingCarnetDto [];
-        let myCarnetDto : SendingCarnetDto;
-        console.log("myCarnet  ",myCarnet)
+        const myCarnet = [];
+        const myCarnetDto = {vaccination:null,item:null}
         for await (const item of carnet) {
-           myCarnetDto.carnet ={...item};
+           myCarnetDto.item ={...item};
             if (item.vaccinationEnfantId) {
                 myCarnetDto.vaccination = await this.vaccinationRepostiory.findOne(item.vaccinationEnfantId);  
             }

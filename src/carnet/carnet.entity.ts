@@ -24,7 +24,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     inner join periode on periode.id = calendrier.periodId 
     inner join responsable on enfant.responsibleIdResponsible = responsable.idresponsable 
     inner join inscription_enfant on enfant.id = inscription_enfant.childId
-    inner join centre on centre.childId = inscription_enfant.centreIdcentre
+    inner join centre on centre.idcentre= inscription_enfant.centreIdcentre
     inner join aire on aire.idaire = centre. aireIdaire
     inner join zone on zone.id = aire.zoneId
     inner join province on province.id = zone.provinceId

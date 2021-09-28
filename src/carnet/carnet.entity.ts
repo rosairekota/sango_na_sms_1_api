@@ -16,7 +16,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_naissance,nombre_jour) default_date_prevue,
     vaccination_enfant.date_recu,vaccination_enfant.notifier,responsable.numero_telephone_responsable,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue,
-    centre.idcentre centreId, province.id as provinceId,zone.id as zoneId, aire.idaire aireId,
+    centre.idcentre centreId, province.id as provinceId,zone.id as zoneId, aire.idaire aireId
     from
     vaccination_enfant 
     right join calendrier on calendrier.id=vaccination_enfant.calendarId  

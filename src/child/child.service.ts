@@ -133,15 +133,15 @@ export class ChildService {
         if (i === 0) {
           query += ` WHERE `;
         }
-        if (newEntity[i].key === 'dateDebut') {
-          query += `createdAt >='${newEntity[i].value}'`;
-        } else if (newEntity[i].key === 'dateFin') {
-          query += `createdAt <= '${newEntity[i].value}'`;
-        } else if (typeof newEntity[i].value === 'string') {
-          query += `${newEntity[i].key}= "${newEntity[i].value}"`;
-        } else {
-          query += `${newEntity[i].key}=${newEntity[i].value} `;
-        }
+        // if (newEntity[i].key === 'dateDebut') {
+        //   query += `createdAt >='${newEntity[i].value}'`;
+        // } else if (newEntity[i].key === 'dateFin') {
+        //   query += `createdAt <= '${newEntity[i].value}'`;
+        // } else if (typeof newEntity[i].value === 'string') {
+        //   query += `${newEntity[i].key}= "${newEntity[i].value}"`;
+        // } else {
+        //   query += `${newEntity[i].key}=${newEntity[i].value} `;
+        // }
         query += `${newEntity[i].key}=${newEntity[i].value} `;
         if (i < newEntity.length - 1) {
           query += `AND `;
@@ -151,9 +151,8 @@ export class ChildService {
       query += ` ORDER BY nom ; `;
       console.log(query);
       return await this.childSerachViewrepository.query(query);
-    } else {
-      console.log(query);
-      return await this.childSerachViewrepository.query(query);
+    
+     
     }
     
   }

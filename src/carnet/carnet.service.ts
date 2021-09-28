@@ -22,7 +22,6 @@ export class CarnetService {
         const carnet = await this.carnetRepository.find({ where: { idEnfant: id},order:{indice:"ASC",intitule_antigene:"ASC"}});
         let myCarnet : SendingCarnetDto [];
         let myCarnetDto : SendingCarnetDto;
-       
         for await (const item of carnet) {
            myCarnetDto.carnet ={...item};
             if (item.vaccinationEnfantId) {

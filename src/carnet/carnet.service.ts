@@ -31,9 +31,6 @@ export class CarnetService {
             }
             myCarnet.push(myCarnetDto)
         }
-      
-      
-
         return myCarnet;
     }
 }

@@ -11,7 +11,7 @@ export class CarnetController {
     constructor(private readonly carnetRepository: CarnetService) {}
 
     @Get(':id')
-     async getCarnetsByEnfant(@Param("id",ParseIntPipe) id:number ) :Promise<SendingCarnetDto[]>{
+     async getCarnetsByEnfant(@Param("id",ParseIntPipe) id:number ) :Promise<any[]>{
          return await this.carnetRepository.findCarnetsByEnfant(id);
      }
 }

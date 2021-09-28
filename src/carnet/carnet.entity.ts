@@ -17,7 +17,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     vaccination_enfant.date_recu,vaccination_enfant.notifier,responsable.numero_telephone_responsable,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue,
     centre.idcentre centreId, province.id as provinceId,zone.id as zoneId, aire.idaire aireId,
-    vaccination_enfant.centreIdcentre,vaccination_enfant.est_pris
+    vaccination_enfant.centreIdcentre,vaccination_enfant.est_pris,vaccination_enfant.poids,vaccination_enfant.taille
     from
     vaccination_enfant 
     right join calendrier on calendrier.id=vaccination_enfant.calendarId  

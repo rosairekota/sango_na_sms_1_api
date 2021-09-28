@@ -18,7 +18,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId  cross join enfant inner join antigene on 
-    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId inner join responsable on enfant.responsibleIdResponsible = responsable.idresponsable order by indice;`
+    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId inner join responsable on enfant.responsibleIdResponsible = responsable.idresponsable order by indice,intitule_antigene;`
  })
 export class CarnetEntity {
     @Column()

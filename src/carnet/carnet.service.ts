@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
 import { ChildVaccinationService } from 'src/child-vaccination/child-vaccination.service';
+import { SearchInterface } from 'src/helpers/search.interface';
 import { Repository } from 'typeorm';
 import { CarnetEntity } from './carnet.entity';
 import { SendingCarnetDto } from './dto/SendingCarnetDto';
@@ -33,4 +34,26 @@ export class CarnetService {
         }
         return myCarnet;
     }
+
+    
+
+    async findCarnets(
+        newChildVaccinationView: SearchInterface[],
+      ): Promise<CarnetEntity[]> {
+        let query = 'SELECT * FROM carnet_enfant';
+    
+        if (newChildVaccinationView.length > 0) {
+          for (let i = 0; i < newChildVaccinationView.length; i++) {
+            if (i === 0) {
+              query += ` WHERE `;
+            }
+            query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
+            if (i < newChildVaccinationView.length - 1) {
+              query += ` AND `;
+            }
+          }
+        }
+        query += ` ORDER BY indice,intitule_antigene ; `;
+        return await this.carnetRepository.query(query);
+      }
 }

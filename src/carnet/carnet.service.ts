@@ -25,7 +25,7 @@ export class CarnetService {
         for await (const item of carnet) {
            myCarnetDto.item ={...item};
             if (item.vaccinationEnfantId) {
-                myCarnetDto.vaccination = await this.vaccinationRepostiory.findOne(item.vaccinationEnfantId,{relations:["child"]});  
+                myCarnetDto.vaccination = await this.vaccinationRepostiory.findOne(item.vaccinationEnfantId,{relations:["child","centre"]});  
             }
         }
       

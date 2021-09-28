@@ -14,6 +14,7 @@ import { AddUserDto } from './dto/add-user.dto';
 import { UserCredentialsDto } from './dto/user-credentials.dto';
 import { AddResponsibleDto } from 'src/responsible/dto/add-responsible.dto';
 import { LogoutDto } from './dto/logout.dto';
+import { ForgotPasswordDto } from './dto/forgot-password';
 
 @ApiTags('User:')
 @Controller('api/user')
@@ -25,7 +26,12 @@ export class UserController {
   ): Promise<Partial<UserEntity>> {
     return await this.userService.register(newUser);
   }
-
+  @Post('reset-password')
+  async resetPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
+    const token = Math.random().toString(20).substring(2, 12);
+    forgotPasswordDto.token = token;
+    return await this.userService.forgotPassword(forgotPasswordDto);
+  }
   @Post('login')
   async signin(@Body() credentials: UserCredentialsDto) {
     return await this.userService.login(credentials);

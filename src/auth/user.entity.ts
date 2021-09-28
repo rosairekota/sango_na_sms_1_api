@@ -26,7 +26,13 @@ export class UserEntity {
 
   @Column()
   roles: string;
-  
-  @Column({default:false})
+
+  @Column({ default: false })
   status: boolean;
+
+  @Column()
+  token: string;
+
+  @Column()
+  expiredToken: number;
 }

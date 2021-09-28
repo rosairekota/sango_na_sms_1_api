@@ -13,7 +13,8 @@ export class CarnetService {
         @InjectRepository (CarnetEntity)
          private readonly carnetRepository : Repository<CarnetEntity>,
         
-         private  readonly vaccinationService : ChildVaccinationService
+         @InjectRepository (ChildVaccinationEntity)
+         private  readonly vaccinationRepostiory : Repository<ChildVaccinationEntity>
     ){}
     
     async findCarnetsByEnfant(id:number) :Promise<CarnetEntity[]>{
@@ -22,7 +23,7 @@ export class CarnetService {
         for await (const item of carnet) {
             
             if (item.vaccinationEnfantId) {
-                item.vaccination = await this.vaccinationService.findById(item.vaccinationEnfantId);  
+                item.vaccination = await this.vaccinationRepostiory.findOne(item.vaccinationEnfantId);  
             }
         }
 

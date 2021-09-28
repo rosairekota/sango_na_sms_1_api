@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ChildVaccinationEntity } from 'src/child-vaccination/child-vaccination.entity';
+import { ChildVaccinationService } from 'src/child-vaccination/child-vaccination.service';
 import { Repository } from 'typeorm';
 import { CarnetEntity } from './carnet.entity';
 
@@ -10,9 +12,20 @@ export class CarnetService {
     constructor(
         @InjectRepository (CarnetEntity)
          private readonly carnetRepository : Repository<CarnetEntity>,
+        
+         private  readonly vaccinationService : ChildVaccinationService
     ){}
     
     async findCarnetsByEnfant(id:number) :Promise<CarnetEntity[]>{
-        return this.carnetRepository.find({ where: { idEnfant: id},order:{indice:"ASC",intitule_antigene:"ASC"}});
+        const carnet = await this.carnetRepository.find({ where: { idEnfant: id},order:{indice:"ASC",intitule_antigene:"ASC"}});
+
+        for await (const item of carnet) {
+            
+            if (item.vaccinationEnfantId) {
+                item.vaccination = await this.vaccinationService.findById(item.vaccinationEnfantId);  
+            }
+        }
+
+        return carnet;
     }
 }

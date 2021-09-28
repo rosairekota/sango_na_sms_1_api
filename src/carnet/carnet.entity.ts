@@ -4,7 +4,7 @@ import { AntigenEntity } from "src/antigen/antigen.entity";
 import { CalendarEntity } from "src/calendar/calendar.entity";
 import { ChildVaccinationEntity } from "src/child-vaccination/child-vaccination.entity";
 import { PeriodEntity } from "src/period/period.entity";
-import { Column, Repository, ViewEntity } from "typeorm";
+import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
 
 @ViewEntity({
     name:"carnet_enfant",
@@ -17,7 +17,7 @@ import { Column, Repository, ViewEntity } from "typeorm";
     vaccination_enfant.date_recu,vaccination_enfant.notifier,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue
     from 
-    vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId cross join enfant inner join antigene on 
+    vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId  cross join enfant inner join antigene on 
     calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId order by indice;`
  })
 export class CarnetEntity {
@@ -57,4 +57,6 @@ export class CarnetEntity {
      vaccinationEnfantId: number
      @Column()
      received: boolean
+     @ViewColumn()
+     vaccination:ChildVaccinationEntity
 }

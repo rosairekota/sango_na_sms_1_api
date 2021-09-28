@@ -11,7 +11,7 @@ import { ChildVaccinationService } from 'src/child-vaccination/child-vaccination
   imports: [
     TypeOrmModule.forFeature([CarnetEntity,ChildVaccinationEntity]),
   ],
-  providers: [CarnetService],
+  providers: [CarnetService,ChildVaccinationService],
   controllers: [CarnetController]
 })
 export class CarnetModule {}

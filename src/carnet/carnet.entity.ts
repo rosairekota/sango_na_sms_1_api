@@ -17,7 +17,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     vaccination_enfant.date_recu,vaccination_enfant.notifier,responsable.numero_telephone_responsable,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue,
     centre.idcentre centreId, province.id as provinceId,zone.id as zoneId, aire.idaire aireId,
-    from 
+    from
     vaccination_enfant 
     right join calendrier on calendrier.id=vaccination_enfant.calendarId  
     cross join enfant inner join antigene on calendrier.antigenId = antigene.id_antigene 
@@ -28,7 +28,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     inner join aire on aire.idaire = centre. aireIdaire
     inner join zone on zone.id = aire.zoneId
     inner join province on province.id = zone.provinceId
-    order by indice,intitule_antigene;`
+    order by indice,intitule_antigene,periodeId;`
  })
 export class CarnetEntity {
     @Column()

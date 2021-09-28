@@ -14,11 +14,11 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     periode.id as periodeId, periode.libelle as libelle_periode,periode.nombre_jour as nombre_jour, periode.categorie as categoriePeriode,
     antigene.id_antigene, antigene.intitule_antigene, antigene.description_antigene,vaccination_enfant.more_days,
     vaccination_enfant.id as vaccinationEnfantId,vaccination_enfant.est_pris as received,ADDDATE(date_naissance,nombre_jour) default_date_prevue,
-    vaccination_enfant.date_recu,vaccination_enfant.notifier,
+    vaccination_enfant.date_recu,vaccination_enfant.notifier,responsable.numero_telephone_responsable,
     calendrier.indice,calendrier.id as calendrierId,vaccination_enfant.date_prevue
     from 
     vaccination_enfant right join calendrier on calendrier.id=vaccination_enfant.calendarId  cross join enfant inner join antigene on 
-    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId order by indice;`
+    calendrier.antigenId = antigene.id_antigene inner join periode on periode.id = calendrier.periodId inner join responsable on enfant.responsibleIdResponsible = responsable.idresponsable order by indice;`
  })
 export class CarnetEntity {
     @Column()

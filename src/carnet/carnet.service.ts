@@ -23,6 +23,7 @@ export class CarnetService {
         const myCarnet = [];
         const myCarnetDto = {vaccination:null,item:null}
         for await (const item of carnet) {
+            console.log(item)
            myCarnetDto.item ={...item};
             if (item.vaccinationEnfantId) {
                 myCarnetDto.vaccination = await this.vaccinationRepostiory.findOne(item.vaccinationEnfantId,{relations:["child","centre"]});  

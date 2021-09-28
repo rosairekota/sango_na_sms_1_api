@@ -27,7 +27,7 @@ import { Column, Repository, ViewColumn, ViewEntity } from "typeorm";
     inner join centre on centre.childId = inscription_enfant.centreIdcentre
     inner join aire on aire.idaire = centre. aireIdaire
     inner join zone on zone.id = aire.zoneId
-    inner province on province.id = zone.provinceId
+    inner join province on province.id = zone.provinceId
     order by indice,intitule_antigene;`
  })
 export class CarnetEntity {

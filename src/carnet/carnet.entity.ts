@@ -57,6 +57,6 @@ export class CarnetEntity {
      vaccinationEnfantId: number
      @Column()
      received: boolean
-     @ViewColumn()
+     @Column()
      vaccination:ChildVaccinationEntity
 }

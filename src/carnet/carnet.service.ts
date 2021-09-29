@@ -43,17 +43,31 @@ export class CarnetService {
         let query = 'SELECT * FROM carnet_enfant';
     
         if (newChildVaccinationView.length > 0) {
+        if (newChildVaccinationView.length > 0) {
           for (let i = 0; i < newChildVaccinationView.length; i++) {
             if (i === 0) {
               query += ` WHERE `;
             }
-            query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
+            if (newChildVaccinationView[i].key==="dateDebut") {
+          	query += `date_prevue >='${newChildVaccinationView[i].value}' OR default_date_prevue >= '${newChildVaccinationView[i].value}'`;
+        	}
+	
+        else if (newChildVaccinationView[i].key==="dateFin") {
+                query += `date_prevue <='${newChildVaccinationView[i].value}' OR default_date_prevue <= '${newChildVaccinationView[i].value}'`;
+            }
+             else{
+        query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
+        }
+           
+        
             if (i < newChildVaccinationView.length - 1) {
               query += ` AND `;
             }
           }
         }
+
         query += ` ORDER BY indice,intitule_antigene ; `;
+  }
         return await this.carnetRepository.query(query);
       }
 }

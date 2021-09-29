@@ -39,23 +39,24 @@ export class ChildService {
   }
 
   async add(newChild: AddChildDto): Promise<ChildEntity> {
-    const {
-      name,
-      lastName,
-      firstName,
-      gender,
-      birthPlace,
-      birthDate,
-      homeBirth,
-      childAdress,
-      motherName,
-      dateOfBirthMother,
-      motherPhone,
-      center,
-      responsible,
-      registrationState,
-    } = newChild;
-    console.log('', newChild);
+      console.log('ok:', newChild);
+      const {
+        name,
+        lastName,
+        firstName,
+        gender,
+        birthPlace,
+        birthDate,
+        homeBirth,
+        childAdress,
+        motherName,
+        dateOfBirthMother,
+        motherPhone,
+        center,
+        responsible,
+        registrationState,
+      } = newChild;
+  
     const centreEntity = this.centreRepository.create({ ...center });
     const respoEntity = this.respoRepository.create({ ...responsible });
     const centreRepo = await this.centreRepository.findOne(centreEntity);

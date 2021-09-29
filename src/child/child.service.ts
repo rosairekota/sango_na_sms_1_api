@@ -76,6 +76,7 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
     });
+    console.log('centre:', centreRepo, 'responsable:', responsibleRepo);
 
     childEntity.responsible = responsibleRepo;
     // manage transaction:

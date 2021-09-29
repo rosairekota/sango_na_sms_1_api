@@ -4,6 +4,7 @@ import { CalendarEntity } from 'src/calendar/calendar.entity';
 import { CentreEntity } from 'src/centre/centre.entity';
 import { ChildEntity } from 'src/child/child.entity';
 import { PeriodEntity } from 'src/period/period.entity';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { GenericValidatorMessages } from '../../helpers/generic-validator-message.dto';
 export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   @IsOptional()
@@ -19,7 +20,7 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   @IsOptional()
   period: PeriodEntity;
   @IsOptional()
-  center : CentreEntity
+  centre : CentreEntity
   @IsOptional()
   size:number;
   @IsOptional()
@@ -32,8 +33,4 @@ export class UpdateChildVaccinationDto extends GenericValidatorMessages {
   notificate: string;
   @IsOptional()
   received: boolean;
-
- 
-  
-
 }

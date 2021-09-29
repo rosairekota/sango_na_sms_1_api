@@ -11,8 +11,8 @@ export const template = (): string => {
      INNER JOIN zone ON province.id=zone.provinceId
      INNER JOIN aire ON zone.id=aire.zoneId
      INNER JOIN centre ON aire.idaire=centre.aireIdaire
-     INNER JOIN vaccination_enfant ON centre.idcentre=vaccination_enfant.centreIdcentre
-     INNER JOIN enfant ON vaccination_enfant.childId=enfant.id
+     LEFT JOIN vaccination_enfant ON centre.idcentre=vaccination_enfant.centreIdcentre
+     CROSS JOIN enfant ON vaccination_enfant.childId=enfant.id
      INNER JOIN responsable ON enfant.responsibleIdResponsible=responsable.idresponsable
      INNER JOIN calendrier ON vaccination_enfant.calendarId=calendrier.id
      INNER JOIN antigene ON antigene.id_antigene=calendrier.antigenId

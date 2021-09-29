@@ -152,11 +152,11 @@ export class ChildService {
           query += `AND `;
         }
       }
-
-      query += ` ORDER BY nom ; `;
-
-      return await this.childSerachViewrepository.query(query);
     }
+    query += ` ORDER BY nom ; `;
+
+    return await this.childSerachViewrepository.query(query);
+    
     
   }
 }

@@ -55,6 +55,7 @@ export class ChildService {
       responsible,
       registrationState,
     } = newChild;
+    console.log('', newChild);
     const centreEntity = this.centreRepository.create({ ...center });
     const respoEntity = this.respoRepository.create({ ...responsible });
     const centreRepo = await this.centreRepository.findOne(centreEntity);

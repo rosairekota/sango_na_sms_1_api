@@ -146,6 +146,7 @@ export class UserService {
       message: 'Un message vous envoyé dans votre email.Veuillez en vérifier!',
     };
   }
+  
   async destroyToken(newLogoutDto: LogoutDto) {
     const redisClient = redis.createClient();
     const jwtr = new JWTR.default(redisClient);

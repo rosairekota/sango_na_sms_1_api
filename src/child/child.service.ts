@@ -55,10 +55,11 @@ export class ChildService {
       responsible,
       registrationState,
     } = newChild;
-    const centreEntity = this.centreRepository.create({ ...center });
-    const respoEntity = this.respoRepository.create({ ...responsible });
-    const centreRepo = await this.centreRepository.findOne(centreEntity);
-    const responsibleRepo = await this.respoRepository.findOne(respoEntity);
+
+    const centreRepo = await this.centreRepository.findOne(center.idcentre);
+    const responsibleRepo = await this.respoRepository.findOne(
+      responsible.idResponsible,
+    );
     const childEntity = this.childRepository.create({
       name,
       lastName,
@@ -83,11 +84,11 @@ export class ChildService {
     try {
       const childRepo = await queryRunner.manager.save(childEntity);
       if (childRepo && centreRepo) {
-        const ChildRegistrationEntity = this.childRegistrationRepository.create(
-          { registrationState },
-        );
+        const ChildRegistrationEntity =
+          await this.childRegistrationRepository.create({ registrationState });
         ChildRegistrationEntity.centre = centreRepo;
         ChildRegistrationEntity.child = childRepo;
+        ChildRegistrationEntity.typeRegistration = 'BASE';
         await queryRunner.manager.save(ChildRegistrationEntity);
         await queryRunner.commitTransaction();
 
@@ -142,19 +143,13 @@ export class ChildService {
         } else {
           query += `${newEntity[i].key}=${newEntity[i].value} `;
         }
-        query += `${newEntity[i].key}=${newEntity[i].value} `;
         if (i < newEntity.length - 1) {
-          query += `AND `;
+          query += ` AND `;
         }
       }
-
-      query += ` ORDER BY nom ; `;
-      console.log(query);
-      return await this.childSerachViewrepository.query(query);
-    } else {
-      console.log(query);
-      return await this.childSerachViewrepository.query(query);
     }
-    
+    query += ` ORDER BY nom ; `;
+    console.log(query);
+    return await this.childSerachViewrepository.query(query);
   }
 }

@@ -40,12 +40,10 @@ export class ChildController {
   }
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<ChildEntity> {
-    console.log('childee');
     return await this.childService.findById(id);
   }
-  @Post()
+  @Post('enregistrer')
   async create(@Body() newChild: AddChildDto): Promise<ChildEntity> {
-    console.log('ozozo');
     return await this.childService.add(newChild);
   }
 

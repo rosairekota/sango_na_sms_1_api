@@ -14,6 +14,7 @@ import { ResponsibleService } from 'src/responsible/responsible.service';
 import { LogoutDto } from './dto/logout.dto';
 import * as redis from 'redis';
 import * as JWTR from 'jwt-redis';
+import { ForgotPasswordDto } from './dto/forgot-password';
 
 @Injectable()
 export class UserService {
@@ -51,8 +52,8 @@ export class UserService {
       sexe,
       user,
     } = responsableDto;
-    
-    user.status=false;
+
+    user.status = false;
     const userEntity = await this.userRepository.create({ ...user });
 
     const connection = getConnection();
@@ -98,11 +99,11 @@ export class UserService {
       id: user.id,
       username: user.username,
       email: user.email,
-      status: user.status
+      status: user.status,
     };
   }
 
-  async login(credetials: UserCredentialsDto) {
+  async login(credetials: UserCredentialsDto | any) {
     const { username, password } = credetials;
 
     const user = await this.userRepository
@@ -113,7 +114,6 @@ export class UserService {
     if (!user) throw new NotFoundException('Cet Utilisateur existe déjà');
 
     const hashPassword = await bcrypt.hash(password, user.salt);
-
 
     if (hashPassword === user.password) {
       user.status = true;
@@ -134,6 +134,19 @@ export class UserService {
       throw new NotFoundException('Mot de passe incorrect');
     }
   }
+
+  async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
+    const user = this.userRepository.findOne(forgotPasswordDto.email);
+    if (!user)
+      throw new NotFoundException('Aucun utilisateur existe avec cet email');
+
+    (await user).token = forgotPasswordDto.token;
+    (await user).expiredToken = new Date().getTime();
+    return {
+      message: 'Un message vous envoyé dans votre email.Veuillez en vérifier!',
+    };
+  }
+  
   async destroyToken(newLogoutDto: LogoutDto) {
     const redisClient = redis.createClient();
     const jwtr = new JWTR.default(redisClient);

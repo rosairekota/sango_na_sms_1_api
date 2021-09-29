@@ -2,5 +2,5 @@
 
 export enum AddChildRegistration {
   ACTIF = 'actif',
-  NO_ACTIF = 'non actif',
+  NO_ACTIF = 'non-actif',
 }

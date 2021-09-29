@@ -84,13 +84,13 @@ export class ChildService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
+    const childRepo = await queryRunner.manager.save(childEntity);
+    console.log('enfant:', childRepo);
 
     try {
-      const childRepo = await queryRunner.manager.save(childEntity);
       if (childRepo && centreRepo) {
-        const ChildRegistrationEntity = this.childRegistrationRepository.create(
-          { registrationState },
-        );
+        const ChildRegistrationEntity =
+          await this.childRegistrationRepository.create({ registrationState });
         ChildRegistrationEntity.centre = centreRepo;
         ChildRegistrationEntity.child = childRepo;
         ChildRegistrationEntity.typeRegistration = 'BASE';

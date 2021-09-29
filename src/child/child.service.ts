@@ -76,7 +76,7 @@ export class ChildService {
       dateOfBirthMother,
       motherPhone,
     });
-    console.log('centre:', centreRepo, 'responsable:', responsibleRepo);
+  
 
     childEntity.responsible = responsibleRepo;
     // manage transaction:
@@ -84,10 +84,9 @@ export class ChildService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-    const childRepo = await queryRunner.manager.save(childEntity);
-    console.log('enfant:', childRepo);
 
     try {
+      const childRepo = await queryRunner.manager.save(childEntity);
       if (childRepo && centreRepo) {
         const ChildRegistrationEntity =
           await this.childRegistrationRepository.create({ registrationState });

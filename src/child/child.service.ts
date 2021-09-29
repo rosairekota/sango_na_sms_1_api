@@ -143,16 +143,13 @@ export class ChildService {
         } else {
           query += `${newEntity[i].key}=${newEntity[i].value} `;
         }
-        query += `${newEntity[i].key}=${newEntity[i].value} `;
         if (i < newEntity.length - 1) {
-          query += `AND `;
+          query += ` AND `;
         }
       }
     }
     query += ` ORDER BY nom ; `;
-
+    console.log(query);
     return await this.childSerachViewrepository.query(query);
-    
-    
   }
 }

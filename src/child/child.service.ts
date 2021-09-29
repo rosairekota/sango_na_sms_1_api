@@ -93,6 +93,7 @@ export class ChildService {
         );
         ChildRegistrationEntity.centre = centreRepo;
         ChildRegistrationEntity.child = childRepo;
+        ChildRegistrationEntity.typeRegistration = 'BASE';
         await queryRunner.manager.save(ChildRegistrationEntity);
         await queryRunner.commitTransaction();
 

@@ -70,4 +70,10 @@ export class CarnetService {
   }
         return await this.carnetRepository.query(query);
       }
+
+
+      async findCarnetsGeneralStatistics(): Promise<any[]> {
+        const  query = 'SELECT intitule_antigene, count(vaccinationEnfantId),indice FROM carnet_enfant group by intitule_antigene,indice order by intitule_antigene,indice;';
+        return await this.carnetRepository.query(query);
+      }
 }

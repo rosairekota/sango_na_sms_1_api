@@ -19,4 +19,9 @@ export class CarnetController {
      async getCarnets(@Body() newChildVaccinationView: SearchInterface[]) :Promise<CarnetEntity[]>{
          return await this.carnetRepository.findCarnets(newChildVaccinationView)
      }
+
+     @Get('general_statistics')
+     async getGeneralStatistics() :Promise<any[]>{
+         return await this.carnetRepository.findCarnetsGeneralStatistics();
+     }
 }

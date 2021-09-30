@@ -161,8 +161,8 @@ export class UserService {
     //   .then(() => null)
     //   .catch(() => null);
     await this.sendGrid.send({
-      to: 'rosairekota@gmail.com',
-      from: forgotPasswordDto.email,
+      to: forgotPasswordDto.email,
+      from: 'rosairekota@gmail.com',
       subject: 'Renitialisation du mot de passe',
       text: 'and easy to do anywhere, even with Node.js',
       html: '<strong>and easy to do anywhere, even with Node.js</strong>',

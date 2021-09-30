@@ -67,7 +67,11 @@ export class CarnetService {
           }
         }
 
+
         query += ` ORDER BY indice,intitule_antigene ; `;
+
+        console.log(" requetetetetete  ",query)
+        
   }
         return await this.carnetRepository.query(query);
       }

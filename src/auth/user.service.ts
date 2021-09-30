@@ -140,12 +140,12 @@ export class UserService {
 
   async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
     const token = Math.random().toString(20).substring(2, 12);
-    const user = this.userRepository.findOne(forgotPasswordDto.email);
-    if (!user)
-      throw new NotFoundException('Aucun utilisateur existe avec cet email');
+    // const user = this.userRepository.findOne(forgotPasswordDto.email);
+    // if (!user)
+    //   throw new NotFoundException('Aucun utilisateur existe avec cet email');
 
-    (await user).token = token;
-    (await user).expiredToken = new Date().getTime();
+    // (await user).token = token;
+    // (await user).expiredToken = new Date().getTime();
     // this.mailerService
     //   .sendMail({
     //     to: 'rosairekota@gmail.com',

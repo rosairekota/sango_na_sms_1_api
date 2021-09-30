@@ -53,7 +53,7 @@ export class CarnetService {
         	}
 	
         else if (newChildVaccinationView[i].key==="dateFin") {
-                query += `date_prevue <='${newChildVaccinationView[i].value}' OR default_date_prevue <= '${newChildVaccinationView[i].value}'`;
+                query += `date_prevue <=${newChildVaccinationView[i].value} OR default_date_prevue <= ${newChildVaccinationView[i].value}`;
             }
              else{
         query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;

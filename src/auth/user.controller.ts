@@ -28,8 +28,6 @@ export class UserController {
   }
   @Post('reset-password')
   async resetPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
-    const token = Math.random().toString(20).substring(2, 12);
-    forgotPasswordDto.token = token;
     return await this.userService.forgotPassword(forgotPasswordDto);
   }
   @Post('login')

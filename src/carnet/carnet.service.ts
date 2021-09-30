@@ -59,6 +59,7 @@ export class CarnetService {
         query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
         }
            
+        console.log(" requetetetetete  ",query)
         
             if (i < newChildVaccinationView.length - 1) {
               query += ` AND `;

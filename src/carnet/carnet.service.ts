@@ -59,6 +59,7 @@ export class CarnetService {
         query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
         }
            
+        console.log(" requetetetetete  ",query)
         
             if (i < newChildVaccinationView.length - 1) {
               query += ` AND `;
@@ -66,7 +67,11 @@ export class CarnetService {
           }
         }
 
+
         query += ` ORDER BY indice,intitule_antigene ; `;
+
+        console.log(" requetetetetete gggggggggggggg ",query)
+        
   }
         return await this.carnetRepository.query(query);
       }

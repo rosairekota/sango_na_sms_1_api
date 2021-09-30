@@ -15,6 +15,7 @@ import { LogoutDto } from './dto/logout.dto';
 import * as redis from 'redis';
 import * as JWTR from 'jwt-redis';
 import { ForgotPasswordDto } from './dto/forgot-password';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class UserService {
@@ -27,6 +28,7 @@ export class UserService {
     private responsibleRepository: Repository<ResponsibleEntity>,
 
     private responsibleService: ResponsibleService,
+    private readonly mailerService: MailerService,
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
@@ -142,11 +144,26 @@ export class UserService {
 
     (await user).token = forgotPasswordDto.token;
     (await user).expiredToken = new Date().getTime();
+    this.mailerService
+      .sendMail({
+        to: 'test@nestjs.com',
+        from: 'noreply@nestjs.com',
+        subject: 'Testing Nest Mailermodule with template ✔',
+        template: __dirname + '/welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+        context: {
+          // Data to be sent to template engine.
+          link: `http://localhost:3000/${forgotPasswordDto.token}`,
+          username: 'john doe',
+        },
+      })
+      .then(() => null)
+      .catch(() => null);
+
     return {
       message: 'Un message vous envoyé dans votre email.Veuillez en vérifier!',
     };
   }
-  
+
   async destroyToken(newLogoutDto: LogoutDto) {
     const redisClient = redis.createClient();
     const jwtr = new JWTR.default(redisClient);

@@ -7,6 +7,8 @@ import {
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AireModule } from './aire/aire.module';
@@ -48,6 +50,29 @@ dotenv.config();
       database: process.env.MYSQL_ADDON_DB,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.sendgrid.net',
+        port: 465,
+        ignoreTLS: true,
+        secure: true,
+        auth: {
+          user: 'apikey',
+          pass: process.env.SENDGRID_API_KEY,
+        },
+      },
+      defaults: {
+        from: 'rosairekota@gmail.com',
+      },
+      preview: true,
+      template: {
+        dir: '/mail',
+        adapter: new PugAdapter(),
+        options: {
+          strict: true,
+        },
+      },
     }),
     AireModule,
     AntigenModule,

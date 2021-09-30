@@ -138,26 +138,27 @@ export class UserService {
   }
 
   async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
-    const user = this.userRepository.findOne(forgotPasswordDto.email);
-    if (!user)
-      throw new NotFoundException('Aucun utilisateur existe avec cet email');
+     const token = Math.random().toString(20).substring(2, 12);
+     const user = this.userRepository.findOne(forgotPasswordDto.email);
+     if (!user)
+       throw new NotFoundException('Aucun utilisateur existe avec cet email');
 
-    (await user).token = forgotPasswordDto.token;
-    (await user).expiredToken = new Date().getTime();
-    this.mailerService
-      .sendMail({
-        to: 'test@nestjs.com',
-        from: 'noreply@nestjs.com',
-        subject: 'Testing Nest Mailermodule with template ✔',
-        template: __dirname + '/welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
-        context: {
-          // Data to be sent to template engine.
-          link: `http://localhost:3000/${forgotPasswordDto.token}`,
-          username: 'john doe',
-        },
-      })
-      .then(() => null)
-      .catch(() => null);
+     (await user).token = token;
+     (await user).expiredToken = new Date().getTime();
+     this.mailerService
+       .sendMail({
+         to: 'test@nestjs.com',
+         from: 'noreply@nestjs.com',
+         subject: 'Testing Nest Mailermodule with template ✔',
+         template: __dirname + '/welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+         context: {
+           // Data to be sent to template engine.
+           link: `http://localhost:3000/${token}`,
+           username: 'john doe',
+         },
+       })
+       .then(() => null)
+       .catch(() => null);
 
     return {
       message: 'Un message vous envoyé dans votre email.Veuillez en vérifier!',

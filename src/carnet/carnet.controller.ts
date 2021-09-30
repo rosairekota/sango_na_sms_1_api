@@ -11,6 +11,11 @@ import { SearchInterface } from 'src/helpers/search.interface';
 export class CarnetController {
     constructor(private readonly carnetRepository: CarnetService) {}
 
+    @Get('general_statistics')
+    async getGeneralStatistics() :Promise<any[]>{
+        return await this.carnetRepository.findCarnetsGeneralStatistics();
+    }
+
     @Get(':id')
      async getCarnetsByEnfant(@Param("id",ParseIntPipe) id:number ) :Promise<SendingCarnetDto[]>{
          return await this.carnetRepository.findCarnetsByEnfant(id);
@@ -19,4 +24,6 @@ export class CarnetController {
      async getCarnets(@Body() newChildVaccinationView: SearchInterface[]) :Promise<CarnetEntity[]>{
          return await this.carnetRepository.findCarnets(newChildVaccinationView)
      }
+
+    
 }

@@ -16,6 +16,7 @@ import * as redis from 'redis';
 import * as JWTR from 'jwt-redis';
 import { ForgotPasswordDto } from './dto/forgot-password';
 import { MailerService } from '@nestjs-modules/mailer';
+import { SendGridService } from '@anchan828/nest-sendgrid';
 
 @Injectable()
 export class UserService {
@@ -29,6 +30,7 @@ export class UserService {
 
     private responsibleService: ResponsibleService,
     private readonly mailerService: MailerService,
+    private readonly sendGrid: SendGridService,
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
@@ -138,28 +140,34 @@ export class UserService {
   }
 
   async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
-     const token = Math.random().toString(20).substring(2, 12);
-     const user = this.userRepository.findOne(forgotPasswordDto.email);
-     if (!user)
-       throw new NotFoundException('Aucun utilisateur existe avec cet email');
+    const token = Math.random().toString(20).substring(2, 12);
+    const user = this.userRepository.findOne(forgotPasswordDto.email);
+    if (!user)
+      throw new NotFoundException('Aucun utilisateur existe avec cet email');
 
-     (await user).token = token;
-     (await user).expiredToken = new Date().getTime();
-     this.mailerService
-       .sendMail({
-         to: 'test@nestjs.com',
-         from: 'noreply@nestjs.com',
-         subject: 'Testing Nest Mailermodule with template ✔',
-         template: __dirname + '/welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
-         context: {
-           // Data to be sent to template engine.
-           link: `http://localhost:3000/${token}`,
-           username: 'john doe',
-         },
-       })
-       .then(() => null)
-       .catch(() => null);
-
+    (await user).token = token;
+    (await user).expiredToken = new Date().getTime();
+    // this.mailerService
+    //   .sendMail({
+    //     to: 'rosairekota@gmail.com',
+    //     from: 'noreply@nestjs.com',
+    //     subject: 'Testing Nest Mailermodule with template ✔',
+    //     template: __dirname + 'welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+    //     context: {
+    //       // Data to be sent to template engine.
+    //       link: `http://localhost:3000/${token}`,
+    //       username: 'john doe',
+    //     },
+    //   })
+    //   .then(() => null)
+    //   .catch(() => null);
+    await this.sendGrid.send({
+      to: forgotPasswordDto.email,
+      from: 'rosairekota@gmail.com',
+      subject: 'Renitialisation du mot de passe',
+      text: 'and easy to do anywhere, even with Node.js',
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    });
     return {
       message: 'Un message vous envoyé dans votre email.Veuillez en vérifier!',
     };

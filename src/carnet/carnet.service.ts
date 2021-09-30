@@ -70,7 +70,7 @@ export class CarnetService {
 
         query += ` ORDER BY indice,intitule_antigene ; `;
 
-        console.log(" requetetetetete  ",query)
+        console.log(" requetetetetete gggggggggggggg ",query)
         
   }
         return await this.carnetRepository.query(query);

@@ -15,7 +15,6 @@ import { LogoutDto } from './dto/logout.dto';
 import * as redis from 'redis';
 import * as JWTR from 'jwt-redis';
 import { ForgotPasswordDto } from './dto/forgot-password';
-import { MailerService } from '@nestjs-modules/mailer';
 import { SendGridService } from '@anchan828/nest-sendgrid';
 
 @Injectable()
@@ -29,7 +28,7 @@ export class UserService {
     private responsibleRepository: Repository<ResponsibleEntity>,
 
     private responsibleService: ResponsibleService,
-    private readonly mailerService: MailerService,
+
     private readonly sendGrid: SendGridService,
   ) {}
 

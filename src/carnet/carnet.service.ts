@@ -58,9 +58,7 @@ export class CarnetService {
              else{
         query += `${newChildVaccinationView[i].key}=${newChildVaccinationView[i].value} `;
         }
-           
-        console.log(" requetetetetete gfygygyg ",query)
-        
+                   
             if (i < newChildVaccinationView.length - 1) {
               query += ` AND `;
             }
@@ -78,7 +76,7 @@ export class CarnetService {
 
 
       async findCarnetsGeneralStatistics(): Promise<any[]> {
-        const  query = 'SELECT intitule_antigene, count(vaccinationEnfantId) as nombre,indice FROM carnet_enfant where est_pris=1 group by intitule_antigene,indice order by intitule_antigene,indice;';
+        const  query = 'SELECT intitule_antigene, count(vaccinationEnfantId) as nombre,indice FROM carnet_enfant  group by intitule_antigene,indice order by intitule_antigene,indice;';
         return await this.carnetRepository.query(query);
       }
 }
